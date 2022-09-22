@@ -15,3 +15,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-font-size: 18px;
     -fx-font-weight: bold;
 }
+.labelInput{
+    -fx-font-size: 15px;
+}
+.inputForm{
+        -fx-accent: -fx-primary-color;
+	-fx-background-color: -fx-grey-color, white;
+	-fx-background-insets: 0, 0 0 1 0;
+	-fx-background-radius: 0;
+        -fx-primary-color: #007acc;
+	-fx-secondary-color: #4B6EAF;
+	-fx-grey-color: #b9b9b9;
+}
+.inputForm:focused {
+	-fx-background-color: -fx-primary-color, white;
+}
+.paneForm{
+    -fx-background-color: #d1eaff;
+}

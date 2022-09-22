@@ -6,6 +6,7 @@ package com.mycompany.projectem12;
 
 import com.mycompany.controlAccess.Recepcionistes;
 import static com.mycompany.projectem12.App.connection;
+import static com.mycompany.projectem12.App.usuari;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,11 +16,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
@@ -27,6 +31,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class ControladorFinestrarecepcionistes implements Initializable {
     //atributs
+    @FXML
+    private Label nomUsuariLabel;
+    //inputs
+    
+    //table
     @FXML private TableView<Recepcionistes> RecepcionistesTaula;
     
     @FXML private TableColumn<Recepcionistes, String> dniColumna;
@@ -51,6 +60,7 @@ public class ControladorFinestrarecepcionistes implements Initializable {
     //metods
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        nomUsuariLabel.setText(usuari.getNom());
         try {
             iniciarCeles();
             extreureRecepcionistes();
@@ -58,7 +68,7 @@ public class ControladorFinestrarecepcionistes implements Initializable {
             Logger.getLogger(ControladorFinestrarecepcionistes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    //declara el valor que representen les columnes
     @FXML
     public void iniciarCeles(){
         dniColumna.setCellValueFactory(new PropertyValueFactory<Recepcionistes, String>("dni"));
@@ -75,18 +85,17 @@ public class ControladorFinestrarecepcionistes implements Initializable {
         ObservableList<Recepcionistes> recepcionistesList = FXCollections.observableArrayList();
         Statement stmt = connection.getStmt();
         ResultSet rs = null;
-        rs = stmt.executeQuery("SELECT * FROM `empleats` WHERE `admin`!='admin'");
+        rs = stmt.executeQuery("SELECT * FROM `empleats` WHERE `admin` IS NULL");
         while(rs.next()){
-            String validat = "no";
-            if(rs.getString("validat")!=null){
-                validat = "si";
-            }
-            recepcionistesList.add(new Recepcionistes(rs.getString("dni"),rs.getString("nom"),rs.getString("nomUsuari"),rs.getString("cognoms"),rs.getString("contrasenya"),rs.getString("nacionalitat"),rs.getString("telefon"),rs.getString("email"),validat));
+            recepcionistesList.add(new Recepcionistes(rs.getString("dni"),rs.getString("nom"),rs.getString("nomUsuari"),rs.getString("cognoms"),rs.getString("contrasenya"),rs.getString("nacionalitat"),rs.getString("telefon"),rs.getString("email"),rs.getString("validat")));
         }
         getRecepcionistesTaula().setItems(recepcionistesList);
-        //getRecepcionistesTaula().getItems().addAll(recepcionistesList);
-        
     }
-
+    //seleccionar recepcionistes 
+    @FXML
+    private void seleccionaRecepcionista(MouseEvent event){
+        Recepcionistes recepcionista = (Recepcionistes) getRecepcionistesTaula().getSelectionModel().getSelectedItem();
+        System.out.println(recepcionista);
+    }
 
 }

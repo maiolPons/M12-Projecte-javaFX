@@ -158,8 +158,7 @@ public class user {
             if(rs.next() == false){
                 System.out.println("usuari no existenix");
             }else{
-                System.out.println(rs.getString("validat"));
-                if(rs.getString("validat")!=null){
+                if(rs.getString("validat").equals("si")){
                     System.out.println("usuari existenix");
                     
                     setDni(rs.getString("dni"));
@@ -170,7 +169,7 @@ public class user {
                     setNacionalitat(rs.getString("nacionalitat"));
                     setTelefon(rs.getString("telefon"));
                     setEmail(rs.getString("email"));
-                    if(rs.getString("admin")!=null){
+                    if(rs.getString("admin").equals("admin")){
                         setAdmin(true);
                     }
                     else{
@@ -196,7 +195,7 @@ public class user {
         try {
             if(rs.next() == false){
                 funciona=true;
-                stmt.executeUpdate("INSERT INTO `empleats` (`dni`,`nom`,`cognoms`,`nomUsuari`,`contrasenya`,`nacionalitat`,`telefon`,`email`,`admin`,`validat`) VALUES ('"+getDni()+"','"+getNom()+"','"+getCognom()+"','"+getNomUsuari()+"','"+encriptarMD5(getContrasenya())+"','"+getNacionalitat()+"','"+getTelefon()+"','"+getEmail()+"','"+NULL+"','"+NULL+"')");
+                stmt.executeUpdate("INSERT INTO `empleats` (`dni`,`nom`,`cognoms`,`nomUsuari`,`contrasenya`,`nacionalitat`,`telefon`,`email`,`admin`,`validat`) VALUES ('"+getDni()+"','"+getNom()+"','"+getCognom()+"','"+getNomUsuari()+"','"+encriptarMD5(getContrasenya())+"','"+getNacionalitat()+"','"+getTelefon()+"','"+getEmail()+"','"+NULL+"','no')");
             }
         } catch (SQLException ex) {
             Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
