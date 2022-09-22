@@ -5,9 +5,12 @@
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projectem12.ControladorFinestrarecepcionistes">
     <stylesheets>
         <URL value="@/styles/menuStyles.css" />
     </stylesheets>
@@ -34,7 +37,7 @@
             <Label text="Benvingut usuari: " />
          </buttons>
       </ButtonBar>
-      <ButtonBar layoutX="475.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="330.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+      <ButtonBar layoutX="475.0" prefHeight="40.0" prefWidth="330.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
          <contextMenu>
             <ContextMenu>
                <items>
@@ -43,5 +46,22 @@
             </ContextMenu>
          </contextMenu>
       </ButtonBar>
+      <Label alignment="CENTER" layoutX="552.0" layoutY="56.0" prefHeight="27.0" prefWidth="177.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" text="Recepcionistes">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Label>
+      <TableView fx:id="RecepcionistesTaula" layoutX="140.0" layoutY="400.0" prefHeight="250.0" prefWidth="1000.0">
+        <columns>
+          <TableColumn fx:id="dniColumna" prefWidth="100.0" text="DNI" />
+          <TableColumn fx:id="nomColumna" prefWidth="100.0" text="Nom" />
+            <TableColumn fx:id="cognomsColumna" prefWidth="175.0" text="Cognoms" />
+            <TableColumn fx:id="usuariColumna" prefWidth="100.0" text="Nom d'usuari" />
+            <TableColumn fx:id="nacionalitatColumna" prefWidth="100.0" text="Nacionalitat" />
+            <TableColumn fx:id="emailColumna" prefWidth="200.0" text="E-mail" />
+            <TableColumn fx:id="telefonColumna" prefWidth="150.0" text="Telefon" />
+            <TableColumn fx:id="validacioColumna" prefWidth="75.0" text="Validacio" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
