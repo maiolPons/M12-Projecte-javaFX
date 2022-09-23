@@ -4,9 +4,14 @@ import com.mycompany.controlAccess.user;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class ControladorRegistrar {
     //atributs
@@ -28,8 +33,6 @@ public class ControladorRegistrar {
     private TextField correuRegistrar;
     @FXML
     private TextField contrasenyaRegistrar;
-    @FXML
-    private ImageView backButtonRegistrar;
     //get and set
 
     public Label getErrorRegistrar() {
@@ -73,13 +76,18 @@ public class ControladorRegistrar {
     private void registrarUsuari(ActionEvent event) throws IOException {
         user usuariAregistrar = new user(getDniRegistrar().getText(),getNomRegistrar().getText(),getUsuariregistrar().getText(),getCognomsRegistrar().getText(),getContrasenyaRegistrar().getText(), getNacionalitatRegistrar().getText(), getTelefonRegistrar().getText(), getCorreuRegistrar().getText());
         if(usuariAregistrar.crearUsuari()){
-            errorRegistrar.setText("Usuari registrar correctament!");
+            errorRegistrar.setText("Usuari registrar\ncorrectament!");
         }else{
-            errorRegistrar.setText("Error amb el registre de usuari!");
+            errorRegistrar.setText("Error amb el\nregistre d'usuari!");
         }
     }
     @FXML
-    private void tornarALogin() throws IOException{
-        App.setRoot("Login");
+    private void tornarALogin(ActionEvent event) throws IOException{
+        ((Node)event.getSource()).getScene().getWindow().hide();
+        Parent root = FXMLLoader.load(App.class.getResource("Login" + ".fxml"));
+        Stage stage = new Stage();
+        Scene scene =new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

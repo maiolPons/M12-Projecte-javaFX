@@ -12,6 +12,6 @@
       <Button fx:id="botoLogin" layoutX="200.0" layoutY="191.0" mnemonicParsing="false" onAction="#login" text="Inciar Sessio" />
       <Label layoutX="207.0" layoutY="39.0" text="Iniciar sessio" />
       <Label fx:id="errorLogin" layoutX="579.0" layoutY="507.0" prefHeight="37.0" prefWidth="126.0" />
-      <Button fx:id="botoRegistrar" layoutX="209.0" layoutY="234.0" mnemonicParsing="false" onAction="#registrar" text="Registrar" />
+      <Button fx:id="botoRegistrar" layoutX="209.0" layoutY="234.0" mnemonicParsing="false" onAction="#obrirRegistrar" text="Registrar" />
    </children>
 </AnchorPane>

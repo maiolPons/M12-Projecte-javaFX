@@ -19,14 +19,21 @@ import javafx.scene.control.Label;
 public class App extends Application {
 
     private static Scene scene;
+    private static Stage stageLogin;
+
+    public static Stage getStageLogin() {
+        return stageLogin;
+    }
+    
+    
 
     @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Login"),1280,720);
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage stageLogin) throws IOException {
+        scene = new Scene(loadFXML("Login"));
+        stageLogin.setScene(scene);
+        stageLogin.show();
     }
-
+    
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
