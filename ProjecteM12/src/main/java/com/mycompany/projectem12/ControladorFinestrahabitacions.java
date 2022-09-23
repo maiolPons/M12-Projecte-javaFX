@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
@@ -19,10 +20,15 @@ import javafx.scene.control.Label;
  */
 public class ControladorFinestrahabitacions implements Initializable {
     //atributs
+    @FXML
     private Label nomUsuariLabel;
     //metodes
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         nomUsuariLabel.setText(usuari.getNom());
+    }
+    @FXML
+    private void crearHabitacio(){
+        
     }
 }
