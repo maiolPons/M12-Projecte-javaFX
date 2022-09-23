@@ -4,10 +4,25 @@
  */
 package com.mycompany.projectem12;
 
+import static com.mycompany.projectem12.App.usuari;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+
 /**
  *
  * @author Maiol
  */
-public class ControladorFinestrahabitacions {
-    
+public class ControladorFinestrahabitacions implements Initializable {
+    //atributs
+    private Label nomUsuariLabel;
+    //metodes
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        nomUsuariLabel.setText(usuari.getNom());
+    }
 }
