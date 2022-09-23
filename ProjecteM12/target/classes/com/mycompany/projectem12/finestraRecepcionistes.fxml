@@ -63,40 +63,40 @@
             <TableColumn fx:id="validacioColumna" prefWidth="75.0" text="Validacio" />
         </columns>
       </TableView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../media/saveButton.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="400.0" onMousePressed="#validarRecep" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../media/tickButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="475.0" onMousePressed="#declinarRecep" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../media/deleteButton.png" />
+            <Image url="@../../../media/negateButton.png" />
          </image>
       </ImageView>
       <Pane layoutX="240.0" layoutY="150.0" prefHeight="200.0" prefWidth="800.0" styleClass="paneForm">
          <children>
             <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="DNI:" />
-            <TextField layoutX="140.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="dnirep" editable="false" layoutX="140.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
             <Label layoutX="20.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Nom:" />
             <Label layoutX="20.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Cognoms:" />
             <Label layoutX="20.0" layoutY="140.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Nom d'usuari:" />
-            <TextField layoutX="140.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
-            <TextField layoutX="140.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
-            <TextField layoutX="140.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="nomrep" editable="false" layoutX="140.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="cognomrep" editable="false" layoutX="140.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="usuarirep" editable="false" layoutX="140.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
             <Label layoutX="460.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Nacionalitat:" />
-            <TextField layoutX="580.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="nacionalitatrep" editable="false" layoutX="580.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
             <Label layoutX="460.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="E-mail:" />
-            <TextField layoutX="580.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="emailrep" editable="false" layoutX="580.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
             <Label layoutX="460.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Telefon:" />
-            <TextField layoutX="580.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="telefonrep" editable="false" layoutX="580.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
             <Label layoutX="460.0" layoutY="140.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Validacio:" />
-            <TextField editable="false" layoutX="580.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="validaciorep" editable="false" layoutX="580.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
          </children>
       </Pane>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="550.0" onMousePressed="#EliminarRecep" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../media/deleteButton.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

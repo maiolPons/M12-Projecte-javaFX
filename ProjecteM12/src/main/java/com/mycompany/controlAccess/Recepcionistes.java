@@ -1,12 +1,4 @@
 package com.mycompany.controlAccess;
-
-import static com.mycompany.projectem12.App.connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 /**
  *
  * @author Maiol
@@ -106,6 +98,11 @@ public class Recepcionistes {
     public void setValidat(String validat) {
         this.validat = validat;
     }
+
+    public String getValidat() {
+        return validat;
+    }
+    
     //metodes
     
     @Override

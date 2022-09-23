@@ -7,6 +7,7 @@ package com.mycompany.projectem12;
 import com.mycompany.controlAccess.Recepcionistes;
 import static com.mycompany.projectem12.App.connection;
 import static com.mycompany.projectem12.App.usuari;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +22,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -34,6 +37,14 @@ public class ControladorFinestrarecepcionistes implements Initializable {
     @FXML
     private Label nomUsuariLabel;
     //inputs
+    @FXML private TextField dnirep;
+    @FXML private TextField nomrep;
+    @FXML private TextField cognomrep;
+    @FXML private TextField usuarirep;
+    @FXML private TextField nacionalitatrep;
+    @FXML private TextField emailrep;
+    @FXML private TextField telefonrep;
+    @FXML private TextField validaciorep;
     
     //table
     @FXML private TableView<Recepcionistes> RecepcionistesTaula;
@@ -91,11 +102,67 @@ public class ControladorFinestrarecepcionistes implements Initializable {
         }
         getRecepcionistesTaula().setItems(recepcionistesList);
     }
-    //seleccionar recepcionistes 
+    //seleccionar recepcionistes i mostra les dades en el display del centra de la pantalla
     @FXML
     private void seleccionaRecepcionista(MouseEvent event){
         Recepcionistes recepcionista = (Recepcionistes) getRecepcionistesTaula().getSelectionModel().getSelectedItem();
-        System.out.println(recepcionista);
+        dnirep.setText(recepcionista.getDni());
+        nomrep.setText(recepcionista.getNom());
+        cognomrep.setText(recepcionista.getCognom());
+        usuarirep.setText(recepcionista.getNomUsuari());
+        nacionalitatrep.setText(recepcionista.getNacionalitat());
+        emailrep.setText(recepcionista.getEmail());
+        telefonrep.setText(recepcionista.getTelefon());
+        validaciorep.setText(recepcionista.getValidat());
+    }
+    
+    //valida recepcionistes
+    @FXML
+    private void validarRecep() throws IOException{
+        Recepcionistes recepcionista = (Recepcionistes) getRecepcionistesTaula().getSelectionModel().getSelectedItem();
+        //recepcionista.setValidat("si");
+        //RecepcionistesTaula.getItems().removeAll(recepcionista);
+        //getRecepcionistesTaula().getItems().add(recepcionista);
+        Statement stmt = connection.getStmt();
+        try {
+            stmt.executeUpdate("UPDATE `empleats` SET `validat`='si' WHERE `dni`='"+recepcionista.getDni()+"'");
+            extreureRecepcionistes();
+            RecepcionistesTaula.refresh();
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorFinestrarecepcionistes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    //retira drets de validacio del recepcionista
+    @FXML
+    public void declinarRecep() throws IOException{
+        Recepcionistes recepcionista = (Recepcionistes) getRecepcionistesTaula().getSelectionModel().getSelectedItem();
+        //recepcionista.setValidat("no");
+        //RecepcionistesTaula.getItems().removeAll(recepcionista);
+        //getRecepcionistesTaula().getItems().add(recepcionista);
+        Statement stmt = connection.getStmt();
+        try {
+            stmt.executeUpdate("UPDATE `empleats` SET `validat`='no' WHERE `dni`='"+recepcionista.getDni()+"'");
+            extreureRecepcionistes();
+            RecepcionistesTaula.refresh();
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorFinestrarecepcionistes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    //elimina el recepcionista
+    @FXML
+    public void EliminarRecep() throws IOException{
+        Recepcionistes recepcionista = (Recepcionistes) getRecepcionistesTaula().getSelectionModel().getSelectedItem();
+        RecepcionistesTaula.getItems().removeAll(recepcionista);
+        Statement stmt = connection.getStmt();
+        try {
+            stmt.executeUpdate("DELETE FROM `empleats` WHERE `dni`='"+recepcionista.getDni()+"'");
+            extreureRecepcionistes();
+            RecepcionistesTaula.refresh();
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorFinestrarecepcionistes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

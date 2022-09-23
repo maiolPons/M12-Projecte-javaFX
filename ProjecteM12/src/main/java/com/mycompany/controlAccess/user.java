@@ -10,7 +10,6 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import static java.sql.JDBCType.NULL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -164,12 +163,13 @@ public class user {
                     setDni(rs.getString("dni"));
                     setNom(rs.getString("nom"));
                     setCognom(rs.getString("cognoms"));
-                    setNomUsuari(rs.getString(nomUsuari));
+                    setNomUsuari(rs.getString("nomUsuari"));
                     setContrasenya(contrasenyaEncryptada);
                     setNacionalitat(rs.getString("nacionalitat"));
                     setTelefon(rs.getString("telefon"));
                     setEmail(rs.getString("email"));
-                    if(rs.getString("admin").equals("admin")){
+
+                    if(rs.getString("admin")!=null){
                         setAdmin(true);
                     }
                     else{
@@ -195,7 +195,7 @@ public class user {
         try {
             if(rs.next() == false){
                 funciona=true;
-                stmt.executeUpdate("INSERT INTO `empleats` (`dni`,`nom`,`cognoms`,`nomUsuari`,`contrasenya`,`nacionalitat`,`telefon`,`email`,`admin`,`validat`) VALUES ('"+getDni()+"','"+getNom()+"','"+getCognom()+"','"+getNomUsuari()+"','"+encriptarMD5(getContrasenya())+"','"+getNacionalitat()+"','"+getTelefon()+"','"+getEmail()+"','"+NULL+"','no')");
+                stmt.executeUpdate("INSERT INTO `empleats` (`dni`,`nom`,`cognoms`,`nomUsuari`,`contrasenya`,`nacionalitat`,`telefon`,`email`,`admin`,`validat`) VALUES ('"+getDni()+"','"+getNom()+"','"+getCognom()+"','"+getNomUsuari()+"','"+encriptarMD5(getContrasenya())+"','"+getNacionalitat()+"','"+getTelefon()+"','"+getEmail()+"',NULL,'no')");
             }
         } catch (SQLException ex) {
             Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
