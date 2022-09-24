@@ -53,7 +53,7 @@
             <Font name="Georgia" size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="habitacionsTaula" layoutX="140.0" layoutY="400.0" prefHeight="250.0" prefWidth="1000.0">
+      <TableView fx:id="habitacionsTaula" layoutX="140.0" layoutY="400.0" onMouseClicked="#modificarHabitacio" prefHeight="250.0" prefWidth="1000.0">
         <columns>
           <TableColumn fx:id="numeroColumna" prefWidth="59.0" text="Numero" />
           <TableColumn fx:id="plantaColumna" prefWidth="68.0" text="Planta" />
