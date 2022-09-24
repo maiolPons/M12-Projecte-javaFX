@@ -277,15 +277,15 @@ public class ControladorFinestrahabitacions implements Initializable {
     }
     @FXML
     private void iniciarCeles(){
-        numeroColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("dni"));
-        plantaColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("nom"));
-        preuColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("cognom"));
-        tipusColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("nomUsuari"));
-        llistaDoblesColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("nacionalitat"));
-        llitsNormalsColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("email"));
-        cuinaColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("telefon"));
-        vistaColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("validat"));
-        estatColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("validat"));
+        numeroColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("numHabitacio"));
+        plantaColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("planta"));
+        preuColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("preu"));
+        tipusColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("tipus"));
+        llistaDoblesColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("numeroLlitsDobles"));
+        llitsNormalsColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("numeroLlitsNormals"));
+        cuinaColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("cuina"));
+        vistaColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("vistaMar"));
+        estatColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("estat"));
     }
     //crear llista de recepcionistes
     public void extreureHabitacions() throws SQLException{
@@ -318,6 +318,7 @@ public class ControladorFinestrahabitacions implements Initializable {
         getVistaMarhab().setSelected(false);
         getEstathab().setSelected(false);
         getEstatOrdre().setText("");
+        
     }
     @FXML
     private void executarOrdre() throws SQLException{
@@ -358,7 +359,9 @@ public class ControladorFinestrahabitacions implements Initializable {
                     getCuinahab().setSelected(false);
                     getVistaMarhab().setSelected(false);
                     getEstathab().setSelected(false);
-                    getEstatOrdre().setText("");
+
+                    extreureHabitacions();
+                    habitacionsTaula.refresh();
                 }catch(Exception e){
                     getEstatOrdre().setText("Preu invalid");
                 }
