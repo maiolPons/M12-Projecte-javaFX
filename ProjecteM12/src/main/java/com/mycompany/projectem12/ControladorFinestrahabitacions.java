@@ -6,9 +6,12 @@ package com.mycompany.projectem12;
 
 import com.mycompany.controlAccess.Habitacions;
 import com.mycompany.controlAccess.Recepcionistes;
+import static com.mycompany.projectem12.App.connection;
 import static com.mycompany.projectem12.App.usuari;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -185,20 +188,48 @@ public class ControladorFinestrahabitacions implements Initializable {
         getCuinahab().setSelected(false);
         getVistaMarhab().setSelected(false);
         getEstathab().setSelected(false);
+        getEstatOrdre().setText("");
     }
     @FXML
-    private void executarOrdre(){
+    private void executarOrdre() throws SQLException{
         if(getEstatManipulacio().getText()=="Creant nova habitacio"){
             comprovarValors();
         }
     }
     // || !getPlantahab().getText().equals("") || !getPreuhab().getText().equals("") || !getTipushab().getItems().isEmpty() || !getNumeroLlitsDobleshab().getText().equals("") || !getNumeroLlitsNormalshab().getText().equals("") || getCuinahab().isSelected() || getVistaMarhab().isSelected() || getEstathab().isSelected()
-    private void comprovarValors(){
+    private void comprovarValors() throws SQLException{
         if((getNumHabitaciohab().getText() == null || getNumHabitaciohab().getText().trim().isEmpty()) || (getPlantahab().getText() == null || getPlantahab().getText().trim().isEmpty()) || (getPreuhab().getText() == null || getPreuhab().getText().trim().isEmpty()) || (getNumeroLlitsDobleshab().getText() == null || getNumeroLlitsDobleshab().getText().trim().isEmpty()) || (getNumeroLlitsNormalshab().getText() == null || getNumeroLlitsNormalshab().getText().trim().isEmpty()) || getTipushab().getSelectionModel().isEmpty()){
             getEstatOrdre().setText("Tots els camps son obligatoris");
         }else{
-            
-        }
+            getEstatOrdre().setText("");
+            Statement stmt = connection.getStmt();
+            ResultSet rs = null;
+            rs = stmt.executeQuery("SELECT * FROM `habitacio` WHERE `numHabitacio`='"+getNumHabitaciohab().getText()+"'");
+            if(rs.next() == true){
+                getEstatOrdre().setText("La habitacio ja existeix");
+            }else{
+                int estat = 0;
+                int vista = 0;
+                int cuina = 0;
+                if(getEstathab().isSelected()){estat = 1;}
+                if(getVistaMarhab().isSelected()){vista = 1;}
+                if(getCuinahab().isSelected()){cuina = 1;}
+                //System.out.println("INSERT INTO `habitacio` (`numHabitacio`,`planta`,`preu`,`tipus`,`estat`,`numeroLlitsDobles`,`numeroLlitsNormals`,`cuina`,`vistaMar`) VALUES ('"+getNumHabitaciohab().getText()+"','"+getPlantahab().getText()+"','"+getPreuhab().getText()+"','"+getTipushab().getValue()+"','"+estat+"','"+getNumeroLlitsDobleshab().getText()+"','"+getNumeroLlitsNormalshab().getText()+"','"+cuina+"','"+vista+"')");
+                stmt.executeUpdate("INSERT INTO `habitacio` (`numHabitacio`,`planta`,`preu`,`tipus`,`estat`,`numeroLlitsDobles`,`numeroLlitsNormals`,`cuina`,`vistaMar`) VALUES ('"+getNumHabitaciohab().getText()+"','"+getPlantahab().getText()+"','"+getPreuhab().getText()+"','"+getTipushab().getValue()+"','"+estat+"','"+getNumeroLlitsDobleshab().getText()+"','"+getNumeroLlitsNormalshab().getText()+"','"+cuina+"','"+vista+"')");  
+                getEstatOrdre().setText("Habitacio Creada!");
+                getEstatManipulacio().setText("");
+                getNumHabitaciohab().setText("");
+                getPlantahab().setText("");
+                getPreuhab().setText("");
+                getTipushab().setValue("");
+                getNumeroLlitsDobleshab().setText("");
+                getNumeroLlitsNormalshab().setText("");
+                getCuinahab().setSelected(false);
+                getVistaMarhab().setSelected(false);
+                getEstathab().setSelected(false);
+                getEstatOrdre().setText("");
+                }
+            }
     }
     @FXML
     private void seleccionaRecepcionista(MouseEvent event){
