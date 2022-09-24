@@ -134,7 +134,6 @@ public class ControladorFinestrarecepcionistes implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ControladorFinestrarecepcionistes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
     //retira drets de validacio del recepcionista
     @FXML

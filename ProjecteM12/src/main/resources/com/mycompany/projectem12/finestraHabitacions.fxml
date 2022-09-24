@@ -53,7 +53,7 @@
             <Font name="Georgia" size="16.0" />
          </font>
       </Label>
-      <TableView layoutX="140.0" layoutY="400.0" prefHeight="250.0" prefWidth="1000.0">
+      <TableView fx:id="habitacionsTaula" layoutX="140.0" layoutY="400.0" prefHeight="250.0" prefWidth="1000.0">
         <columns>
           <TableColumn prefWidth="59.0" text="Numero" />
           <TableColumn prefWidth="68.0" text="Planta" />
@@ -71,7 +71,7 @@
             <Image url="@../../../media/newButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="475.0" onMousePressed="#executarOrdre" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../media/saveButton.png" />
          </image>
@@ -103,5 +103,15 @@
             <Image url="@../../../media/deleteButton.png" />
          </image>
       </ImageView>
+      <Label fx:id="estatManipulacio" alignment="CENTER" layoutX="483.0" layoutY="105.0" prefHeight="27.0" prefWidth="315.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="estatOrdre" alignment="CENTER" layoutX="490.0" layoutY="360.0" prefHeight="27.0" prefWidth="315.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
