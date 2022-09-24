@@ -19,6 +19,9 @@ public class Habitacions {
     private int numeroLlitsNormals;
     private boolean cuina;
     private boolean vistaMar;
+    private String cuinaVisualitzar;
+    private String vistaMarVisualitzar;
+    private String estatVisualitzar;
     //constructor
     public Habitacions(String numHabitacio, String planta, double preu, String tipus, boolean estat, int numeroLlitsDobles, int numeroLlitsNormals, boolean cuina, boolean vistaMar) {
         this.numHabitacio = numHabitacio;
@@ -30,7 +33,11 @@ public class Habitacions {
         this.numeroLlitsNormals = numeroLlitsNormals;
         this.cuina = cuina;
         this.vistaMar = vistaMar;
+        if(cuina){ this.cuinaVisualitzar = "Si";}else{this.cuinaVisualitzar = "No";}
+        if(vistaMar){ this.vistaMarVisualitzar = "Si";}else{this.vistaMarVisualitzar = "No";}
+        if(estat){ this.estatVisualitzar = "Si";}else{this.estatVisualitzar = "No";}  
     }
+
     //gets i sets
     public String getNumHabitacio() {
         return numHabitacio;
@@ -87,6 +94,31 @@ public class Habitacions {
     public void setVistaMar(boolean vistaMar) {
         this.vistaMar = vistaMar;
     }
+
+    public String getCuinaVisualitzar() {
+        return cuinaVisualitzar;
+    }
+
+    public void setCuinaVisualitzar(String cuinaVisualitzar) {
+        this.cuinaVisualitzar = cuinaVisualitzar;
+    }
+
+    public String getVistaMarVisualitzar() {
+        return vistaMarVisualitzar;
+    }
+
+    public void setVistaMarVisualitzar(String vistaMarVisualitzar) {
+        this.vistaMarVisualitzar = vistaMarVisualitzar;
+    }
+
+    public String getEstatVisualitzar() {
+        return estatVisualitzar;
+    }
+
+    public void setEstatVisualitzar(String estatVisualitzar) {
+        this.estatVisualitzar = estatVisualitzar;
+    }
+    
     //metodes
 
     @Override

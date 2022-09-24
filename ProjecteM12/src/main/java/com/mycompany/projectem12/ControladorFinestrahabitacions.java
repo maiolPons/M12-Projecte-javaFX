@@ -283,9 +283,9 @@ public class ControladorFinestrahabitacions implements Initializable {
         tipusColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("tipus"));
         llistaDoblesColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("numeroLlitsDobles"));
         llitsNormalsColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("numeroLlitsNormals"));
-        cuinaColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("cuina"));
-        vistaColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("vistaMar"));
-        estatColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("estat"));
+        cuinaColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("cuinaVisualitzar"));
+        vistaColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("vistaMarVisualitzar"));
+        estatColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("estatVisualitzar"));
     }
     //crear llista de recepcionistes
     public void extreureHabitacions() throws SQLException{
@@ -295,11 +295,13 @@ public class ControladorFinestrahabitacions implements Initializable {
         rs = stmt.executeQuery("SELECT * FROM `habitacio`");
         while(rs.next()){
             boolean estat=false;
-            if(rs.getString("estat")=="1"){estat=true; }
+            if(rs.getString("estat").equals("1")){estat=true; }
             boolean cuina=false;
-            if(rs.getString("cuina")=="1"){cuina=true; }
+            if(rs.getString("cuina").equals("1")){cuina=true; }
             boolean vistaMar=false;
-            if(rs.getString("vistaMar")=="1"){vistaMar=true; }
+            if(rs.getString("vistaMar").equals("1")){vistaMar=true; }
+            System.out.println(rs.getString("estat"));
+
             
             habitacionsList.add(new Habitacions(rs.getString("numHabitacio"),rs.getString("planta"),Double.parseDouble(rs.getString("preu")),rs.getString("tipus"),estat,Integer.parseInt(rs.getString("numeroLlitsDobles")),Integer.parseInt(rs.getString("numeroLlitsNormals")),cuina,vistaMar));
         }
