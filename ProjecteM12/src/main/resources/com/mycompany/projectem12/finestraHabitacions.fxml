@@ -98,7 +98,7 @@
             <ComboBox fx:id="numeroLlitsNormalshab" layoutX="580.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" />
          </children>
       </Pane>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="550.0" onMousePressed="#EliminarHabitacio" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../media/deleteButton.png" />
          </image>
@@ -108,7 +108,7 @@
             <Font name="Georgia" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="estatOrdre" alignment="CENTER" layoutX="490.0" layoutY="360.0" prefHeight="27.0" prefWidth="315.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
+      <Label fx:id="estatOrdre" alignment="CENTER" layoutX="291.0" layoutY="360.0" prefHeight="30.0" prefWidth="700.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
          <font>
             <Font name="Georgia" size="12.0" />
          </font>

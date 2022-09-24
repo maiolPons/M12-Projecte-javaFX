@@ -431,4 +431,19 @@ public class ControladorFinestrahabitacions implements Initializable {
             }
         }    
     }
+    //elimina el habitacio
+    @FXML
+    public void EliminarHabitacio(){
+        Habitacions habitacioEliminar = getHabitacionsTaula().getSelectionModel().getSelectedItem();
+        
+        habitacionsTaula.getItems().removeAll(habitacioEliminar);
+        Statement stmt = connection.getStmt();
+        try {
+            stmt.executeUpdate("DELETE FROM `habitacio` WHERE `numHabitacio`='"+habitacioEliminar.getNumHabitacio()+"'");
+            extreureHabitacions();
+            habitacionsTaula.refresh();
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorFinestrarecepcionistes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
