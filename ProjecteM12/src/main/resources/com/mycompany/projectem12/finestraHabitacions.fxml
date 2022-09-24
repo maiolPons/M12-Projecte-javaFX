@@ -55,15 +55,15 @@
       </Label>
       <TableView fx:id="habitacionsTaula" layoutX="140.0" layoutY="400.0" prefHeight="250.0" prefWidth="1000.0">
         <columns>
-          <TableColumn prefWidth="59.0" text="Numero" />
-          <TableColumn prefWidth="68.0" text="Planta" />
-            <TableColumn prefWidth="101.0" text="Preu" />
-            <TableColumn prefWidth="207.0" text="tipus" />
-            <TableColumn prefWidth="140.0" text="Llits dobles" />
-            <TableColumn prefWidth="136.0" text="Llits normals" />
-            <TableColumn prefWidth="82.0" text="cuina" />
-            <TableColumn prefWidth="93.0" text="vista al mar" />
-            <TableColumn prefWidth="113.0" text="Estat" />
+          <TableColumn fx:id="numeroColumna" prefWidth="59.0" text="Numero" />
+          <TableColumn fx:id="plantaColumna" prefWidth="68.0" text="Planta" />
+            <TableColumn fx:id="preuColumna" prefWidth="101.0" text="Preu" />
+            <TableColumn fx:id="tipusColumna" prefWidth="207.0" text="tipus" />
+            <TableColumn fx:id="llistaDoblesColumna" prefWidth="140.0" text="Llits dobles" />
+            <TableColumn fx:id="llitsNormalsColumna" prefWidth="136.0" text="Llits normals" />
+            <TableColumn fx:id="cuinaColumna" prefWidth="82.0" text="cuina" />
+            <TableColumn fx:id="vistaColumna" prefWidth="93.0" text="vista al mar" />
+            <TableColumn fx:id="estatColumna" prefWidth="113.0" text="Estat" />
         </columns>
       </TableView>
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="400.0" onMousePressed="#crearHabitacio" pickOnBounds="true" preserveRatio="true">
@@ -86,9 +86,7 @@
             <TextField fx:id="plantahab" layoutX="140.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
             <TextField fx:id="preuhab" layoutX="140.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
             <Label layoutX="460.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Llit dobles:" />
-            <TextField fx:id="numeroLlitsDobleshab" layoutX="580.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
             <Label layoutX="460.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Llit normals:" />
-            <TextField fx:id="numeroLlitsNormalshab" layoutX="580.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
             <Label layoutX="460.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Cuina:" />
             <Label layoutX="642.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Vista al mar:" />
             <ComboBox fx:id="tipushab" layoutX="140.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" />
@@ -96,6 +94,8 @@
             <CheckBox fx:id="vistaMarhab" layoutX="762.0" layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="18.0" />
             <Label layoutX="460.0" layoutY="140.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Estat:" />
             <CheckBox fx:id="estathab" layoutX="580.0" layoutY="140.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="18.0" />
+            <ComboBox fx:id="numeroLlitsDobleshab" layoutX="580.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" />
+            <ComboBox fx:id="numeroLlitsNormalshab" layoutX="580.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" />
          </children>
       </Pane>
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true">

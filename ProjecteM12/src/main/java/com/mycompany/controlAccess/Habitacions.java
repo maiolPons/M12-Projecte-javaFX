@@ -12,15 +12,15 @@ public class Habitacions {
     //Atributs
     private String numHabitacio;
     private String planta;
-    private String preu;
+    private double preu;
     private String tipus;
     private boolean estat;
-    private String numeroLlitsDobles;
-    private String numeroLlitsNormals;
+    private int numeroLlitsDobles;
+    private int numeroLlitsNormals;
     private boolean cuina;
     private boolean vistaMar;
     //constructor
-    public Habitacions(String numHabitacio, String planta, String preu, String tipus, boolean estat, String numeroLlitsDobles, String numeroLlitsNormals, boolean cuina, boolean vistaMar) {
+    public Habitacions(String numHabitacio, String planta, double preu, String tipus, boolean estat, int numeroLlitsDobles, int numeroLlitsNormals, boolean cuina, boolean vistaMar) {
         this.numHabitacio = numHabitacio;
         this.planta = planta;
         this.preu = preu;
@@ -44,10 +44,10 @@ public class Habitacions {
     public void setPlanta(String planta) {
         this.planta = planta;
     }
-    public String getPreu() {
+    public double getPreu() {
         return preu;
     }
-    public void setPreu(String preu) {
+    public void setPreu(double preu) {
         this.preu = preu;
     }
     public String getTipus() {
@@ -63,16 +63,16 @@ public class Habitacions {
     public void setEstat(boolean estat) {
         this.estat = estat;
     }
-    public String getNumeroLlitsDobles() {
+    public int getNumeroLlitsDobles() {
         return numeroLlitsDobles;
     }
-    public void setNumeroLlitsDobles(String numeroLlitsDobles) {
+    public void setNumeroLlitsDobles(int numeroLlitsDobles) {
         this.numeroLlitsDobles = numeroLlitsDobles;
     }
-    public String getNumeroLlitsNormals() {
+    public int getNumeroLlitsNormals() {
         return numeroLlitsNormals;
     }
-    public void setNumeroLlitsNormals(String numeroLlitsNormals) {
+    public void setNumeroLlitsNormals(int numeroLlitsNormals) {
         this.numeroLlitsNormals = numeroLlitsNormals;
     }
     public boolean isCuina() {

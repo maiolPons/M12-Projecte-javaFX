@@ -84,7 +84,7 @@ public class ControladorFinestrarecepcionistes implements Initializable {
     }
     //declara el valor que representen les columnes
     @FXML
-    public void iniciarCeles(){
+    private void iniciarCeles(){
         dniColumna.setCellValueFactory(new PropertyValueFactory<Recepcionistes, String>("dni"));
         nomColumna.setCellValueFactory(new PropertyValueFactory<Recepcionistes, String>("nom"));
         cognomsColumna.setCellValueFactory(new PropertyValueFactory<Recepcionistes, String>("cognom"));
