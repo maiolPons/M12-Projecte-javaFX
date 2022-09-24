@@ -375,42 +375,40 @@ public class ControladorFinestrahabitacions implements Initializable {
     }
     @FXML
     private void modificarHabitacio(MouseEvent event){
-        Habitacions Habitacion = (Habitacions) getHabitacionsTaula().getSelectionModel().getSelectedItem();
+        setHabitacio((Habitacions) getHabitacionsTaula().getSelectionModel().getSelectedItem());
+        
         getEstatOrdre().setText("");
         getEstatManipulacio().setText("Modificar habitacio");
-        getNumHabitaciohab().setText(Habitacion.getNumHabitacio());
-        getPlantahab().setText(Habitacion.getPlanta());
-        getPreuhab().setText(String.valueOf(Habitacion.getPreu()));
-        getTipushab().setValue(Habitacion.getTipus());
-        getNumeroLlitsDobleshab().setValue(Habitacion.getNumeroLlitsDobles());
-        getNumeroLlitsNormalshab().setValue(Habitacion.getNumeroLlitsNormals());
-        getCuinahab().setSelected(Habitacion.isCuina());
-        getVistaMarhab().setSelected(Habitacion.isVistaMar());
-        getEstathab().setSelected(Habitacion.isEstat());
+        getNumHabitaciohab().setText(getHabitacio().getNumHabitacio());
+        getPlantahab().setText(getHabitacio().getPlanta());
+        getPreuhab().setText(String.valueOf(getHabitacio().getPreu()));
+        getTipushab().setValue(getHabitacio().getTipus());
+        getNumeroLlitsDobleshab().setValue(getHabitacio().getNumeroLlitsDobles());
+        getNumeroLlitsNormalshab().setValue(getHabitacio().getNumeroLlitsNormals());
+        getCuinahab().setSelected(getHabitacio().isCuina());
+        getVistaMarhab().setSelected(getHabitacio().isVistaMar());
+        getEstathab().setSelected(getHabitacio().isEstat());
     }
     private void comprovarValorsModificar() throws SQLException{
-        Habitacions Habitacion = (Habitacions) getHabitacionsTaula().getSelectionModel().getSelectedItem();
-        if((getNumHabitaciohab().getText() == null || getNumHabitaciohab().getText().trim().isEmpty()) || (getPlantahab().getText() == null || getPlantahab().getText().trim().isEmpty()) || (getPreuhab().getText() == null || getPreuhab().getText().trim().isEmpty()) || getNumeroLlitsDobleshab().getSelectionModel().isEmpty() || getNumeroLlitsNormalshab().getSelectionModel().isEmpty() || getTipushab().getSelectionModel().isEmpty()){
+        if(false){
             getEstatOrdre().setText("Tots els camps son obligatoris");
         }else{
             getEstatOrdre().setText("");
             Statement stmt = connection.getStmt();
             ResultSet rs = null;
-            rs = stmt.executeQuery("SELECT * FROM `habitacio` WHERE `numHabitacio`='"+getNumHabitaciohab().getText()+"'");
-            if(rs.next() == true){
-                getEstatOrdre().setText("La habitacio ja existeix");
-            }else{
+            rs = stmt.executeQuery("SELECT * FROM `habitacio` WHERE `numHabitacio`='"+getHabitacio().getNumHabitacio()+"'");
+            rs.next();
+            try{
+                Double.parseDouble(getPreuhab().getText());
                 try{
-                    
-                }catch(Exception e){
-                    Double.parseDouble(getPreuhab().getText());
                     int estat = 0;
                     int vista = 0;
                     int cuina = 0;
                     if(getEstathab().isSelected()){estat = 1;}
                     if(getVistaMarhab().isSelected()){vista = 1;}
                     if(getCuinahab().isSelected()){cuina = 1;}
-                    stmt.executeUpdate("UPDATE `habitacio` SET ``numHabitacio`='"+getNumHabitaciohab().getText()+"',`planta`='"+getPlantahab().getText()+"',`preu`='"+getPreuhab().getText()+"',`tipus`='"+getTipushab().getValue()+"',`estat`='"+estat+"',`numeroLlitsDobles`='"+getNumeroLlitsDobleshab().getValue()+"',`numeroLlitsNormals`='"+getNumeroLlitsNormalshab().getValue()+"',`cuina`='"+cuina+"',`vistaMar`='"+vista+"' WHERE `dni`='"+Habitacion.getNumHabitacio()+"'");
+                    //System.out.println("UPDATE `habitacio` SET `numHabitacio`='"+getNumHabitaciohab().getText()+"',`planta`='"+getPlantahab().getText()+"',`preu`='"+getPreuhab().getText()+"',`tipus`='"+getTipushab().getValue()+"',`estat`='"+estat+"',`numeroLlitsDobles`='"+getNumeroLlitsDobleshab().getValue()+"',`numeroLlitsNormals`='"+getNumeroLlitsNormalshab().getValue()+"',`cuina`='"+cuina+"',`vistaMar`='"+vista+"' WHERE `numHabitacio`='"+getHabitacio().getNumHabitacio()+"'");
+                    stmt.executeUpdate("UPDATE `habitacio` SET `numHabitacio`='"+getNumHabitaciohab().getText()+"',`planta`='"+getPlantahab().getText()+"',`preu`='"+getPreuhab().getText()+"',`tipus`='"+getTipushab().getValue()+"',`estat`='"+estat+"',`numeroLlitsDobles`='"+getNumeroLlitsDobleshab().getValue()+"',`numeroLlitsNormals`='"+getNumeroLlitsNormalshab().getValue()+"',`cuina`='"+cuina+"',`vistaMar`='"+vista+"' WHERE `numHabitacio`='"+getHabitacio().getNumHabitacio()+"'");
                     getEstatOrdre().setText("Habitacio Modificada!");
                     getEstatManipulacio().setText("");
                     getNumHabitaciohab().setText("");
@@ -425,7 +423,11 @@ public class ControladorFinestrahabitacions implements Initializable {
 
                     extreureHabitacions();
                     habitacionsTaula.refresh();
+                }catch(Exception e){
+                    getEstatOrdre().setText("Numero ja existeix");
                 }
+            }catch(Exception e){
+                getEstatOrdre().setText("Preu invalid");
             }
         }    
     }
