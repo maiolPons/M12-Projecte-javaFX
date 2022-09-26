@@ -277,15 +277,15 @@ public class ControladorFinestrahabitacions implements Initializable {
     }
     @FXML
     private void iniciarCeles(){
-        numeroColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("numHabitacio"));
-        plantaColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("planta"));
-        preuColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("preu"));
-        tipusColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("tipus"));
-        llistaDoblesColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("numeroLlitsDobles"));
-        llitsNormalsColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("numeroLlitsNormals"));
-        cuinaColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("cuinaVisualitzar"));
-        vistaColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("vistaMarVisualitzar"));
-        estatColumna.setCellValueFactory(new PropertyValueFactory<Habitacions, String>("estatVisualitzar"));
+        getNumeroColumna().setCellValueFactory(new PropertyValueFactory<Habitacions, String>("numHabitacio"));
+        getPlantaColumna().setCellValueFactory(new PropertyValueFactory<Habitacions, String>("planta"));
+        getPreuColumna().setCellValueFactory(new PropertyValueFactory<Habitacions, String>("preu"));
+        getTipusColumna().setCellValueFactory(new PropertyValueFactory<Habitacions, String>("tipus"));
+        getLlistaDoblesColumna().setCellValueFactory(new PropertyValueFactory<Habitacions, String>("numeroLlitsDobles"));
+        getLlitsNormalsColumna().setCellValueFactory(new PropertyValueFactory<Habitacions, String>("numeroLlitsNormals"));
+        getCuinaColumna().setCellValueFactory(new PropertyValueFactory<Habitacions, String>("cuinaVisualitzar"));
+        getVistaColumna().setCellValueFactory(new PropertyValueFactory<Habitacions, String>("vistaMarVisualitzar"));
+        getEstatColumna().setCellValueFactory(new PropertyValueFactory<Habitacions, String>("estatVisualitzar"));
     }
     //crear llista de recepcionistes
     public void extreureHabitacions() throws SQLException{
