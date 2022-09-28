@@ -55,13 +55,13 @@
       </Label>
       <TableView fx:id="ClientsTaula" layoutX="140.0" layoutY="400.0" onMouseClicked="#modificarClient" prefHeight="250.0" prefWidth="1000.0">
         <columns>
-          <TableColumn fx:id="dniColumna" prefWidth="59.0" text="DNI" />
-          <TableColumn fx:id="nomColumna" prefWidth="68.0" text="Nom" />
-            <TableColumn fx:id="naixamentColumna" prefWidth="101.0" text="Naixament" />
-            <TableColumn fx:id="sexeColumna" prefWidth="207.0" text="Sexe" />
+          <TableColumn fx:id="dniColumna" prefWidth="136.0" text="DNI" />
+          <TableColumn fx:id="nomColumna" prefWidth="122.0" text="Nom" />
+            <TableColumn fx:id="naixamentColumna" prefWidth="110.0" text="Naixament" />
+            <TableColumn fx:id="sexeColumna" prefWidth="67.0" text="Sexe" />
             <TableColumn fx:id="nacionalitatColumna" prefWidth="140.0" text="Nacionalitat" />
-            <TableColumn fx:id="telefonColumna" prefWidth="136.0" text="Telefon" />
-            <TableColumn fx:id="emailColumna" prefWidth="82.0" text="Email" />
+            <TableColumn fx:id="telefonColumna" prefWidth="109.0" text="Telefon" />
+            <TableColumn fx:id="emailColumna" prefWidth="109.0" text="Email" />
             <TableColumn fx:id="estatCivilColumna" prefWidth="93.0" text="Estat civil" />
             <TableColumn fx:id="ocupacioColumna" prefWidth="113.0" text="Ocupacio" />
         </columns>
@@ -76,7 +76,7 @@
             <Image url="@../../../media/saveButton.png" />
          </image>
       </ImageView>
-      <Pane layoutX="240.0" layoutY="105.0" prefHeight="250.0" prefWidth="800.0" styleClass="paneForm">
+      <Pane layoutX="240.0" layoutY="132.0" prefHeight="250.0" prefWidth="800.0" styleClass="paneForm">
          <children>
             <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="DNI:" />
             <TextField fx:id="dniClient" layoutX="140.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
@@ -88,14 +88,19 @@
             <Label layoutX="460.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Telefon:" />
             <Label layoutX="460.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Email:" />
             <Label layoutX="460.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Estat civil:" />
+            <DatePicker fx:id="naixamentClient" layoutX="140.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" />
             <ComboBox fx:id="sexeClient" layoutX="140.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" />
             <Label layoutX="460.0" layoutY="140.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Ocupacio:" />
-            <DatePicker fx:id="naixamentClient" layoutX="140.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" />
             <TextField fx:id="nacionalitatClient" layoutX="140.0" layoutY="180.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
-            <ComboBox fx:id="estatCivilClient" layoutX="580.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" />
             <TextField fx:id="telefonClient" layoutX="580.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
             <TextField fx:id="emailClient" layoutX="580.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <ComboBox fx:id="estatCivilClient" layoutX="580.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" />
             <TextField fx:id="ocupacioClient" layoutX="580.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label fx:id="estatOrdre" alignment="CENTER" layoutX="46.0" layoutY="219.0" prefHeight="30.0" prefWidth="700.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="550.0" onMousePressed="#EliminarClient" pickOnBounds="true" preserveRatio="true">
@@ -103,14 +108,9 @@
             <Image url="@../../../media/deleteButton.png" />
          </image>
       </ImageView>
-      <Label fx:id="estatManipulacio" alignment="CENTER" layoutX="483.0" layoutY="105.0" prefHeight="27.0" prefWidth="315.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
+      <Label fx:id="estatManipulacio" alignment="CENTER" layoutX="484.0" layoutY="97.0" prefHeight="27.0" prefWidth="315.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
          <font>
             <Font name="Georgia" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="estatOrdre" alignment="CENTER" layoutX="291.0" layoutY="360.0" prefHeight="30.0" prefWidth="700.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
-         <font>
-            <Font name="Georgia" size="12.0" />
          </font>
       </Label>
    </children>

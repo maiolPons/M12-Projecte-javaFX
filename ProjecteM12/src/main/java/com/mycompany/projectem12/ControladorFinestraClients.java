@@ -11,7 +11,6 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -276,8 +275,8 @@ public class ControladorFinestraClients implements Initializable {
     @FXML
     private void iniciarCeles(){
         getDniColumna().setCellValueFactory(new PropertyValueFactory<Clients, String>("dni"));
-        getNomColumna().setCellValueFactory(new PropertyValueFactory<Clients, String>("nomClient"));
-        getNaixamentColumna().setCellValueFactory(new PropertyValueFactory<Clients, String>("dataNaixament"));
+        getNomColumna().setCellValueFactory(new PropertyValueFactory<Clients, String>("nom"));
+        getNaixamentColumna().setCellValueFactory(new PropertyValueFactory<Clients, String>("naixamen"));
         getSexeColumna().setCellValueFactory(new PropertyValueFactory<Clients, String>("sexe"));
         getNacionalitatColumna().setCellValueFactory(new PropertyValueFactory<Clients, String>("nacionalitat"));
         getTelefonColumna().setCellValueFactory(new PropertyValueFactory<Clients, String>("telefon"));
@@ -313,7 +312,7 @@ public class ControladorFinestraClients implements Initializable {
     }
     @FXML
     private void executarOrdre() throws SQLException{
-        if(getEstatManipulacio().getText()=="Creant nov Client"){
+        if(getEstatManipulacio().getText()=="Creant nou Client"){
             comprovarValorsCrear();
         }
         if(getEstatManipulacio().getText()=="Modificar Client"){
@@ -327,12 +326,13 @@ public class ControladorFinestraClients implements Initializable {
             getEstatOrdre().setText("");
             Statement stmt = connection.getStmt();
             ResultSet rs = null;
-            rs = stmt.executeQuery("SELECT * FROM `client` WHERE `numHabitacio`='"+getDniClient().getText()+"'");
+            rs = stmt.executeQuery("SELECT * FROM `client` WHERE `dni`='"+getDniClient().getText()+"'");
+            System.out.println("INSERT INTO `client` (`dni`,`nomClient`,`dataNaixament`,`sexe`,`nacionalitat`,`telefon`,`email`,`ocupacio`,`estatCivil`) VALUES ('"+getDniClient().getText()+"','"+getNomClient().getText()+"','"+getNaixamentClient().getValue()+"','"+getSexeClient().getValue()+"','"+getNacionalitatClient().getText()+"','"+getTelefonClient().getText()+"','"+getEmailClient().getText()+"','"+getEstatCivilClient().getValue()+"','"+getOcupacioClient().getText());
             if(rs.next() == true){
                 getEstatOrdre().setText("El client ja existeix");
             }else{
                 try{
-                    stmt.executeUpdate("INSERT INTO `client` (`dni`,`nomClient`,`dataNaixament`,`sexe`,`nacionalitat`,`telefon`,`email`,`ocupacio`,`estatCivil`) VALUES ('"+getDniClient().getText()+"','"+getNomClient().getText()+"','"+getNaixamentClient()+"','"+getSexeClient().getValue()+"','"+getNacionalitatClient().getText()+"','"+getTelefonClient().getText()+"','"+getEmailClient().getText()+"','"+getEstatCivilClient().getValue()+"','"+getOcupacioClient().getText()+"')");  
+                    stmt.executeUpdate("INSERT INTO `client` (`dni`,`nomClient`,`dataNaixament`,`sexe`,`nacionalitat`,`telefon`,`email`,`ocupacio`,`estatCivil`) VALUES ('"+getDniClient().getText()+"','"+getNomClient().getText()+"','"+getNaixamentClient().getValue()+"','"+getSexeClient().getValue()+"','"+getNacionalitatClient().getText()+"','"+getTelefonClient().getText()+"','"+getEmailClient().getText()+"','"+getEstatCivilClient().getValue()+"','"+getOcupacioClient().getText()+"')");  
                     getEstatOrdre().setText("Client Cread!");
                     getDniClient().setText("");
                     getNomClient().setText("");
@@ -348,28 +348,33 @@ public class ControladorFinestraClients implements Initializable {
                     extreureClient();
                     ClientsTaula.refresh();
                 }catch(Exception e){
-                    getEstatOrdre().setText("Preu invalid");
+                    getEstatOrdre().setText("Error amb la creacio del client!");
                 }
             }
         }
     }
     @FXML
     private void modificarClient(MouseEvent event){
-        setClient((Clients) getClientsTaula().getSelectionModel().getSelectedItem());
         
-        getEstatOrdre().setText("");
-        getEstatManipulacio().setText("Modificar habitacio");
-        getDniClient().setText(getClient().getDni());
-        getNomClient().setText(getClient().getNom());
-        SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  
-        Date date1=formatter1.parse(getClient().getNaixamen());  
-        getNaixamentClient().setValue(LOCAL_DATE(date1));
-        getSexeClient().setValue(getClient().getSexe());
-        getNacionalitatClient().setText(getClient().getNacionalitat());
-        getTelefonClient().setText(getClient().getTelefon());
-        getEmailClient().setText(getClient().getEmail());
-        getEstatCivilClient().setValue(getClient().getEstatCivil());
-        getOcupacioClient().setText(getClient().getOcupacio());
+        
+        try{
+           setClient((Clients) getClientsTaula().getSelectionModel().getSelectedItem()); 
+           getEstatOrdre().setText("");
+            getEstatManipulacio().setText("Modificar Client");
+            getDniClient().setText(getClient().getDni());
+            getNomClient().setText(getClient().getNom());
+            String date = getClient().getNaixamen();
+            LocalDate naixamentDate = LocalDate.parse(date);
+            getNaixamentClient().setValue(naixamentDate);
+            getSexeClient().setValue(getClient().getSexe());
+            getNacionalitatClient().setText(getClient().getNacionalitat());
+            getTelefonClient().setText(getClient().getTelefon());
+            getEmailClient().setText(getClient().getEmail());
+            getEstatCivilClient().setValue(getClient().getEstatCivil());
+            getOcupacioClient().setText(getClient().getOcupacio());
+        }catch(Exception e){
+            getEstatManipulacio().setText("Cap ordre seleccionada!");
+        }
     }
     private void comprovarValorsModificar() throws SQLException{
         if(false){
@@ -382,7 +387,7 @@ public class ControladorFinestraClients implements Initializable {
             rs.next();
 
             try{
-                stmt.executeUpdate("UPDATE `client` SET `numHabitacio`='"+getNumHabitaciohab().getText()+"',`planta`='"+getPlantahab().getText()+"',`preu`='"+getPreuhab().getText()+"',`tipus`='"+getTipushab().getValue()+"',`estat`='"+estat+"',`numeroLlitsDobles`='"+getNumeroLlitsDobleshab().getValue()+"',`numeroLlitsNormals`='"+getNumeroLlitsNormalshab().getValue()+"',`cuina`='"+cuina+"',`vistaMar`='"+vista+"' WHERE `numHabitacio`='"+getHabitacio().getNumHabitacio()+"'");
+                stmt.executeUpdate("UPDATE `client` SET `dni`='"+getDniClient().getText()+"',`nomClient`='"+getNomClient().getText()+"',`dataNaixament`='"+getNaixamentClient().getValue()+"',`sexe`='"+getSexeClient().getValue()+"',`nacionalitat`='"+getNacionalitatClient().getText()+"',`telefon`='"+getTelefonClient().getText()+"',`email`='"+getEmailClient().getText()+"',`ocupacio`='"+getEstatCivilClient().getValue()+"',`estatCivil`='"+getOcupacioClient().getText()+"' WHERE `dni`='"+getClient().getDni()+"'");
                 getEstatOrdre().setText("Client Modificat!");
                 getEstatManipulacio().setText("");
                 getDniClient().setText("");

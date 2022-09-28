@@ -375,19 +375,24 @@ public class ControladorFinestrahabitacions implements Initializable {
     }
     @FXML
     private void modificarHabitacio(MouseEvent event){
-        setHabitacio((Habitacions) getHabitacionsTaula().getSelectionModel().getSelectedItem());
+        try{
+            setHabitacio((Habitacions) getHabitacionsTaula().getSelectionModel().getSelectedItem());
         
-        getEstatOrdre().setText("");
-        getEstatManipulacio().setText("Modificar habitacio");
-        getNumHabitaciohab().setText(getHabitacio().getNumHabitacio());
-        getPlantahab().setText(getHabitacio().getPlanta());
-        getPreuhab().setText(String.valueOf(getHabitacio().getPreu()));
-        getTipushab().setValue(getHabitacio().getTipus());
-        getNumeroLlitsDobleshab().setValue(getHabitacio().getNumeroLlitsDobles());
-        getNumeroLlitsNormalshab().setValue(getHabitacio().getNumeroLlitsNormals());
-        getCuinahab().setSelected(getHabitacio().isCuina());
-        getVistaMarhab().setSelected(getHabitacio().isVistaMar());
-        getEstathab().setSelected(getHabitacio().isEstat());
+            getEstatOrdre().setText("");
+            getEstatManipulacio().setText("Modificar habitacio");
+            getNumHabitaciohab().setText(getHabitacio().getNumHabitacio());
+            getPlantahab().setText(getHabitacio().getPlanta());
+            getPreuhab().setText(String.valueOf(getHabitacio().getPreu()));
+            getTipushab().setValue(getHabitacio().getTipus());
+            getNumeroLlitsDobleshab().setValue(getHabitacio().getNumeroLlitsDobles());
+            getNumeroLlitsNormalshab().setValue(getHabitacio().getNumeroLlitsNormals());
+            getCuinahab().setSelected(getHabitacio().isCuina());
+            getVistaMarhab().setSelected(getHabitacio().isVistaMar());
+            getEstathab().setSelected(getHabitacio().isEstat());
+        }catch(Exception e){
+            getEstatManipulacio().setText("Cap ordre seleccionada!");
+        }
+        
     }
     private void comprovarValorsModificar() throws SQLException{
         if(false){

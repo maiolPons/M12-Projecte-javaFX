@@ -98,5 +98,6 @@
             <Image url="@../../../media/deleteButton.png" />
          </image>
       </ImageView>
+      <Label fx:id="estatOrdre" alignment="CENTER" layoutX="344.0" layoutY="100.0" prefHeight="30.0" prefWidth="593.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" />
    </children>
 </AnchorPane>

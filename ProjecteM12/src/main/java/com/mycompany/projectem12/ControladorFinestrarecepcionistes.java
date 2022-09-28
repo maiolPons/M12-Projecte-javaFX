@@ -36,8 +36,9 @@ import javafx.stage.Stage;
  */
 public class ControladorFinestrarecepcionistes implements Initializable {
     //atributs
-    @FXML
-    private Label nomUsuariLabel;
+    
+    @FXML private Label estatOrdre;
+    @FXML private Label nomUsuariLabel;
     //inputs
     @FXML private TextField dnirep;
     @FXML private TextField nomrep;
@@ -69,6 +70,15 @@ public class ControladorFinestrarecepcionistes implements Initializable {
     public void setRecepcionistesTaula(TableView RecepcionistesTaula) {
         this.RecepcionistesTaula = RecepcionistesTaula;
     }
+
+    public Label getEstatOrdre() {
+        return estatOrdre;
+    }
+
+    public void setEstatOrdre(Label estatOrdre) {
+        this.estatOrdre = estatOrdre;
+    }
+    
     
     //metods
 
@@ -108,15 +118,20 @@ public class ControladorFinestrarecepcionistes implements Initializable {
     //seleccionar recepcionistes i mostra les dades en el display del centra de la pantalla
     @FXML
     private void seleccionaRecepcionista(MouseEvent event){
-        Recepcionistes recepcionista = (Recepcionistes) getRecepcionistesTaula().getSelectionModel().getSelectedItem();
-        dnirep.setText(recepcionista.getDni());
-        nomrep.setText(recepcionista.getNom());
-        cognomrep.setText(recepcionista.getCognom());
-        usuarirep.setText(recepcionista.getNomUsuari());
-        nacionalitatrep.setText(recepcionista.getNacionalitat());
-        emailrep.setText(recepcionista.getEmail());
-        telefonrep.setText(recepcionista.getTelefon());
-        validaciorep.setText(recepcionista.getValidat());
+        try{
+            Recepcionistes recepcionista = (Recepcionistes) getRecepcionistesTaula().getSelectionModel().getSelectedItem();
+            dnirep.setText(recepcionista.getDni());
+            nomrep.setText(recepcionista.getNom());
+            cognomrep.setText(recepcionista.getCognom());
+            usuarirep.setText(recepcionista.getNomUsuari());
+            nacionalitatrep.setText(recepcionista.getNacionalitat());
+            emailrep.setText(recepcionista.getEmail());
+            telefonrep.setText(recepcionista.getTelefon());
+            validaciorep.setText(recepcionista.getValidat());
+        }catch(Exception e){
+            getEstatOrdre().setText("Cap recepcionista seleccionat!");
+        }
+        
     }
     
     //valida recepcionistes
@@ -131,6 +146,7 @@ public class ControladorFinestrarecepcionistes implements Initializable {
             stmt.executeUpdate("UPDATE `empleats` SET `validat`='si' WHERE `dni`='"+recepcionista.getDni()+"'");
             extreureRecepcionistes();
             RecepcionistesTaula.refresh();
+            getEstatOrdre().setText("Recepcionista "+recepcionista.getDni()+" validat");
         } catch (SQLException ex) {
             Logger.getLogger(ControladorFinestrarecepcionistes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -147,6 +163,7 @@ public class ControladorFinestrarecepcionistes implements Initializable {
             stmt.executeUpdate("UPDATE `empleats` SET `validat`='no' WHERE `dni`='"+recepcionista.getDni()+"'");
             extreureRecepcionistes();
             RecepcionistesTaula.refresh();
+            getEstatOrdre().setText("Recepcionista "+recepcionista.getDni()+" desabilitat!");
         } catch (SQLException ex) {
             Logger.getLogger(ControladorFinestrarecepcionistes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -162,6 +179,7 @@ public class ControladorFinestrarecepcionistes implements Initializable {
             stmt.executeUpdate("DELETE FROM `empleats` WHERE `dni`='"+recepcionista.getDni()+"'");
             extreureRecepcionistes();
             RecepcionistesTaula.refresh();
+            getEstatOrdre().setText("Recepcionista "+recepcionista.getDni()+" Eliminat!");
         } catch (SQLException ex) {
             Logger.getLogger(ControladorFinestrarecepcionistes.class.getName()).log(Level.SEVERE, null, ex);
         }

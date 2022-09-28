@@ -1,6 +1,11 @@
+com\mycompany\controlAccess\Clients.class
 com\mycompany\projectem12\DataBaseConnection.class
 com\mycompany\controlAccess\user.class
+com\mycompany\projectem12\ControladorFinestraClients.class
+com\mycompany\projectem12\ControladorFinestrahabitacions.class
+com\mycompany\controlAccess\Habitacions.class
 com\mycompany\projectem12\ControladorFinestrarecepcionistes.class
+com\mycompany\projectem12\ControladorMenuRecepcionistes.class
 com\mycompany\projectem12\ControladorRegistrar.class
 module-info.class
 com\mycompany\projectem12\ControladorLogin.class
