@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -13,7 +14,10 @@
    <children>
       <Pane layoutX="75.0" layoutY="50.0" prefHeight="500.0" prefWidth="250.0" styleClass="accentuar" stylesheets="@../../../styles/menuStyles.css">
          <children>
-            <Button fx:id="RegistrarUsuari" layoutX="63.0" layoutY="450.0" mnemonicParsing="false" onAction="#registrarUsuari" styleClass="bigButton" text="Registrar" />
+            <Button fx:id="RegistrarUsuari" layoutX="63.0" layoutY="450.0" mnemonicParsing="false" onAction="#registrarUsuari" styleClass="bigButton" text="Registrar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Label layoutX="76.0" layoutY="14.0" text="Registrar" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
@@ -39,6 +43,9 @@
             <Image url="@../../../media/backButton.png" />
          </image>
       </ImageView>
-      <Button layoutX="20.0" layoutY="530.0" mnemonicParsing="false" onAction="#tornarALogin" prefHeight="50.0" prefWidth="50.0" styleClass="invisibleButton" />
+      <Button layoutX="20.0" layoutY="530.0" mnemonicParsing="false" onAction="#tornarALogin" prefHeight="50.0" prefWidth="50.0" styleClass="invisibleButton">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -17,7 +18,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backgroundmenu" stylesheets="@../../../styles/menuStyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projectem12.ControladorFinestrahabitacions">
    <children>
-      <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="475.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+      <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="475.0" rotate="180.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
          <contextMenu>
             <ContextMenu>
                <items>
@@ -70,11 +71,17 @@
          <image>
             <Image url="@../../../media/newButton.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="475.0" onMousePressed="#executarOrdre" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../media/saveButton.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Pane layoutX="240.0" layoutY="150.0" prefHeight="200.0" prefWidth="800.0" styleClass="paneForm">
          <children>
@@ -102,6 +109,9 @@
          <image>
             <Image url="@../../../media/deleteButton.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Label fx:id="estatManipulacio" alignment="CENTER" layoutX="483.0" layoutY="105.0" prefHeight="27.0" prefWidth="315.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
          <font>
