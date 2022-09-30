@@ -261,6 +261,7 @@ public class ControladorFinestrahabitacions implements Initializable {
             Logger.getLogger(ControladorFinestrahabitacions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    //inicia les combo box amb els valors corresponents
     private void initiateComboBox(){
         getTipushab().getItems().addAll(
                 "Familiar",
@@ -276,6 +277,7 @@ public class ControladorFinestrahabitacions implements Initializable {
         );
     }
     @FXML
+    //iniciar celles taula
     private void iniciarCeles(){
         getNumeroColumna().setCellValueFactory(new PropertyValueFactory<Habitacions, String>("numHabitacio"));
         getPlantaColumna().setCellValueFactory(new PropertyValueFactory<Habitacions, String>("planta"));
@@ -308,6 +310,7 @@ public class ControladorFinestrahabitacions implements Initializable {
         getHabitacionsTaula().setItems(habitacionsList);
     }
     @FXML
+    //Prepara formulari per la creacio de la habitacio
     private void crearHabitacio(){
         getEstatManipulacio().setText("Creant nova habitacio");
         getNumHabitaciohab().setText("");
@@ -323,6 +326,7 @@ public class ControladorFinestrahabitacions implements Initializable {
         
     }
     @FXML
+    //Busca l'ordre a executar
     private void executarOrdre() throws SQLException{
         if(getEstatManipulacio().getText()=="Creant nova habitacio"){
             comprovarValorsCrear();
@@ -336,7 +340,28 @@ public class ControladorFinestrahabitacions implements Initializable {
         if((getNumHabitaciohab().getText() == null || getNumHabitaciohab().getText().trim().isEmpty()) || (getPlantahab().getText() == null || getPlantahab().getText().trim().isEmpty()) || (getPreuhab().getText() == null || getPreuhab().getText().trim().isEmpty()) || getNumeroLlitsDobleshab().getSelectionModel().isEmpty() || getNumeroLlitsNormalshab().getSelectionModel().isEmpty() || getTipushab().getSelectionModel().isEmpty()){
             getEstatOrdre().setText("Tots els camps son obligatoris");
         }else{
-            getEstatOrdre().setText("");
+            
+            String funciona="";
+            boolean failure=false;
+
+            //arrays amb els valors pel control de caracters
+            String[] arrayVariables={getNumHabitaciohab().getText(),getPlantahab().getText(),getPreuhab().getText()};
+            String[] arrayErros={"Numero","Planta","Preu"};
+            int[] arrayChars={9,40,20};
+            int index =0;
+            //Contol de limit caracters
+            while(failure==false && arrayVariables.length!=index+1){
+                if(arrayVariables[index].length()>arrayChars[index]){
+                    funciona=arrayErros[index]+" no pot tenir mes de "+arrayChars[index]+" caracters!";
+                    failure=true;
+                }
+                index++;
+            }
+            if(failure){
+                getEstatOrdre().setText(funciona);
+            }
+            else{
+                getEstatOrdre().setText("");
             Statement stmt = connection.getStmt();
             ResultSet rs = null;
             rs = stmt.executeQuery("SELECT * FROM `habitacio` WHERE `numHabitacio`='"+getNumHabitaciohab().getText()+"'");
@@ -373,7 +398,15 @@ public class ControladorFinestrahabitacions implements Initializable {
             }
         }
     }
+            
+            
+            
+            
+            
+            
+    }
     @FXML
+    //Prepara formulari per la modificacio de la habitacio
     private void modificarHabitacio(MouseEvent event){
         try{
             setHabitacio((Habitacions) getHabitacionsTaula().getSelectionModel().getSelectedItem());
@@ -394,11 +427,32 @@ public class ControladorFinestrahabitacions implements Initializable {
         }
         
     }
+    //fa les comprobacios i modificar en cas correcte la habitacio
     private void comprovarValorsModificar() throws SQLException{
         if(false){
             getEstatOrdre().setText("Tots els camps son obligatoris");
         }else{
-            getEstatOrdre().setText("");
+            String funciona="";
+            boolean failure=false;
+
+            //arrays amb els valors pel control de caracters
+            String[] arrayVariables={getNumHabitaciohab().getText(),getPlantahab().getText(),getPreuhab().getText()};
+            String[] arrayErros={"Numero","Planta","Preu"};
+            int[] arrayChars={9,40,20};
+            int index =0;
+            //Contol de limit caracters
+            while(failure==false && arrayVariables.length!=index+1){
+                if(arrayVariables[index].length()>arrayChars[index]){
+                    funciona=arrayErros[index]+" no pot tenir mes de "+arrayChars[index]+" caracters!";
+                    failure=true;
+                }
+                index++;
+            }
+            if(failure){
+                getEstatOrdre().setText(funciona);
+            }
+            else{
+                getEstatOrdre().setText("");
             Statement stmt = connection.getStmt();
             ResultSet rs = null;
             rs = stmt.executeQuery("SELECT * FROM `habitacio` WHERE `numHabitacio`='"+getHabitacio().getNumHabitacio()+"'");
@@ -434,7 +488,13 @@ public class ControladorFinestrahabitacions implements Initializable {
             }catch(Exception e){
                 getEstatOrdre().setText("Preu invalid");
             }
-        }    
+        } 
+    }
+            
+            
+            
+            
+               
     }
     //elimina el habitacio
     @FXML

@@ -73,15 +73,35 @@ public class ControladorRegistrar {
     
     //metodes
     @FXML
+    //fa les comprobacions al registrar un nou recepcionista
     private void registrarUsuari(ActionEvent event) throws IOException {
         user usuariAregistrar = new user(getDniRegistrar().getText(),getNomRegistrar().getText(),getUsuariregistrar().getText(),getCognomsRegistrar().getText(),getContrasenyaRegistrar().getText(), getNacionalitatRegistrar().getText(), getTelefonRegistrar().getText(), getCorreuRegistrar().getText());
-        if(usuariAregistrar.crearUsuari()){
-            errorRegistrar.setText("Usuari registrar\ncorrectament!");
+        String resultat="";
+        if((getDniRegistrar().getText() == null || getDniRegistrar().getText().trim().isEmpty()) || (getNomRegistrar().getText() == null || getNomRegistrar().getText().trim().isEmpty()) || (getUsuariregistrar().getText() == null || getUsuariregistrar().getText().trim().isEmpty()) || (getCognomsRegistrar().getText() == null || getCognomsRegistrar().getText().trim().isEmpty()) || (getContrasenyaRegistrar().getText() == null || getContrasenyaRegistrar().getText().trim().isEmpty()) || (getNacionalitatRegistrar().getText() == null || getNacionalitatRegistrar().getText().trim().isEmpty()) || (getTelefonRegistrar().getText() == null || getTelefonRegistrar().getText().trim().isEmpty()) || (getCorreuRegistrar().getText() == null || getCorreuRegistrar().getText().trim().isEmpty())){
+            resultat="tots els camps son obligatoris";
         }else{
-            errorRegistrar.setText("Error amb el\nregistre d'usuari!");
+            resultat=usuariAregistrar.crearUsuari();
+        }
+
+        
+        if(resultat=="S"){
+            errorRegistrar.setText("Usuari registrar\ncorrectament!");
+            getUsuariregistrar().setText("");
+            getNomRegistrar().setText("");
+            getDniRegistrar().setText(""); 
+            getNacionalitatRegistrar().setText(""); 
+            getTelefonRegistrar().setText(""); 
+            getCorreuRegistrar().setText(""); 
+            getContrasenyaRegistrar().setText("");
+            getCognomsRegistrar().setText(""); 
+            
+        }
+        else{
+            errorRegistrar.setText(resultat);
         }
     }
     @FXML
+    //tanca la finestra actual i obra el login
     private void tornarALogin(ActionEvent event) throws IOException{
         ((Node)event.getSource()).getScene().getWindow().hide();
         Parent root = FXMLLoader.load(App.class.getResource("Login" + ".fxml"));

@@ -57,11 +57,11 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button layoutY="205.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="bigButton" text="Habitacions">
+            <Button layoutY="205.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="bigButton" text="none">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button layoutY="405.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="bigButton" text="Reservas">
+            <Button layoutY="405.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="bigButton" text="none">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>

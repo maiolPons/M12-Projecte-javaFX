@@ -42,7 +42,9 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+    //crea objecte usuari
     public static user usuari = new user();
+    //crea conexio amb la base de dades
     public static DataBaseConnection connection = new DataBaseConnection();
     public static void main(String[] args) {
         connection.createConnection();

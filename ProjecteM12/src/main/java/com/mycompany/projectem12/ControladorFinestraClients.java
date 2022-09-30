@@ -263,6 +263,7 @@ public class ControladorFinestraClients implements Initializable {
             Logger.getLogger(ControladorFinestrahabitacions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    //inicia les combobox amb els valors corresponents
     private void initiateComboBox(){
         getEstatCivilClient().getItems().addAll(
                 "Solter","Casat","Unio lliure","Separat","divorciat","Viudo/a"
@@ -273,6 +274,7 @@ public class ControladorFinestraClients implements Initializable {
 
     }
     @FXML
+    //inicia les celes de la taula
     private void iniciarCeles(){
         getDniColumna().setCellValueFactory(new PropertyValueFactory<Clients, String>("dni"));
         getNomColumna().setCellValueFactory(new PropertyValueFactory<Clients, String>("nom"));
@@ -296,6 +298,7 @@ public class ControladorFinestraClients implements Initializable {
         getClientsTaula().setItems(clientList);
     }
     @FXML
+    //prepara formulari per la creacio de client nou
     private void crearClient(){
         getEstatManipulacio().setText("Creant nou Client");
         getDniClient().setText("");
@@ -311,6 +314,7 @@ public class ControladorFinestraClients implements Initializable {
         
     }
     @FXML
+    //executa la ordre corresponent
     private void executarOrdre() throws SQLException{
         if(getEstatManipulacio().getText()=="Creant nou Client"){
             comprovarValorsCrear();
@@ -319,11 +323,32 @@ public class ControladorFinestraClients implements Initializable {
             comprovarValorsModificar();
         }
     }
+    //fa les comprovacions corresponents i crea la habitacion en cas correcte
     private void comprovarValorsCrear() throws SQLException{
         if((getDniClient().getText() == null || getDniClient().getText().trim().isEmpty()) || (getNomClient().getText() == null || getNomClient().getText().trim().isEmpty())){
             getEstatOrdre().setText("Tots els camps son obligatoris");
         }else{
-            getEstatOrdre().setText("");
+            
+            String funciona="";
+            boolean failure=false;
+
+            //arrays amb els valors pel control de caracters
+            String[] arrayVariables={getDniClient().getText(),getNomClient().getText(),getNacionalitatClient().getText(),getTelefonClient().getText(),getEmailClient().getText(),getOcupacioClient().getText()};
+            String[] arrayErros={"Dni","Nom","Nacionalitat","Telefon","Email","Ocupacio"};
+            int[] arrayChars={9,40,60,20,90,40};
+            int index =0;
+            //Contol de limit caracters
+            while(failure==false && arrayVariables.length!=index+1){
+                if(arrayVariables[index].length()>arrayChars[index]){
+                    funciona=arrayErros[index]+" no pot tenir mes de "+arrayChars[index]+" caracters!";
+                    failure=true;
+                }
+                index++;
+            }
+            if(failure){
+                getEstatOrdre().setText(funciona);
+            }else{
+                getEstatOrdre().setText("");
             Statement stmt = connection.getStmt();
             ResultSet rs = null;
             rs = stmt.executeQuery("SELECT * FROM `client` WHERE `dni`='"+getDniClient().getText()+"'");
@@ -347,15 +372,20 @@ public class ControladorFinestraClients implements Initializable {
 
                     extreureClient();
                     ClientsTaula.refresh();
-                }catch(Exception e){
-                    getEstatOrdre().setText("Error amb la creacio del client!");
+                    }catch(Exception e){
+                        getEstatOrdre().setText("Error amb la creacio del client!");
+                    }
                 }
             }
         }
+            
+            
+            
+            
     }
     @FXML
+    //prepara la taula per modificar la habitacio
     private void modificarClient(MouseEvent event){
-        
         
         try{
            setClient((Clients) getClientsTaula().getSelectionModel().getSelectedItem()); 
@@ -376,36 +406,63 @@ public class ControladorFinestraClients implements Initializable {
             getEstatManipulacio().setText("Cap ordre seleccionada!");
         }
     }
+    //fa les comprovacions necesaries i modifica la habitacio
     private void comprovarValorsModificar() throws SQLException{
         if(false){
             getEstatOrdre().setText("Tots els camps son obligatoris");
         }else{
-            getEstatOrdre().setText("");
-            Statement stmt = connection.getStmt();
-            ResultSet rs = null;
-            rs = stmt.executeQuery("SELECT * FROM `client` WHERE `dni`='"+getClient().getDni()+"'");
-            rs.next();
+            
+            String funciona="";
+            boolean failure=false;
 
-            try{
-                stmt.executeUpdate("UPDATE `client` SET `dni`='"+getDniClient().getText()+"',`nomClient`='"+getNomClient().getText()+"',`dataNaixament`='"+getNaixamentClient().getValue()+"',`sexe`='"+getSexeClient().getValue()+"',`nacionalitat`='"+getNacionalitatClient().getText()+"',`telefon`='"+getTelefonClient().getText()+"',`email`='"+getEmailClient().getText()+"',`ocupacio`='"+getEstatCivilClient().getValue()+"',`estatCivil`='"+getOcupacioClient().getText()+"' WHERE `dni`='"+getClient().getDni()+"'");
-                getEstatOrdre().setText("Client Modificat!");
-                getEstatManipulacio().setText("");
-                getDniClient().setText("");
-                getNomClient().setText("");
-                getNaixamentClient().setValue(LocalDate.now());
-                getSexeClient().setValue("");
-                getNacionalitatClient().setText("");
-                getTelefonClient().setText("");
-                getEmailClient().setText("");
-                getEstatCivilClient().setValue("");
-                getOcupacioClient().setText("");
-
-                extreureClient();
-                getClientsTaula().refresh();
-            }catch(Exception e){
-                getEstatOrdre().setText("Numero ja existeix");
+            //arrays amb els valors pel control de caracters
+            String[] arrayVariables={getDniClient().getText(),getNomClient().getText(),getNacionalitatClient().getText(),getTelefonClient().getText(),getEmailClient().getText(),getOcupacioClient().getText()};
+            String[] arrayErros={"Dni","Nom","Nacionalitat","Telefon","Email","Ocupacio"};
+            int[] arrayChars={9,40,60,20,90,35};
+            int index =0;
+            //Contol de limit caracters
+            while(failure==false && arrayVariables.length!=index+1){
+                if(arrayVariables[index].length()>arrayChars[index]){
+                    funciona=arrayErros[index]+" no pot tenir mes de "+arrayChars[index]+" caracters!";
+                    failure=true;
+                }
+                index++;
             }
-        }    
+            if(failure){
+                getEstatOrdre().setText(funciona);
+            }
+            else{
+                getEstatOrdre().setText("");
+                Statement stmt = connection.getStmt();
+                ResultSet rs = null;
+                rs = stmt.executeQuery("SELECT * FROM `client` WHERE `dni`='"+getClient().getDni()+"'");
+                rs.next();
+
+                try{
+                    stmt.executeUpdate("UPDATE `client` SET `dni`='"+getDniClient().getText()+"',`nomClient`='"+getNomClient().getText()+"',`dataNaixament`='"+getNaixamentClient().getValue()+"',`sexe`='"+getSexeClient().getValue()+"',`nacionalitat`='"+getNacionalitatClient().getText()+"',`telefon`='"+getTelefonClient().getText()+"',`email`='"+getEmailClient().getText()+"',`ocupacio`='"+getEstatCivilClient().getValue()+"',`estatCivil`='"+getOcupacioClient().getText()+"' WHERE `dni`='"+getClient().getDni()+"'");
+                    getEstatOrdre().setText("Client Modificat!");
+                    getEstatManipulacio().setText("");
+                    getDniClient().setText("");
+                    getNomClient().setText("");
+                    getNaixamentClient().setValue(LocalDate.now());
+                    getSexeClient().setValue("");
+                    getNacionalitatClient().setText("");
+                    getTelefonClient().setText("");
+                    getEmailClient().setText("");
+                    getEstatCivilClient().setValue("");
+                    getOcupacioClient().setText("");
+
+                    extreureClient();
+                    getClientsTaula().refresh();
+                }catch(Exception e){
+                    getEstatOrdre().setText("Numero ja existeix");
+                }
+            }
+        }
+            
+            
+            
+               
     }
     //elimina el habitacio
     @FXML

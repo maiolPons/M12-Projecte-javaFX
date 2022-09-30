@@ -26,7 +26,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button layoutY="205.0" mnemonicParsing="false" onAction="#obrirAdminHabitacions" prefHeight="200.0" prefWidth="200.0" styleClass="bigButton" text="none">
+            <Button layoutY="205.0" mnemonicParsing="false" onAction="#obrirAdminHabitacions" prefHeight="200.0" prefWidth="200.0" styleClass="bigButton" text="Habitacions">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>

@@ -32,6 +32,7 @@ public class ControladorMenuGlobal {
     }
     
     @FXML
+    //tanca la sessio del usuari actual
     private void tancarSessio(ActionEvent event) throws IOException {
         usuari.tancarSessio();
         ((Node)event.getSource()).getScene().getWindow().hide();

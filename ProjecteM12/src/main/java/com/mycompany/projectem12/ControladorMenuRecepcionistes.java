@@ -31,6 +31,7 @@ public class ControladorMenuRecepcionistes extends ControladorMenuGlobal {
     
     //metodes
     @FXML
+    //obrar finestra de clients del recepcionista
         public void obrirClients(ActionEvent event) throws IOException{
         if(getStageClient()== null){
             Parent root = FXMLLoader.load(App.class.getResource("FinestraClients" + ".fxml"));

@@ -53,7 +53,7 @@ public class ControladorMenuAdmin extends ControladorMenuGlobal {
     
     
     //metodes
-    //Obrir la finestra que controla aquest controlador
+    //obrar finestra de menu administrador
     public void obrirMenuAdmin(String menu) throws IOException{
         Parent root = FXMLLoader.load(App.class.getResource(menu + ".fxml"));
         Scene scene =new Scene(root);
@@ -61,6 +61,7 @@ public class ControladorMenuAdmin extends ControladorMenuGlobal {
         getStageMenuAdmin().show();
     }
     @FXML
+    //obrar finestra de habitacions del admin
         public void obrirAdminHabitacions(ActionEvent event) throws IOException{
         if(getStageHabitacio() == null){
             Parent root = FXMLLoader.load(App.class.getResource("finestraHabitacions" + ".fxml"));
@@ -76,7 +77,7 @@ public class ControladorMenuAdmin extends ControladorMenuGlobal {
             getStageHabitacio().show();
         }
     }
-            //Obrir la finestra que controla aquest controlador
+    //obrar finestra de recepcionistes del admin
     public void obrirAdminRecepcionistes(ActionEvent event) throws IOException{
         if(getStageRecepcionistes() == null){
             Parent root = FXMLLoader.load(App.class.getResource("finestraRecepcionistes" + ".fxml"));

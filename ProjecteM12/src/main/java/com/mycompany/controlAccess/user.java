@@ -183,23 +183,44 @@ public class user {
         }
     }
     //Crear nou usuari
-    public boolean crearUsuari(){
+    public String crearUsuari(){
         Statement stmt = connection.getStmt();
         ResultSet rs = null;
-        boolean funciona=false;
-        try {
-            rs = stmt.executeQuery("SELECT * FROM `empleats` WHERE `dni`='"+getDni()+"' or `nomUsuari`='"+getNomUsuari()+"' or `email`='"+getEmail()+"'");
-        } catch (SQLException ex) {
-            Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            if(rs.next() == false){
-                funciona=true;
-                stmt.executeUpdate("INSERT INTO `empleats` (`dni`,`nom`,`cognoms`,`nomUsuari`,`contrasenya`,`nacionalitat`,`telefon`,`email`,`admin`,`validat`) VALUES ('"+getDni()+"','"+getNom()+"','"+getCognom()+"','"+getNomUsuari()+"','"+encriptarMD5(getContrasenya())+"','"+getNacionalitat()+"','"+getTelefon()+"','"+getEmail()+"',NULL,'no')");
+        String funciona="";
+        boolean failure=false;
+        
+        //arrays amb els valors pel control de caracters
+        String[] arrayVariables={getDni(),getNom(),getCognom(),getNomUsuari(),getContrasenya(),getNacionalitat(),getTelefon(),getEmail()};
+        String[] arrayErros={"Dni","Nom","Cognom","Nom d'usuari","Contrasenya","nacionalitat","telefon","email"};
+        int[] arrayChars={9,50,50,50,60,50,20,60};
+        int index =0;
+        //Contol de limit caracters
+        while(failure==false && arrayVariables.length!=index+1){
+            if(arrayVariables[index].length()>arrayChars[index]){
+                funciona=arrayErros[index]+" no pot tenir mes de "+arrayChars[index]+" caracters!";
+                failure=true;
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
+            index++;
         }
+        if(failure==false){
+            try {
+                rs = stmt.executeQuery("SELECT * FROM `empleats` WHERE `dni`='"+getDni()+"' or `nomUsuari`='"+getNomUsuari()+"' or `email`='"+getEmail()+"'");
+                funciona="Usuari ja existeix!";
+            } catch (SQLException ex) {
+                Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
+                funciona="Usuari ja existeix!";
+            }
+            try {
+                if(rs.next() == false){
+                    funciona="S";
+                    stmt.executeUpdate("INSERT INTO `empleats` (`dni`,`nom`,`cognoms`,`nomUsuari`,`contrasenya`,`nacionalitat`,`telefon`,`email`,`admin`,`validat`) VALUES ('"+getDni()+"','"+getNom()+"','"+getCognom()+"','"+getNomUsuari()+"','"+encriptarMD5(getContrasenya())+"','"+getNacionalitat()+"','"+getTelefon()+"','"+getEmail()+"',NULL,'no')");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
+                funciona="Usuari ja existeix!";
+            }
+        }
+        
         return funciona;
     }
     //tancar sessio
