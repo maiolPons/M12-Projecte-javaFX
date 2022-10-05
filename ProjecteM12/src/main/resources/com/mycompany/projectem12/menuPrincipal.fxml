@@ -57,7 +57,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button layoutY="205.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="bigButton" text="none">
+            <Button layoutY="205.0" mnemonicParsing="false" onAction="#obrirReserves" prefHeight="200.0" prefWidth="200.0" styleClass="bigButton" text="Reserves">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
