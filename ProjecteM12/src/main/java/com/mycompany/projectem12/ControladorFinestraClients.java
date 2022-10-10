@@ -286,7 +286,7 @@ public class ControladorFinestraClients implements Initializable {
         getEstatCivilColumna().setCellValueFactory(new PropertyValueFactory<Clients, String>("ocupacio"));
         getOcupacioColumna().setCellValueFactory(new PropertyValueFactory<Clients, String>("estatCivil"));
     }
-    //crear llista de recepcionistes
+    //crear llista de clients
     public void extreureClient() throws SQLException{
         ObservableList<Clients> clientList = FXCollections.observableArrayList();
         Statement stmt = connection.getStmt();

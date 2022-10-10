@@ -1,6 +1,6 @@
 package com.mycompany.projectem12;
 
-import com.mycompany.controlAccess.user;
+import com.mycompany.controlAccess.User;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -75,7 +75,7 @@ public class ControladorRegistrar {
     @FXML
     //fa les comprobacions al registrar un nou recepcionista
     private void registrarUsuari(ActionEvent event) throws IOException {
-        user usuariAregistrar = new user(getDniRegistrar().getText(),getNomRegistrar().getText(),getUsuariregistrar().getText(),getCognomsRegistrar().getText(),getContrasenyaRegistrar().getText(), getNacionalitatRegistrar().getText(), getTelefonRegistrar().getText(), getCorreuRegistrar().getText());
+        User usuariAregistrar = new User(getDniRegistrar().getText(),getNomRegistrar().getText(),getUsuariregistrar().getText(),getCognomsRegistrar().getText(),getContrasenyaRegistrar().getText(), getNacionalitatRegistrar().getText(), getTelefonRegistrar().getText(), getCorreuRegistrar().getText());
         String resultat="";
         if((getDniRegistrar().getText() == null || getDniRegistrar().getText().trim().isEmpty()) || (getNomRegistrar().getText() == null || getNomRegistrar().getText().trim().isEmpty()) || (getUsuariregistrar().getText() == null || getUsuariregistrar().getText().trim().isEmpty()) || (getCognomsRegistrar().getText() == null || getCognomsRegistrar().getText().trim().isEmpty()) || (getContrasenyaRegistrar().getText() == null || getContrasenyaRegistrar().getText().trim().isEmpty()) || (getNacionalitatRegistrar().getText() == null || getNacionalitatRegistrar().getText().trim().isEmpty()) || (getTelefonRegistrar().getText() == null || getTelefonRegistrar().getText().trim().isEmpty()) || (getCorreuRegistrar().getText() == null || getCorreuRegistrar().getText().trim().isEmpty())){
             resultat="tots els camps son obligatoris";

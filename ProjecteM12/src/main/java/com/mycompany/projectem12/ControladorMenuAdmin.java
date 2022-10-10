@@ -62,7 +62,7 @@ public class ControladorMenuAdmin extends ControladorMenuGlobal {
     }
     @FXML
     //obrar finestra de habitacions del admin
-        public void obrirAdminHabitacions(ActionEvent event) throws IOException{
+    public void obrirAdminHabitacions(ActionEvent event) throws IOException{
         if(getStageHabitacio() == null){
             Parent root = FXMLLoader.load(App.class.getResource("finestraHabitacions" + ".fxml"));
             setStageHabitacio(new Stage());

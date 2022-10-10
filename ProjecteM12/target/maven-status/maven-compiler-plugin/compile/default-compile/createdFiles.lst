@@ -1,6 +1,6 @@
 com\mycompany\controlAccess\Clients.class
+com\mycompany\controlAccess\User.class
 com\mycompany\projectem12\DataBaseConnection.class
-com\mycompany\controlAccess\user.class
 com\mycompany\projectem12\ControladorFinestraClients.class
 com\mycompany\projectem12\ControladorFinestrahabitacions.class
 com\mycompany\controlAccess\Habitacions.class

@@ -1,6 +1,6 @@
 package com.mycompany.projectem12;
 
-import com.mycompany.controlAccess.user;
+import com.mycompany.controlAccess.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -43,7 +43,7 @@ public class App extends Application {
         return fxmlLoader.load();
     }
     //crea objecte usuari
-    public static user usuari = new user();
+    public static User usuari = new User();
     //crea conexio amb la base de dades
     public static DataBaseConnection connection = new DataBaseConnection();
     public static void main(String[] args) {

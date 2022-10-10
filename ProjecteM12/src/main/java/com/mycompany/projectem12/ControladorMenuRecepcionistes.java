@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 public class ControladorMenuRecepcionistes extends ControladorMenuGlobal {
     //atributs
     private Stage stageClient;
+    private Stage stageReserves;
+    private ControladorFinestraReserves ControladorFinestraReserves;
     //get and set
 
     public Stage getStageClient() {
@@ -28,26 +30,44 @@ public class ControladorMenuRecepcionistes extends ControladorMenuGlobal {
     public void setStageClient(Stage stageClient) {
         this.stageClient = stageClient;
     }
+
+    public Stage getStageReserves() {
+        return stageReserves;
+    }
+
+    public void setStageReserves(Stage stageReserves) {
+        this.stageReserves = stageReserves;
+    }
+
+    public ControladorFinestraReserves getControladorFinestraReserves() {
+        return ControladorFinestraReserves;
+    }
+
+    public void setControladorFinestraReserves(ControladorFinestraReserves ControladorFinestraReserves) {
+        this.ControladorFinestraReserves = ControladorFinestraReserves;
+    }
+
     
     //metodes
-    @FXML
+    
     //obrar finestra de clients del recepcionista
+        @FXML
         public void obrirReserves(ActionEvent event) throws IOException{
-        if(getStageClient()== null){
-            Parent root = FXMLLoader.load(App.class.getResource("FinestraReserves" + ".fxml"));
-            setStageClient(new Stage());
-            Scene scene3 =new Scene(root);
-            getStageClient().setScene(scene3);
-            getStageClient().show();
+            if(getStageReserves()== null){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FinestraReserves" + ".fxml"));
+            Parent root = (Parent) loader.load();
+            setControladorFinestraReserves(loader.getController());
+            setStageReserves(new Stage());
+            getStageReserves().setScene(new Scene(root));
+            getStageReserves().show();
+            
             } 
-        else if(getStageClient().isShowing()){
-            getStageClient().toFront();
-        }
-        else {
-            getStageClient().show();
+        else if(getStageReserves().isShowing()){
+            getStageReserves().toFront();
         }
     }
          //obrar finestra de clients del recepcionista
+        @FXML
         public void obrirClients(ActionEvent event) throws IOException{
         if(getStageClient()== null){
             Parent root = FXMLLoader.load(App.class.getResource("FinestraClients" + ".fxml"));

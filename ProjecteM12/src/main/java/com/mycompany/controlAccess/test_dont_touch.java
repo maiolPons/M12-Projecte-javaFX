@@ -21,7 +21,7 @@ import javafx.scene.control.TextField;
  *
  * @author Maiol
  */
-public class User {
+public class test_dont_touch {
     //Atributs
     private String dni;
     private String nom;
@@ -35,11 +35,11 @@ public class User {
     private boolean admin;
     private boolean logged;
     //Constructor
-    public User() {
+    public test_dont_touch() {
         this.logged = false;
     }
 
-    public User(String dni, String nom, String nomUsuari, String cognom, String contrasenya, String nacionalitat, String telefon, String email) {
+    public test_dont_touch(String dni, String nom, String nomUsuari, String cognom, String contrasenya, String nacionalitat, String telefon, String email) {
         this.dni = dni;
         this.nom = nom;
         this.nomUsuari = nomUsuari;
@@ -179,7 +179,7 @@ public class User {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(test_dont_touch.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     //Crear nou usuari
@@ -207,7 +207,7 @@ public class User {
                 rs = stmt.executeQuery("SELECT * FROM `empleats` WHERE `dni`='"+getDni()+"' or `nomUsuari`='"+getNomUsuari()+"' or `email`='"+getEmail()+"'");
                 funciona="Usuari ja existeix!";
             } catch (SQLException ex) {
-                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(test_dont_touch.class.getName()).log(Level.SEVERE, null, ex);
                 funciona="Usuari ja existeix!";
             }
             try {
@@ -216,7 +216,7 @@ public class User {
                     stmt.executeUpdate("INSERT INTO `empleats` (`dni`,`nom`,`cognoms`,`nomUsuari`,`contrasenya`,`nacionalitat`,`telefon`,`email`,`admin`,`validat`) VALUES ('"+getDni()+"','"+getNom()+"','"+getCognom()+"','"+getNomUsuari()+"','"+encriptarMD5(getContrasenya())+"','"+getNacionalitat()+"','"+getTelefon()+"','"+getEmail()+"',NULL,'no')");
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(test_dont_touch.class.getName()).log(Level.SEVERE, null, ex);
                 funciona="Usuari ja existeix!";
             }
         }
