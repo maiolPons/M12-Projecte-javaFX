@@ -20,7 +20,7 @@ public class ControladorMenuRecepcionistes extends ControladorMenuGlobal {
     //atributs
     private Stage stageClient;
     private Stage stageReserves;
-    private ControladorFinestraReserves ControladorFinestraReserves;
+    private static ControladorFinestraReserves ControladorFinestraReserves;
     //get and set
 
     public Stage getStageClient() {
@@ -39,7 +39,7 @@ public class ControladorMenuRecepcionistes extends ControladorMenuGlobal {
         this.stageReserves = stageReserves;
     }
 
-    public ControladorFinestraReserves getControladorFinestraReserves() {
+    public static ControladorFinestraReserves getControladorFinestraReserves() {
         return ControladorFinestraReserves;
     }
 

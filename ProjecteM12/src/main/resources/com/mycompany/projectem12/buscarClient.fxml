@@ -35,8 +35,8 @@
                   <TableColumn fx:id="ocupacioColumna" prefWidth="113.0" text="Ocupacio" />
                </columns>
             </TableView>
-            <TextField layoutX="750.0" layoutY="77.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="714.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="buscarClientData" layoutX="750.0" layoutY="77.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="714.0" layoutY="78.0" onMousePressed="#buscarExtreureClient" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../media/search.png" />
                </image>
@@ -59,7 +59,7 @@
                   <Label text="Benvingut usuari: " />
                </buttons>
             </ButtonBar>
-            <TextField fx:id="clientSeleccionat" layoutX="50.0" layoutY="78.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
+            <TextField fx:id="clientSeleccionat" editable="false" layoutX="50.0" layoutY="78.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
             <Label layoutX="50.0" layoutY="57.0" text="Client seleccionat: " />
             <Label layoutX="750.0" layoutY="58.0" text="Buscar client:" />
          </children>

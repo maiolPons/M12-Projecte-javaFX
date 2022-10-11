@@ -47,6 +47,8 @@ public class ControladorBuscadorClient extends ControladorFinestraReserves imple
     @FXML private TableColumn<Clients, String> emailColumna;
     @FXML private TableColumn<Clients, String> estatCivilColumna;
     @FXML private TableColumn<Clients, String> ocupacioColumna;
+    //buscador
+    @FXML private TextField buscarClientData;
     //gets i sets
 
     public TableView<Clients> getClientsTaula() {
@@ -144,6 +146,14 @@ public class ControladorBuscadorClient extends ControladorFinestraReserves imple
     public void setClientSeleccionat(TextField clientSeleccionat) {
         this.clientSeleccionat = clientSeleccionat;
     }
+
+    public TextField getBuscarClientData() {
+        return buscarClientData;
+    }
+
+    public void setBuscarClientData(TextField buscarClientData) {
+        this.buscarClientData = buscarClientData;
+    }
     
     
     //metodes
@@ -180,6 +190,21 @@ public class ControladorBuscadorClient extends ControladorFinestraReserves imple
         getClientsTaula().setItems(clientList);
     }
     @FXML
+    //Buscar llista de clients
+    public void buscarExtreureClient() throws SQLException{
+        String query="%"+getBuscarClientData().getText()+"%";
+        ObservableList<Clients> clientList = FXCollections.observableArrayList();
+        Statement stmt = connection.getStmt();
+        ResultSet rs = null;
+        rs = stmt.executeQuery("SELECT * FROM `client` WHERE `dni` LIKE '"+query+"' OR `nomClient` LIKE '"+query+"' OR `dataNaixament` LIKE '"+query+"' OR `sexe` LIKE '"+query+"' OR `nacionalitat` LIKE '"+query+"' OR `telefon` LIKE '"+query+"' OR `email` LIKE '"+query+"' OR `ocupacio` LIKE '"+query+"' OR `estatCivil` LIKE '"+query+"'");
+        System.out.println("SELECT * FROM `client` WHERE `dni` LIKE '"+query+"'");
+        while(rs.next()){
+            clientList.add(new Clients(rs.getString("dni"),rs.getString("nomClient"),rs.getString("dataNaixament"),rs.getString("sexe"),rs.getString("nacionalitat"),rs.getString("telefon"),rs.getString("email"),rs.getString("ocupacio"),rs.getString("estatCivil")));
+        }
+        getClientsTaula().setItems(clientList);
+        getClientsTaula().refresh();
+    }
+    @FXML
     public void selecionaClient(MouseEvent event){
         try{
             setClient((Clients) getClientsTaula().getSelectionModel().getSelectedItem()); 
@@ -191,7 +216,9 @@ public class ControladorBuscadorClient extends ControladorFinestraReserves imple
     //envia el client a la pagina principal i tanca aquesta
     @FXML
     public void confirmarClient(ActionEvent event){
-        getControladorBuscadorClient().getDniClient().setText(getClient().getDni());
+        if(client!=null){
+            ControladorMenuRecepcionistes.getControladorFinestraReserves().afegirClient(client);
+        }
         ((Node)event.getSource()).getScene().getWindow().hide();
     }
 }

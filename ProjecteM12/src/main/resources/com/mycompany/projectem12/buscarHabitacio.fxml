@@ -22,20 +22,7 @@
    <children>
       <Pane prefHeight="500.0" prefWidth="1100.0" styleClass="backgroundmenu" stylesheets="@../../../styles/menuStyles.css">
          <children>
-            <TableView fx:id="ClientsTaula" layoutX="50.0" layoutY="120.0" onMouseClicked="#selecionaClient" prefHeight="300.0" prefWidth="1000.0">
-               <columns>
-                  <TableColumn fx:id="dniColumna" prefWidth="136.0" text="DNI" />
-                  <TableColumn fx:id="nomColumna" prefWidth="122.0" text="Nom" />
-                  <TableColumn fx:id="naixamentColumna" prefWidth="110.0" text="Naixament" />
-                  <TableColumn fx:id="sexeColumna" prefWidth="67.0" text="Sexe" />
-                  <TableColumn fx:id="nacionalitatColumna" prefWidth="140.0" text="Nacionalitat" />
-                  <TableColumn fx:id="telefonColumna" prefWidth="109.0" text="Telefon" />
-                  <TableColumn fx:id="emailColumna" prefWidth="109.0" text="Email" />
-                  <TableColumn fx:id="estatCivilColumna" prefWidth="93.0" text="Estat civil" />
-                  <TableColumn fx:id="ocupacioColumna" prefWidth="113.0" text="Ocupacio" />
-               </columns>
-            </TableView>
-            <TextField fx:id="buscarClientData" layoutX="750.0" layoutY="77.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
+            <TextField fx:id="buscarHabitacioData" layoutX="750.0" layoutY="77.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="714.0" layoutY="78.0" onMousePressed="#buscarExtreureClient" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../media/search.png" />
@@ -44,8 +31,8 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label layoutX="479.0" layoutY="54.0" styleClass="titolFinestra" text="Buscar Client" />
-            <Button layoutX="455.0" layoutY="440.0" mnemonicParsing="false" onAction="#confirmarClient" styleClass="bigButton" text="Seleccionar Client" />
+            <Label layoutX="453.0" layoutY="54.0" styleClass="titolFinestra" text="Buscar Habitacions" />
+            <Button layoutX="444.0" layoutY="440.0" mnemonicParsing="false" styleClass="bigButton" text="Seleccionar Habitacio" />
             <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="1100.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
                <contextMenu>
                   <ContextMenu>
@@ -59,9 +46,22 @@
                   <Label text="Benvingut usuari: " />
                </buttons>
             </ButtonBar>
-            <TextField fx:id="clientSeleccionat" editable="false" layoutX="50.0" layoutY="78.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
-            <Label layoutX="50.0" layoutY="57.0" text="Client seleccionat: " />
-            <Label layoutX="750.0" layoutY="58.0" text="Buscar client:" />
+            <TextField fx:id="habitacioSeleccionat" editable="false" layoutX="50.0" layoutY="78.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
+            <Label layoutX="50.0" layoutY="57.0" text="Habitacio seleccionat: " />
+            <Label layoutX="750.0" layoutY="58.0" text="Buscar Habitacio:" />
+            <TableView fx:id="habitacionsTaula" layoutX="50.0" layoutY="125.0" onMouseClicked="#modificarHabitacio" prefHeight="300.0" prefWidth="1000.0">
+               <columns>
+                  <TableColumn fx:id="numeroColumna" prefWidth="59.0" text="Numero" />
+                  <TableColumn fx:id="plantaColumna" prefWidth="68.0" text="Planta" />
+                  <TableColumn fx:id="preuColumna" prefWidth="101.0" text="Preu" />
+                  <TableColumn fx:id="tipusColumna" prefWidth="207.0" text="tipus" />
+                  <TableColumn fx:id="llistaDoblesColumna" prefWidth="140.0" text="Llits dobles" />
+                  <TableColumn fx:id="llitsNormalsColumna" prefWidth="136.0" text="Llits normals" />
+                  <TableColumn fx:id="cuinaColumna" prefWidth="82.0" text="cuina" />
+                  <TableColumn fx:id="vistaColumna" prefWidth="93.0" text="vista al mar" />
+                  <TableColumn fx:id="estatColumna" prefWidth="113.0" text="Estat" />
+               </columns>
+            </TableView>
          </children>
       </Pane>
    </children>

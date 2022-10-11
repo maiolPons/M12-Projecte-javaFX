@@ -36,6 +36,9 @@ public class ControladorFinestraReserves {
     //Stages finestres buscadors
     private Stage stageBuscadorClient;
     private Stage stageBuscadorHabitacio;
+    //controlador de finestres
+    private ControladorBuscadorClient controladorBuscadorClient;
+    private ControladorBuscadorClient controladorBuscadorHabitacio;
     //informacio client
     @FXML private TextField dniClient;
     @FXML private TextField nomClient;
@@ -69,8 +72,7 @@ public class ControladorFinestraReserves {
     //labels
     @FXML private Label clientLabelError;
     @FXML private Label habitacioLabelError;
-    //controlador de finestres
-    private ControladorBuscadorClient controladorBuscadorClient;
+    
     //gets and sets
        
     public TextField getDniClient() {
@@ -328,6 +330,14 @@ public class ControladorFinestraReserves {
     public void setControladorBuscadorClient(ControladorBuscadorClient controladorBuscadorClient) {
         this.controladorBuscadorClient = controladorBuscadorClient;
     }
+
+    public ControladorBuscadorClient getControladorBuscadorHabitacio() {
+        return controladorBuscadorHabitacio;
+    }
+
+    public void setControladorBuscadorHabitacio(ControladorBuscadorClient controladorBuscadorHabitacio) {
+        this.controladorBuscadorHabitacio = controladorBuscadorHabitacio;
+    }
     
     
     
@@ -356,7 +366,23 @@ public class ControladorFinestraReserves {
             }
     }
     //Obrir buscador habitacio
-    
+    public void obrirBuscadorHabitacio(ActionEvent event) throws IOException{
+        if(getStageBuscadorHabitacio()== null){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("buscarHabitacio" + ".fxml"));
+            Parent root = (Parent) loader.load();
+            setControladorBuscadorHabitacio(loader.getController());
+            setStageBuscadorHabitacio(new Stage());
+            getStageBuscadorHabitacio().setScene(new Scene(root));
+            getStageBuscadorHabitacio().show();
+            
+            } 
+        else if(getStageBuscadorClient().isShowing()){
+            getStageBuscadorHabitacio().toFront();
+        }
+        else {
+            getStageBuscadorHabitacio().show();
+            }
+    }
     //Buscar Client dni funcio
     @FXML
     public void buscarDni(MouseEvent event) throws SQLException{

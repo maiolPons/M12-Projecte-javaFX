@@ -192,7 +192,7 @@
                </cursor>
             </ImageView>
             <Label fx:id="habitacioLabelError" layoutX="100.0" layoutY="420.0" prefHeight="30.0" prefWidth="200.0" />
-            <Button layoutX="100.0" layoutY="540.0" mnemonicParsing="false" styleClass="bigButton" text="Buscar desde llistat">
+            <Button layoutX="100.0" layoutY="540.0" mnemonicParsing="false" onAction="#obrirBuscadorHabitacio" styleClass="bigButton" text="Buscar desde llistat">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
