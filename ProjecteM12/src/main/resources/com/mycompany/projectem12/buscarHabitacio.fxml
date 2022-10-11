@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projectem12.ControladorBuscadorClient">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projectem12.ControladorBuscadorHabitacio">
     <stylesheets>
         <URL value="@/styles/menuStyles.css" />
     </stylesheets>
@@ -23,7 +23,7 @@
       <Pane prefHeight="500.0" prefWidth="1100.0" styleClass="backgroundmenu" stylesheets="@../../../styles/menuStyles.css">
          <children>
             <TextField fx:id="buscarHabitacioData" layoutX="750.0" layoutY="77.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="714.0" layoutY="78.0" onMousePressed="#buscarExtreureClient" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="714.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../media/search.png" />
                </image>
@@ -49,7 +49,7 @@
             <TextField fx:id="habitacioSeleccionat" editable="false" layoutX="50.0" layoutY="78.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
             <Label layoutX="50.0" layoutY="57.0" text="Habitacio seleccionat: " />
             <Label layoutX="750.0" layoutY="58.0" text="Buscar Habitacio:" />
-            <TableView fx:id="habitacionsTaula" layoutX="50.0" layoutY="125.0" onMouseClicked="#modificarHabitacio" prefHeight="300.0" prefWidth="1000.0">
+            <TableView fx:id="habitacionsTaula" layoutX="50.0" layoutY="125.0" prefHeight="300.0" prefWidth="1000.0">
                <columns>
                   <TableColumn fx:id="numeroColumna" prefWidth="59.0" text="Numero" />
                   <TableColumn fx:id="plantaColumna" prefWidth="68.0" text="Planta" />

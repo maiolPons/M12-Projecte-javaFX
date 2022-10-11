@@ -36,9 +36,6 @@ public class ControladorFinestraReserves {
     //Stages finestres buscadors
     private Stage stageBuscadorClient;
     private Stage stageBuscadorHabitacio;
-    //controlador de finestres
-    private ControladorBuscadorClient controladorBuscadorClient;
-    private ControladorBuscadorClient controladorBuscadorHabitacio;
     //informacio client
     @FXML private TextField dniClient;
     @FXML private TextField nomClient;
@@ -323,22 +320,6 @@ public class ControladorFinestraReserves {
         this.habitacioLabelError = habitacioLabelError;
     }
 
-    public ControladorBuscadorClient getControladorBuscadorClient() {
-        return controladorBuscadorClient;
-    }
-
-    public void setControladorBuscadorClient(ControladorBuscadorClient controladorBuscadorClient) {
-        this.controladorBuscadorClient = controladorBuscadorClient;
-    }
-
-    public ControladorBuscadorClient getControladorBuscadorHabitacio() {
-        return controladorBuscadorHabitacio;
-    }
-
-    public void setControladorBuscadorHabitacio(ControladorBuscadorClient controladorBuscadorHabitacio) {
-        this.controladorBuscadorHabitacio = controladorBuscadorHabitacio;
-    }
-    
     
     
     //funcions de inici
@@ -350,13 +331,11 @@ public class ControladorFinestraReserves {
     @FXML
     public void obrirBuscadorClient(ActionEvent event) throws IOException{
         if(getStageBuscadorClient()== null){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("buscarClient" + ".fxml"));
-            Parent root = (Parent) loader.load();
-            setControladorBuscadorClient(loader.getController());
+            Parent root = FXMLLoader.load(App.class.getResource("buscarClient" + ".fxml"));
             setStageBuscadorClient(new Stage());
-            getStageBuscadorClient().setScene(new Scene(root));
+            Scene scene3 =new Scene(root);
+            getStageBuscadorClient().setScene(scene3);
             getStageBuscadorClient().show();
-            
             } 
         else if(getStageBuscadorClient().isShowing()){
             getStageBuscadorClient().toFront();
@@ -368,15 +347,13 @@ public class ControladorFinestraReserves {
     //Obrir buscador habitacio
     public void obrirBuscadorHabitacio(ActionEvent event) throws IOException{
         if(getStageBuscadorHabitacio()== null){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("buscarHabitacio" + ".fxml"));
-            Parent root = (Parent) loader.load();
-            setControladorBuscadorHabitacio(loader.getController());
+            Parent root = FXMLLoader.load(App.class.getResource("buscarHabitacio" + ".fxml"));
             setStageBuscadorHabitacio(new Stage());
-            getStageBuscadorHabitacio().setScene(new Scene(root));
+            Scene scene3 =new Scene(root);
+            getStageBuscadorHabitacio().setScene(scene3);
             getStageBuscadorHabitacio().show();
-            
             } 
-        else if(getStageBuscadorClient().isShowing()){
+        else if(getStageBuscadorHabitacio().isShowing()){
             getStageBuscadorHabitacio().toFront();
         }
         else {
