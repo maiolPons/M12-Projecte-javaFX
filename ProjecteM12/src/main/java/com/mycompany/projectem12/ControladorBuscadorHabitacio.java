@@ -11,17 +11,29 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 
 /**
  *
@@ -32,6 +44,8 @@ public class ControladorBuscadorHabitacio implements Initializable {
     private Habitacions habitacio;
     //taula
     @FXML private TableView<Habitacions> habitacionsTaula;
+    //datepicker
+    @FXML private DatePicker disponibilitat;
     //columnas
     @FXML private TableColumn<Habitacions, String> numeroColumna;
     @FXML private TableColumn<Habitacions, String> plantaColumna;
@@ -135,8 +149,33 @@ public class ControladorBuscadorHabitacio implements Initializable {
     public void setEstatColumna(TableColumn<Habitacions, String> estatColumna) {
         this.estatColumna = estatColumna;
     }
+
+    public DatePicker getDisponibilitat() {
+        return disponibilitat;
+    }
+
+    public void setDisponibilitat(DatePicker disponibilitat) {
+        this.disponibilitat = disponibilitat;
+    }
+
+    public TextField getBuscarHabitacioData() {
+        return buscarHabitacioData;
+    }
+
+    public void setBuscarHabitacioData(TextField buscarHabitacioData) {
+        this.buscarHabitacioData = buscarHabitacioData;
+    }
+
+    public TextField getHabitacioSeleccionat() {
+        return habitacioSeleccionat;
+    }
+
+    public void setHabitacioSeleccionat(TextField habitacioSeleccionat) {
+        this.habitacioSeleccionat = habitacioSeleccionat;
+    }
     
     //metodes
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         iniciarCeles();
@@ -176,5 +215,62 @@ public class ControladorBuscadorHabitacio implements Initializable {
             habitacionsList.add(new Habitacions(rs.getString("numHabitacio"),rs.getString("planta"),Double.parseDouble(rs.getString("preu")),rs.getString("tipus"),estat,Integer.parseInt(rs.getString("numeroLlitsDobles")),Integer.parseInt(rs.getString("numeroLlitsNormals")),cuina,vistaMar));
         }
         getHabitacionsTaula().setItems(habitacionsList);
+    }
+    //marca i desevilita les dates que ja estan reservades
+    private void dateHighLight(){
+        try {
+            List<LocalDate> ocupat = new ArrayList<>();
+            Statement stmt = connection.getStmt();
+            ResultSet rs = null;
+            rs = stmt.executeQuery("SELECT * FROM `reserva` WHERE `fknumHabitacio`='"+getHabitacio().getNumHabitacio()+"'");
+            while(rs.next()){
+                LocalDate date1 = LocalDate.parse(rs.getString("dataEntrada"));
+                LocalDate date2 = LocalDate.parse(rs.getString("dataSortida"));
+                long daysBetween = ChronoUnit.DAYS.between(date1, date2);
+                for(int i =0;i<daysBetween+1;i++){
+                    ocupat.add(date1.plusDays(i));
+                }
+            }
+           
+            getDisponibilitat().setDayCellFactory(new Callback<DatePicker, DateCell>() {
+                @Override
+                public DateCell call(DatePicker param) {
+                    return new DateCell(){
+                        @Override
+                        public void updateItem(LocalDate item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (!empty && item != null) {
+                                if(ocupat.contains(item)) {
+                                    this.getStyleClass().add("ocupat");
+                                    this.setDisable(true);
+                                }
+                            }
+                        }
+                    };
+                }
+            });
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBuscadorHabitacio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    //selecciona i mostra la informacio necesaria del client
+    @FXML
+    public void selecionaClient(MouseEvent event){
+        try{
+            setHabitacio((Habitacions) getHabitacionsTaula().getSelectionModel().getSelectedItem()); 
+            getHabitacioSeleccionat().setText(getHabitacio().getNumHabitacio());
+            dateHighLight();
+            getDisponibilitat().setValue(null);
+        }catch(Exception e){
+            getHabitacioSeleccionat().setText("Cap habitacio Seleccionada");
+        }
+    }
+    //confirmar client
+    @FXML
+    public void confirmarClient(ActionEvent event){
+        if(habitacio!=null){
+            //ControladorMenuRecepcionistes.getControladorFinestraReserves().afegirClient(client);
+        }
+        ((Node)event.getSource()).getScene().getWindow().hide();
     }
 }

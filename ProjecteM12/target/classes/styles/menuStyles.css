@@ -70,3 +70,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-overflow: hidden;
     -fx-outline: none;
 }
+.ocupat{
+    -fx-background-color: red;
+}

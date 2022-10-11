@@ -4,7 +4,10 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
@@ -20,19 +23,36 @@
         <URL value="@/styles/menuStyles.css" />
     </stylesheets>
    <children>
-      <Pane prefHeight="500.0" prefWidth="1100.0" styleClass="backgroundmenu" stylesheets="@../../../styles/menuStyles.css">
+      <Pane prefHeight="700.0" prefWidth="1100.0" styleClass="backgroundmenu" stylesheets="@../../../styles/menuStyles.css">
          <children>
-            <TextField fx:id="buscarHabitacioData" layoutX="750.0" layoutY="77.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="714.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../media/search.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
+            <Pane layoutX="386.0" layoutY="115.0" prefHeight="200.0" prefWidth="700.0" styleClass="paneForm">
+               <children>
+                  <TextField fx:id="buscarHabitacioData" layoutX="386.0" layoutY="154.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
+                  <Label layoutX="386.0" layoutY="131.0" text="Buscar Habitacio:" />
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="356.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../media/search.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ComboBox fx:id="llitsDobles" layoutX="14.0" layoutY="71.0" prefHeight="30.0" prefWidth="50.0" />
+                  <ComboBox fx:id="llitsIndividuals" layoutX="14.0" layoutY="116.0" prefHeight="30.0" prefWidth="50.0" />
+                  <Label layoutX="82.0" layoutY="79.0" text="Llits dobles" />
+                  <Label layoutX="82.0" layoutY="124.0" text="Llits individuals" />
+                  <DatePicker fx:id="entrada" layoutX="11.0" layoutY="29.0" prefHeight="30.0" prefWidth="300.0" />
+                  <Label layoutX="11.0" layoutY="14.0" text="Data Entrada" />
+                  <DatePicker fx:id="sortida" layoutX="386.0" layoutY="29.0" prefHeight="30.0" prefWidth="300.0" />
+                  <Label layoutX="386.0" layoutY="14.0" text="Data Sortida" />
+                  <CheckBox fx:id="cuina" layoutX="386.0" layoutY="100.0" mnemonicParsing="false" text="Cuina" />
+                  <CheckBox fx:id="vistaMar" layoutX="386.0" layoutY="70.0" mnemonicParsing="false" text="Vista al mar" />
+                  <ComboBox fx:id="tipus" layoutX="14.0" layoutY="154.0" prefHeight="30.0" prefWidth="50.0" />
+                  <Label layoutX="82.0" layoutY="162.0" text="Tipus" />
+               </children>
+            </Pane>
             <Label layoutX="453.0" layoutY="54.0" styleClass="titolFinestra" text="Buscar Habitacions" />
-            <Button layoutX="444.0" layoutY="440.0" mnemonicParsing="false" styleClass="bigButton" text="Seleccionar Habitacio" />
+            <Button layoutX="444.0" layoutY="650.0" mnemonicParsing="false" styleClass="bigButton" text="Seleccionar Habitacio" />
             <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="1100.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
                <contextMenu>
                   <ContextMenu>
@@ -46,10 +66,9 @@
                   <Label text="Benvingut usuari: " />
                </buttons>
             </ButtonBar>
-            <TextField fx:id="habitacioSeleccionat" editable="false" layoutX="50.0" layoutY="78.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
-            <Label layoutX="50.0" layoutY="57.0" text="Habitacio seleccionat: " />
-            <Label layoutX="750.0" layoutY="58.0" text="Buscar Habitacio:" />
-            <TableView fx:id="habitacionsTaula" layoutX="50.0" layoutY="125.0" prefHeight="300.0" prefWidth="1000.0">
+            <TextField fx:id="habitacioSeleccionat" editable="false" layoutX="50.0" layoutY="280.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
+            <Label layoutX="50.0" layoutY="260.0" text="Habitacio seleccionat: " />
+            <TableView fx:id="habitacionsTaula" layoutX="50.0" layoutY="330.0" onMouseClicked="#selecionaClient" prefHeight="300.0" prefWidth="1000.0">
                <columns>
                   <TableColumn fx:id="numeroColumna" prefWidth="59.0" text="Numero" />
                   <TableColumn fx:id="plantaColumna" prefWidth="68.0" text="Planta" />
@@ -62,6 +81,8 @@
                   <TableColumn fx:id="estatColumna" prefWidth="113.0" text="Estat" />
                </columns>
             </TableView>
+            <DatePicker fx:id="disponibilitat" editable="false" layoutX="50.0" layoutY="220.0" prefHeight="30.0" prefWidth="300.0" />
+            <Label layoutX="50.0" layoutY="200.0" text="Disponibilitat:" />
          </children>
       </Pane>
    </children>
