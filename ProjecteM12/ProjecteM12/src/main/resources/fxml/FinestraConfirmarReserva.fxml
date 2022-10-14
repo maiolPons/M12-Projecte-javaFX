@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="500.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+    <stylesheets>
+        <URL value="@/styles/menuStyles.css" />
+    </stylesheets>
+   <children>
+      <Pane prefHeight="600.0" prefWidth="500.0" styleClass="backgroundmenu" stylesheets="@../styles/menuStyles.css">
+         <children>
+            <Label alignment="CENTER" layoutX="110.0" layoutY="40.0" prefHeight="27.0" prefWidth="280.0" styleClass="titolFinestra" stylesheets="@../styles/menuStyles.css" text="Confirmacio de la Reserva">
+               <font>
+                  <Font name="Georgia" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="15.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/backButton.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="50.0" layoutY="80.0" prefHeight="450.0" prefWidth="400.0" styleClass="paneForm">
+               <children>
+                  <TextField layoutX="126.0" layoutY="39.0" />
+               </children>
+            </Pane>
+            <ButtonBar prefHeight="40.0" prefWidth="500.0" styleClass="barraMenu" stylesheets="@../styles/menuStyles.css">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </ButtonBar>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

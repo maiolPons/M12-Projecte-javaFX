@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backgroundmenu" stylesheets="@../../../styles/menuStyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projectem12.ControladorFinestraReserves">
+   <children>
+      <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="475.0" rotate="180.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </ButtonBar>
+      <ButtonBar layoutX="805.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="475.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+         <buttons>
+            <Label fx:id="nomUsuariLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="241.0" text="nomUsuari" />
+            <Label text="Benvingut usuari: " />
+         </buttons>
+      </ButtonBar>
+      <ButtonBar layoutX="475.0" prefHeight="40.0" prefWidth="330.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </ButtonBar>
+      <Label alignment="CENTER" layoutX="160.0" layoutY="70.0" prefHeight="27.0" prefWidth="177.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" text="Client">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Label>
+      <Pane layoutX="48.0" layoutY="100.0" prefHeight="600.0" prefWidth="400.0" styleClass="paneForm">
+         <children>
+            <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="DNI:" />
+            <TextField fx:id="dniClient" editable="false" layoutX="140.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <Label layoutX="20.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Nom:" />
+            <Label layoutX="20.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Naixament:" />
+            <Label layoutX="20.0" layoutY="140.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Sexe:" />
+            <TextField fx:id="nomClient" editable="false" layoutX="140.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <Label layoutX="20.0" layoutY="180.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Nacionalitat:" />
+            <Label layoutX="20.0" layoutY="225.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Telefon:" />
+            <Label layoutX="20.0" layoutY="265.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Email:" />
+            <Label layoutX="20.0" layoutY="305.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Estat civil:" />
+            <DatePicker fx:id="naixamentClient" disable="true" editable="false" layoutX="140.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" />
+            <TextField fx:id="sexeClient" editable="false" layoutX="140.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <Label layoutX="20.0" layoutY="345.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Ocupacio:" />
+            <TextField fx:id="nacionalitatClient" editable="false" layoutX="140.0" layoutY="180.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <TextField fx:id="telefonClient" editable="false" layoutX="140.0" layoutY="225.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <TextField fx:id="emailClient" editable="false" layoutX="140.0" layoutY="265.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <TextField fx:id="estatCivilClient" editable="false" layoutX="140.0" layoutY="305.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <TextField fx:id="ocupacioClient" editable="false" layoutX="140.0" layoutY="345.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <TextField fx:id="buscarClient" layoutX="65.0" layoutY="480.0" prefHeight="30.0" prefWidth="300.0" promptText="Buscar per DNI" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="35.0" layoutY="480.0" onMousePressed="#buscarDni" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../media/search.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Button layoutX="100.0" layoutY="540.0" mnemonicParsing="false" onAction="#obrirBuscadorClient" styleClass="bigButton" text="Buscar desde llistat">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label fx:id="clientLabelError" layoutX="100.0" layoutY="420.0" prefHeight="30.0" prefWidth="200.0" />
+         </children>
+      </Pane>
+      <Label fx:id="estatManipulacio" alignment="CENTER" layoutX="484.0" layoutY="97.0" prefHeight="27.0" prefWidth="315.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Label>
+      <Pane layoutX="475.0" layoutY="97.0" prefHeight="600.0" prefWidth="400.0" styleClass="paneForm">
+         <children>
+            <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Numero:" />
+            <TextField fx:id="numHabitaciohab" editable="false" layoutX="140.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <Label layoutX="20.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Planta:" />
+            <Label layoutX="20.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Preu:" />
+            <Label layoutX="20.0" layoutY="140.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Tipus:" />
+            <TextField fx:id="plantahab" editable="false" layoutX="140.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <TextField fx:id="preuhab" editable="false" layoutX="140.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <TextField fx:id="tipushab" editable="false" layoutX="140.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <TextField fx:id="numeroLlitsDobleshab" editable="false" layoutX="140.0" layoutY="180.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <TextField fx:id="numeroLlitsNormalshab" editable="false" layoutX="140.0" layoutY="220.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <Label layoutX="20.0" layoutY="180.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Llit dobles:" />
+            <Label layoutX="20.0" layoutY="220.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Llit normals:" />
+            <Label layoutX="20.0" layoutY="260.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Cuina:" />
+            <Label layoutX="20.0" layoutY="300.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Vista al mar:" />
+            <CheckBox fx:id="cuinahab" disable="true" layoutX="180.0" layoutY="260.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="18.0" />
+            <CheckBox fx:id="vistaMarhab" disable="true" layoutX="180.0" layoutY="300.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="18.0" />
+            <TextField fx:id="buscarHabitacio" layoutX="65.0" layoutY="480.0" prefHeight="30.0" prefWidth="300.0" promptText="Buscar per Numero" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="35.0" layoutY="480.0" onMousePressed="#buscarNumero" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../media/search.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label fx:id="habitacioLabelError" layoutX="100.0" layoutY="420.0" prefHeight="30.0" prefWidth="200.0" />
+            <Button layoutX="100.0" layoutY="540.0" mnemonicParsing="false" onAction="#obrirBuscadorHabitacio" styleClass="bigButton" text="Buscar desde llistat">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+         </children>
+      </Pane>
+      <Label alignment="CENTER" layoutX="587.0" layoutY="70.0" prefHeight="27.0" prefWidth="177.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" text="Habitacio">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Label>
+      <Pane layoutX="925.0" layoutY="97.0" prefHeight="320.0" prefWidth="300.0" styleClass="paneForm">
+         <children>
+            <TextField fx:id="dniClient2" editable="false" layoutX="106.0" layoutY="30.0" prefHeight="30.0" prefWidth="180.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </TextField>
+            <Label layoutX="14.0" layoutY="30.0" prefHeight="30.0" prefWidth="90.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Client" />
+            <TextField fx:id="numHabitaciohab2" editable="false" layoutX="106.0" layoutY="70.0" prefHeight="30.0" prefWidth="180.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </TextField>
+            <Label layoutX="14.0" layoutY="70.0" prefHeight="30.0" prefWidth="90.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Habitacio" />
+            <Label layoutX="14.0" layoutY="110.0" prefHeight="30.0" prefWidth="90.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Entrada" />
+            <DatePicker fx:id="entradaReserva" layoutX="106.0" layoutY="110.0" prefHeight="30.0" prefWidth="180.0" />
+            <Label layoutX="14.0" layoutY="150.0" prefHeight="30.0" prefWidth="90.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Sortida" />
+            <DatePicker fx:id="sortidaReserva" layoutX="106.0" layoutY="150.0" prefHeight="30.0" prefWidth="180.0" />
+            <RadioButton fx:id="pagamentPendent" layoutX="106.0" layoutY="230.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" selected="true" text="Pagament pendent">
+               <toggleGroup>
+                  <ToggleGroup fx:id="pagament" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="pagamentRealitzat" layoutX="106.0" layoutY="270.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" text="Pagament realitzat" toggleGroup="$pagament" />
+            <Label layoutX="14.0" layoutY="200.0" prefHeight="30.0" prefWidth="204.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Metode de pagament" />
+         </children></Pane>
+      <Label alignment="CENTER" layoutX="987.0" layoutY="70.0" prefHeight="27.0" prefWidth="177.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" text="Reserva">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Label>
+      <Pane layoutX="925.0" layoutY="450.0" prefHeight="80.0" prefWidth="300.0" styleClass="paneForm">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="15.0" onMousePressed="#reiniciarValors" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../media/newButton.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="200.0" layoutY="15.0" onMousePressed="#comprovarFormulariReserva" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../media/saveButton.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </Pane>
+      <Label fx:id="reservaLabelError" alignment="CENTER" layoutX="925.0" layoutY="550.0" prefHeight="30.0" prefWidth="300.0" textAlignment="CENTER" />
+   </children>
+</AnchorPane>

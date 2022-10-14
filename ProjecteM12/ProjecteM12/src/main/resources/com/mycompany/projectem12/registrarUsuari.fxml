@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" styleClass="backgroundmenu" stylesheets="@../../../styles/menuStyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projectem12.ControladorRegistrar">
+   <children>
+      <Pane layoutX="62.0" layoutY="50.0" prefHeight="500.0" prefWidth="400.0" styleClass="accentuar" stylesheets="@../../../styles/menuStyles.css">
+         <children>
+            <Button fx:id="RegistrarUsuari" layoutX="137.0" layoutY="451.0" mnemonicParsing="false" onAction="#registrarUsuari" styleClass="bigButton" text="Registrar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label layoutX="151.0" layoutY="21.0" text="Registrar" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usuariregistrar" layoutX="100.0" layoutY="50.0" prefHeight="30.0" prefWidth="200.0" promptText="Nom D'usuari" styleClass="inputForm" />
+            <PasswordField fx:id="contrasenyaRegistrar" layoutX="100.0" layoutY="90.0" prefHeight="30.0" prefWidth="200.0" promptText="Contrasenya" styleClass="inputForm" />
+            <TextField fx:id="correuRegistrar" layoutX="100.0" layoutY="130.0" prefHeight="30.0" prefWidth="200.0" promptText="Correu electronic" styleClass="inputForm" />
+            <TextField fx:id="nacionalitatRegistrar" layoutX="100.0" layoutY="170.0" prefHeight="30.0" prefWidth="200.0" promptText="Nacionalitat" styleClass="inputForm" />
+            <TextField fx:id="dniRegistrar" layoutX="100.0" layoutY="210.0" prefHeight="30.0" prefWidth="200.0" promptText="DNI" styleClass="inputForm" />
+            <TextField fx:id="telefonRegistrar" layoutX="100.0" layoutY="250.0" prefHeight="30.0" prefWidth="200.0" promptText="Telefon" styleClass="inputForm" />
+            <TextField fx:id="nomRegistrar" layoutX="100.0" layoutY="290.0" prefHeight="30.0" prefWidth="200.0" promptText="Nom" styleClass="inputForm" />
+            <TextField fx:id="cognomsRegistrar" layoutX="100.0" layoutY="330.0" prefHeight="30.0" prefWidth="200.0" promptText="Cognoms" styleClass="inputForm" />
+            <Label fx:id="errorRegistrar" alignment="CENTER" layoutX="25.0" layoutY="369.0" prefHeight="75.0" prefWidth="350.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="20.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../media/backButton.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="20.0" layoutY="530.0" mnemonicParsing="false" onAction="#tornarALogin" prefHeight="50.0" prefWidth="50.0" styleClass="invisibleButton">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+   </children>
+</AnchorPane>
