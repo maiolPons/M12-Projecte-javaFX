@@ -6,7 +6,6 @@ package com.mycompany.projectem12;
 
 import com.mycompany.controlAccess.Clients;
 import com.mycompany.controlAccess.Habitacions;
-import com.mycompany.controlAccess.Recepcionistes;
 import com.mycompany.controlAccess.Reserva;
 import static com.mycompany.projectem12.App.connection;
 import static com.mycompany.projectem12.App.usuari;
@@ -23,6 +22,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
@@ -32,6 +32,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -41,7 +42,7 @@ import javafx.util.Callback;
  */
 public class ControladorFinestraReserves {
     //objecte reserva
-    private Reserva reserva = new Reserva();
+    private static Reserva reserva = new Reserva();
     //Stages finestres buscadors
     private Stage stageBuscadorClient;
     private Stage stageBuscadorHabitacio;
@@ -339,11 +340,7 @@ public class ControladorFinestraReserves {
 
     
     
-    //funcions de inici
-    @FXML
-    protected void initialize(){
-        
-    }
+    
     //Obrir buscador clients
     @FXML
     public void obrirBuscadorClient(ActionEvent event) throws IOException{
@@ -452,7 +449,7 @@ public class ControladorFinestraReserves {
     }
     //posa tots el valors per defecte
     @FXML
-    private void reiniciarValors(){
+    public void reiniciarValors(){
         //reserva
         getReserva().setClient(null);
         getReserva().setHabitacio(null);
@@ -544,8 +541,9 @@ public class ControladorFinestraReserves {
             Logger.getLogger(ControladorBuscadorHabitacio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    //fa les comprovacions de que les dades de la reserva siguin correctes
     @FXML
-    private void comprovarFormulariReserva(ActionEvent event) throws IOException{
+    private void comprovarFormulariReserva(MouseEvent event) throws IOException{
         if(getReserva().getClient()!=null){
             if(getReserva().getHabitacio()!=null){
                 if(getEntradaReserva().getValue()!=null && getSortidaReserva().getValue()!=null){
@@ -560,7 +558,14 @@ public class ControladorFinestraReserves {
                         else{
                             getReserva().setTipusPagament("Pagament realitzat");
                         }
-                        obrirConfirmacioReserva();
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("FinestraConfirmarReserva" + ".fxml"));
+                        Parent root = loader.load();
+                        ControladorConfirmacioReserva controladorConfirmar = loader.getController();
+                        controladorConfirmar.getDniClient().setText(controladorConfirmar.getReserva().getClient().getDni());
+                        Stage stage=new Stage();
+                        Scene scene3 =new Scene(root);
+                        stage.setScene(scene3);
+                        stage.show();
                     }
                     else{
                         getReservaLabelError().setText("Dates no valides!");
@@ -578,19 +583,8 @@ public class ControladorFinestraReserves {
             getReservaLabelError().setText("Client no seleccionat!");
         }
     }
-    private void obrirConfirmacioReserva() throws IOException{
-        if(getStageConfirmacio()== null){
-            Parent root = FXMLLoader.load(App.class.getResource("FinestraConfirmarReserva" + ".fxml"));
-            setStageConfirmacio(new Stage());
-            Scene scene2 =new Scene(root);
-            getStageConfirmacio().setScene(scene2);
-            getStageConfirmacio().show();
-            } 
-        else if(getStageConfirmacio().isShowing()){
-            getStageConfirmacio().toFront();
-        }
-        else {
-            getStageBuscadorClient().show();
-        }
+    @FXML
+    private void tancarReserves(MouseEvent event){
+        ((Node)event.getSource()).getScene().getWindow().hide();
     }
 }

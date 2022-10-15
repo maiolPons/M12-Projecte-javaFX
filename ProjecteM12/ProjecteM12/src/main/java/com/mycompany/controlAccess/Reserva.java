@@ -17,6 +17,37 @@ public class Reserva {
     private String tipusPagament;
     private String diaEntrada;
     private String diaSortida;
+    private String observacions;
+    private String mostrarclient;
+    private String mostrarHabitacio;
+    private String mostrarRecepcionista;
+    //constructor
+
+    public Reserva(String numeroReserva, Clients client, Habitacions habitacio, User recepcionista, String tipusPagament, String diaEntrada, String diaSortida, String observacions) {
+        this.numeroReserva = numeroReserva;
+        this.client = client;
+        this.habitacio = habitacio;
+        this.recepcionista = recepcionista;
+        this.tipusPagament = tipusPagament;
+        this.diaEntrada = diaEntrada;
+        this.diaSortida = diaSortida;
+        this.observacions = observacions;
+    }
+
+    public Reserva(String numeroReserva, String tipusPagament, String diaEntrada, String diaSortida, String observacions, String mostrarclient, String mostrarHabitacio, String mostrarRecepcionista) {
+        this.numeroReserva = numeroReserva;
+        this.tipusPagament = tipusPagament;
+        this.diaEntrada = diaEntrada;
+        this.diaSortida = diaSortida;
+        this.observacions = observacions;
+        this.mostrarclient = mostrarclient;
+        this.mostrarHabitacio = mostrarHabitacio;
+        this.mostrarRecepcionista = mostrarRecepcionista;
+    }
+    
+    public Reserva() {
+    }
+    
     //gets i sets
     public Clients getClient() {
         return client;
@@ -72,6 +103,38 @@ public class Reserva {
 
     public void setNumeroReserva(String numeroReserva) {
         this.numeroReserva = numeroReserva;
+    }
+
+    public String getObservacions() {
+        return observacions;
+    }
+
+    public void setObservacions(String observacions) {
+        this.observacions = observacions;
+    }
+
+    public String getMostrarclient() {
+        return mostrarclient;
+    }
+
+    public void setMostrarclient(String mostrarclient) {
+        this.mostrarclient = mostrarclient;
+    }
+
+    public String getMostrarHabitacio() {
+        return mostrarHabitacio;
+    }
+
+    public void setMostrarHabitacio(String mostrarHabitacio) {
+        this.mostrarHabitacio = mostrarHabitacio;
+    }
+
+    public String getMostrarRecepcionista() {
+        return mostrarRecepcionista;
+    }
+
+    public void setMostrarRecepcionista(String mostrarRecepcionista) {
+        this.mostrarRecepcionista = mostrarRecepcionista;
     }
 
     

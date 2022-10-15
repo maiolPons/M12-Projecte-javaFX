@@ -61,6 +61,8 @@ public class ControladorFinestraClients implements Initializable {
     @FXML private TableColumn<Clients, String> emailColumna;
     @FXML private TableColumn<Clients, String> estatCivilColumna;
     @FXML private TableColumn<Clients, String> ocupacioColumna;
+    //buscador
+    @FXML private TextField buscarClientData;
     //get and set
 
     public Clients getClient() {
@@ -246,6 +248,14 @@ public class ControladorFinestraClients implements Initializable {
     public void setOcupacioColumna(TableColumn<Clients, String> ocupacioColumna) {
         this.ocupacioColumna = ocupacioColumna;
     }
+
+    public TextField getBuscarClientData() {
+        return buscarClientData;
+    }
+
+    public void setBuscarClientData(TextField buscarClientData) {
+        this.buscarClientData = buscarClientData;
+    }
     
     
     
@@ -260,7 +270,7 @@ public class ControladorFinestraClients implements Initializable {
         try {
             extreureClient();
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorFinestrahabitacions.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }
     //inicia les combobox amb els valors corresponents
@@ -458,11 +468,22 @@ public class ControladorFinestraClients implements Initializable {
                     getEstatOrdre().setText("Numero ja existeix");
                 }
             }
+        }        
+    }
+    @FXML
+    //Buscar llista de clients
+    public void buscarExtreureClient() throws SQLException{
+        String query="%"+getBuscarClientData().getText()+"%";
+        ObservableList<Clients> clientList = FXCollections.observableArrayList();
+        Statement stmt = connection.getStmt();
+        ResultSet rs = null;
+        rs = stmt.executeQuery("SELECT * FROM `client` WHERE `dni` LIKE '"+query+"' OR `nomClient` LIKE '"+query+"' OR `dataNaixament` LIKE '"+query+"' OR `sexe` LIKE '"+query+"' OR `nacionalitat` LIKE '"+query+"' OR `telefon` LIKE '"+query+"' OR `email` LIKE '"+query+"' OR `ocupacio` LIKE '"+query+"' OR `estatCivil` LIKE '"+query+"'");
+        System.out.println("SELECT * FROM `client` WHERE `dni` LIKE '"+query+"'");
+        while(rs.next()){
+            clientList.add(new Clients(rs.getString("dni"),rs.getString("nomClient"),rs.getString("dataNaixament"),rs.getString("sexe"),rs.getString("nacionalitat"),rs.getString("telefon"),rs.getString("email"),rs.getString("ocupacio"),rs.getString("estatCivil")));
         }
-            
-            
-            
-               
+        getClientsTaula().setItems(clientList);
+        getClientsTaula().refresh();
     }
     //elimina el habitacio
     @FXML

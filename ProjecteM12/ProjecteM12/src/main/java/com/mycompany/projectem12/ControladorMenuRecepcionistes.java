@@ -20,7 +20,9 @@ public class ControladorMenuRecepcionistes extends ControladorMenuGlobal {
     //atributs
     private Stage stageClient;
     private Stage stageReserves;
+    private Stage stageLlistarReserves;
     private static ControladorFinestraReserves ControladorFinestraReserves;
+    private static ControladorLlistarReserves ControladorFinestraLlistarReserves;
     //get and set
 
     public Stage getStageClient() {
@@ -47,10 +49,28 @@ public class ControladorMenuRecepcionistes extends ControladorMenuGlobal {
         this.ControladorFinestraReserves = ControladorFinestraReserves;
     }
 
+    public Stage getStageLlistarReserves() {
+        return stageLlistarReserves;
+    }
+
+    public void setStageLlistarReserves(Stage stageLlistarReserves) {
+        this.stageLlistarReserves = stageLlistarReserves;
+    }
+
+    public static ControladorLlistarReserves getControladorFinestraLlistarReserves() {
+        return ControladorFinestraLlistarReserves;
+    }
+
+    public static void setControladorFinestraLlistarReserves(ControladorLlistarReserves ControladorFinestraLlistarReserves) {
+        ControladorMenuRecepcionistes.ControladorFinestraLlistarReserves = ControladorFinestraLlistarReserves;
+    }
+
+
+
     
     //metodes
     
-    //obrar finestra de clients del recepcionista
+        //obrir finestra de reserves del recepcionista
         @FXML
         public void obrirReserves(ActionEvent event) throws IOException{
             if(getStageReserves()== null){
@@ -65,8 +85,11 @@ public class ControladorMenuRecepcionistes extends ControladorMenuGlobal {
         else if(getStageReserves().isShowing()){
             getStageReserves().toFront();
         }
-    }
-         //obrar finestra de clients del recepcionista
+        else {
+            getStageReserves().show();
+            }
+        }
+         //obrir finestra de clients del recepcionista
         @FXML
         public void obrirClients(ActionEvent event) throws IOException{
         if(getStageClient()== null){
@@ -83,4 +106,23 @@ public class ControladorMenuRecepcionistes extends ControladorMenuGlobal {
             getStageClient().show();
         }
     }
+        //obrir finestra de llistar reserves del recepcionista
+        @FXML
+        public void obrirLlistarReserves(ActionEvent event) throws IOException{
+            if(getStageLlistarReserves()== null){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LlistarReserves" + ".fxml"));
+            Parent root = (Parent) loader.load();
+            setControladorFinestraLlistarReserves(loader.getController());
+            setStageLlistarReserves(new Stage());
+            getStageLlistarReserves().setScene(new Scene(root));
+            getStageLlistarReserves().show();
+            
+            } 
+        else if(getStageLlistarReserves().isShowing()){
+            getStageLlistarReserves().toFront();
+        }
+        else {
+            getStageLlistarReserves().show();
+            }
+        }
 }
