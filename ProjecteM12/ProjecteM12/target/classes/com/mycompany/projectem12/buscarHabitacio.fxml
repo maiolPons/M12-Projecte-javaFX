@@ -25,7 +25,7 @@
    <children>
       <Pane prefHeight="700.0" prefWidth="1100.0" styleClass="backgroundmenu" stylesheets="@../../../styles/menuStyles.css">
          <children>
-            <Pane layoutX="386.0" layoutY="115.0" prefHeight="200.0" prefWidth="700.0" styleClass="paneForm">
+            <Pane layoutX="386.0" layoutY="81.0" prefHeight="234.0" prefWidth="700.0" styleClass="paneForm">
                <children>
                   <TextField fx:id="buscarHabitacioData" layoutX="386.0" layoutY="154.0" prefHeight="30.0" prefWidth="150.0" styleClass="inputForm" />
                   <Label layoutX="386.0" layoutY="131.0" text="Buscar Habitacio:" />
@@ -46,10 +46,14 @@
                   <ComboBox fx:id="tipus" layoutX="14.0" layoutY="71.0" prefHeight="30.0" prefWidth="150.0" />
                   <Label layoutX="178.0" layoutY="79.0" text="Tipus" />
                   <Button layoutX="546.0" layoutY="155.0" mnemonicParsing="false" onAction="#mostrarTot" styleClass="bigButton" text="Mostrar tot" />
-                  <Label layoutX="313.0" layoutY="27.0" styleClass="titolFinestra" text="Buscador" />
+                  <DatePicker fx:id="dataEntrada" editable="false" layoutX="14.0" layoutY="26.0" prefHeight="30.0" prefWidth="200.0" />
+                  <DatePicker fx:id="dataSortida" editable="false" layoutX="386.0" layoutY="26.0" prefHeight="30.0" prefWidth="200.0" />
+                  <Label layoutX="223.0" layoutY="34.0" text="Data entrada" />
+                  <Label layoutX="597.0" layoutY="34.0" text="Data sortida" />
+                  <Label fx:id="errorBuscar" layoutX="302.0" layoutY="205.0" />
                </children>
             </Pane>
-            <Label layoutX="453.0" layoutY="54.0" styleClass="titolFinestra" text="Buscar Habitacions" />
+            <Label layoutX="103.0" layoutY="89.0" styleClass="titolFinestra" text="Buscar Habitacions" />
             <Button layoutX="444.0" layoutY="650.0" mnemonicParsing="false" onAction="#confirmarHabitacio" styleClass="bigButton" text="Seleccionar Habitacio" />
             <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="1100.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
                <contextMenu>
@@ -59,10 +63,6 @@
                      </items>
                   </ContextMenu>
                </contextMenu>
-               <buttons>
-                  <Label fx:id="nomUsuariLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="241.0" text="nomUsuari" />
-                  <Label text="Benvingut usuari: " />
-               </buttons>
             </ButtonBar>
             <TextField fx:id="habitacioSeleccionat" editable="false" layoutX="50.0" layoutY="280.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
             <Label layoutX="50.0" layoutY="260.0" text="Habitacio seleccionat: " />
@@ -80,6 +80,7 @@
             </TableView>
             <DatePicker fx:id="disponibilitat" editable="false" layoutX="50.0" layoutY="220.0" prefHeight="30.0" prefWidth="300.0" />
             <Label layoutX="50.0" layoutY="200.0" text="Disponibilitat:" />
+            <Label layoutX="693.0" layoutY="57.0" styleClass="titolFinestra" text="Buscador" />
          </children>
       </Pane>
    </children>

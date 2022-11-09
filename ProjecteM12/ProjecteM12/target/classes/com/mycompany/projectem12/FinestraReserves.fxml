@@ -229,5 +229,13 @@
          </children>
       </Pane>
       <Label fx:id="reservaLabelError" alignment="CENTER" layoutX="925.0" layoutY="550.0" prefHeight="30.0" prefWidth="300.0" textAlignment="CENTER" />
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1217.0" layoutY="656.0" onMousePressed="#tancarReserves" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../media/backButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -54,10 +54,6 @@
                      </items>
                   </ContextMenu>
                </contextMenu>
-               <buttons>
-                  <Label fx:id="nomUsuariLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="241.0" text="nomUsuari" />
-                  <Label text="Benvingut usuari: " />
-               </buttons>
             </ButtonBar>
             <TextField fx:id="clientSeleccionat" editable="false" layoutX="50.0" layoutY="78.0" prefHeight="30.0" prefWidth="300.0" styleClass="inputForm" />
             <Label layoutX="50.0" layoutY="57.0" text="Client seleccionat: " />

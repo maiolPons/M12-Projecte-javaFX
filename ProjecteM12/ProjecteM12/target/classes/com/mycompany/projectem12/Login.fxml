@@ -12,17 +12,17 @@
    <children>
       <TextField fx:id="usuariLogin" layoutX="140.0" layoutY="85.0" prefHeight="30.0" prefWidth="200.0" promptText="Nom D'usuari" styleClass="inputForm" />
       <PasswordField fx:id="contrasenyaLogin" layoutX="140.0" layoutY="135.0" prefHeight="30.0" prefWidth="200.0" promptText="Contrasenya" styleClass="inputForm" />
-      <Button fx:id="botoLogin" layoutX="163.0" layoutY="193.0" mnemonicParsing="false" onAction="#login" styleClass="bigButton" text="Inciar Sessio">
+      <Button fx:id="botoLogin" layoutX="100.0" layoutY="230.0" mnemonicParsing="false" onAction="#login" styleClass="bigButton" text="Inciar Sessio">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="botoRegistrar" layoutX="178.0" layoutY="242.0" mnemonicParsing="false" onAction="#obrirRegistrar" styleClass="bigButton" text="Registrar">
+      <Button fx:id="botoRegistrar" layoutX="255.0" layoutY="230.0" mnemonicParsing="false" onAction="#obrirRegistrar" styleClass="bigButton" text="Registrar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
       <Label layoutX="164.0" layoutY="41.0" styleClass="titolFinestra" text="Iniciar sessio" />
-      <Label fx:id="errorLogin" layoutX="579.0" layoutY="507.0" prefHeight="37.0" prefWidth="126.0" />
+      <Label fx:id="errorLogin" alignment="CENTER" layoutX="90.0" layoutY="185.0" prefHeight="30.0" prefWidth="300.0" textAlignment="CENTER" />
       <Circle fill="DODGERBLUE" radius="100.0" stroke="TRANSPARENT" strokeType="INSIDE" />
       <Circle fill="#ff301f" layoutX="480.0" layoutY="300.0" radius="100.0" stroke="TRANSPARENT" strokeType="INSIDE" />
       <Circle fill="#0ecf45" layoutX="480.0" radius="100.0" stroke="#ffffff00" strokeType="INSIDE" />

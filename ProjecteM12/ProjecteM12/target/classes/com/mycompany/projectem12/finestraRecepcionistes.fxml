@@ -5,9 +5,11 @@
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -64,7 +66,7 @@
             <TableColumn fx:id="validacioColumna" prefWidth="75.0" text="Validacio" />
         </columns>
       </TableView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="400.0" onMousePressed="#validarRecep" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1176.0" layoutY="463.0" onMousePressed="#validarRecep" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../media/tickButton.png" />
          </image>
@@ -72,7 +74,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="475.0" onMousePressed="#declinarRecep" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1176.0" layoutY="538.0" onMousePressed="#declinarRecep" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../media/negateButton.png" />
          </image>
@@ -80,7 +82,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Pane layoutX="240.0" layoutY="150.0" prefHeight="200.0" prefWidth="800.0" styleClass="paneForm">
+      <Pane layoutX="240.0" layoutY="130.0" prefHeight="200.0" prefWidth="800.0" styleClass="paneForm">
          <children>
             <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="DNI:" />
             <TextField fx:id="dnirep" editable="false" layoutX="140.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
@@ -100,14 +102,22 @@
             <TextField fx:id="validaciorep" editable="false" layoutX="580.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
          </children>
       </Pane>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="550.0" onMousePressed="#EliminarRecep" pickOnBounds="true" preserveRatio="true">
+      <Label fx:id="estatOrdre" alignment="CENTER" layoutX="344.0" layoutY="100.0" prefHeight="30.0" prefWidth="593.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" />
+      <RadioButton fx:id="validatsRadio" layoutX="1034.0" layoutY="360.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="106.0" text="Validats">
+         <toggleGroup>
+            <ToggleGroup fx:id="seleccionaRadio" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="noValidatsRadio" layoutX="922.0" layoutY="360.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="106.0" text="No validats" toggleGroup="$seleccionaRadio" />
+      <TextField fx:id="buscarRecepcionista" layoutX="550.0" layoutY="360.0" prefHeight="30.0" prefWidth="300.0" promptText="Buscar recepcionista" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="520.0" layoutY="360.0" onMousePressed="#buscarRecepcionistes" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../media/deleteButton.png" />
+            <Image url="@../../../media/search.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="estatOrdre" alignment="CENTER" layoutX="344.0" layoutY="100.0" prefHeight="30.0" prefWidth="593.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" />
+      <RadioButton fx:id="totsRadio" layoutX="859.0" layoutY="360.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="56.0" selected="true" text="Tots" toggleGroup="$seleccionaRadio" />
    </children>
 </AnchorPane>
