@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -58,6 +59,8 @@ public class ControladorMenuAdmin extends ControladorMenuGlobal {
         Parent root = FXMLLoader.load(App.class.getResource(menu + ".fxml"));
         Scene scene =new Scene(root);
         getStageMenuAdmin().setScene(scene);
+        getStageMenuAdmin().getIcons().add(new Image("file:src/main/resources/media/icon.png"));
+        getStageMenuAdmin().setTitle("Menu principal");
         getStageMenuAdmin().show();
     }
     @FXML
@@ -68,6 +71,8 @@ public class ControladorMenuAdmin extends ControladorMenuGlobal {
             setStageHabitacio(new Stage());
             Scene scene3 =new Scene(root);
             getStageHabitacio().setScene(scene3);
+            getStageHabitacio().getIcons().add(new Image("file:src/main/resources/media/icon.png"));
+            getStageHabitacio().setTitle("Habitacions");
             getStageHabitacio().show();
             } 
         else if(getStageHabitacio().isShowing()){
@@ -84,6 +89,8 @@ public class ControladorMenuAdmin extends ControladorMenuGlobal {
             setStageRecepcionistes(new Stage());
             Scene scene2 =new Scene(root);
             getStageRecepcionistes().setScene(scene2);
+            getStageRecepcionistes().getIcons().add(new Image("file:src/main/resources/media/icon.png"));
+            getStageRecepcionistes().setTitle("Recepcionistes");
             getStageRecepcionistes().show();
         }
         else if(getStageRecepcionistes().isShowing()){

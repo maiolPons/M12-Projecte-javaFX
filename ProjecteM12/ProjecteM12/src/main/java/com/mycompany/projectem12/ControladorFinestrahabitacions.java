@@ -59,6 +59,8 @@ public class ControladorFinestrahabitacions implements Initializable {
     @FXML private TableColumn<Habitacions, String> cuinaColumna;
     @FXML private TableColumn<Habitacions, String> vistaColumna;
     @FXML private TableColumn<Habitacions, String> estatColumna;
+    //buscador
+    @FXML private TextField buscarHabitacioData;
     //get and set
 
     public Label getNomUsuariLabel() {
@@ -245,6 +247,14 @@ public class ControladorFinestrahabitacions implements Initializable {
 
     public void setEstatOrdre(Label estatOrdre) {
         this.estatOrdre = estatOrdre;
+    }
+
+    public TextField getBuscarHabitacioData() {
+        return buscarHabitacioData;
+    }
+
+    public void setBuscarHabitacioData(TextField buscarHabitacioData) {
+        this.buscarHabitacioData = buscarHabitacioData;
     }
     
     
@@ -487,28 +497,50 @@ public class ControladorFinestrahabitacions implements Initializable {
                 }
             }catch(Exception e){
                 getEstatOrdre().setText("Preu invalid");
-            }
-        } 
+                }
+            } 
+        }        
     }
             
-            
-            
-            
-               
-    }
-    //elimina el habitacio
     @FXML
-    public void EliminarHabitacio(){
-        Habitacions habitacioEliminar = getHabitacionsTaula().getSelectionModel().getSelectedItem();
-        
-        habitacionsTaula.getItems().removeAll(habitacioEliminar);
-        Statement stmt = connection.getStmt();
+    //Buscar llista d'habitacions
+    public void buscarExtreureHabitacions(){
         try {
-            stmt.executeUpdate("DELETE FROM `habitacio` WHERE `numHabitacio`='"+habitacioEliminar.getNumHabitacio()+"'");
-            extreureHabitacions();
-            habitacionsTaula.refresh();
+            String query="%"+getBuscarHabitacioData().getText()+"%";
+            ObservableList<Habitacions> habitacionsList = FXCollections.observableArrayList();
+            Statement stmt = connection.getStmt();
+            ResultSet rs = null;
+            rs = stmt.executeQuery("SELECT * FROM `habitacio` WHERE `numHabitacio` LIKE '"+query+"' OR `planta` LIKE '"+query+"' OR `tipus` LIKE '"+query+"'");
+            while(rs.next()){
+                boolean estat=false;
+                if(rs.getString("estat").equals("1")){estat=true; }
+                boolean cuina=false;
+                if(rs.getString("cuina").equals("1")){cuina=true; }
+                boolean vistaMar=false;
+                if(rs.getString("vistaMar").equals("1")){vistaMar=true; }
+            
+                habitacionsList.add(new Habitacions(rs.getString("numHabitacio"),rs.getString("planta"),Double.parseDouble(rs.getString("preu")),rs.getString("tipus"),estat,Integer.parseInt(rs.getString("numeroLlitsDobles")),Integer.parseInt(rs.getString("numeroLlitsNormals")),cuina,vistaMar));
+            }
+            getHabitacionsTaula().setItems(habitacionsList);
+            getHabitacionsTaula().refresh();
+
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorFinestrarecepcionistes.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
-    }
+    }  
+//    //elimina el habitacio
+//    @FXML
+//    public void EliminarHabitacio(){
+//        Habitacions habitacioEliminar = getHabitacionsTaula().getSelectionModel().getSelectedItem();
+//        
+//        habitacionsTaula.getItems().removeAll(habitacioEliminar);
+//        Statement stmt = connection.getStmt();
+//        try {
+//            stmt.executeUpdate("DELETE FROM `habitacio` WHERE `numHabitacio`='"+habitacioEliminar.getNumHabitacio()+"'");
+//            extreureHabitacions();
+//            habitacionsTaula.refresh();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ControladorFinestrarecepcionistes.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 }

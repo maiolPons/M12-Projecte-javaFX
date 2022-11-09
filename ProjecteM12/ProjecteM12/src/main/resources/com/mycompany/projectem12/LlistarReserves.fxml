@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backgroundmenu" stylesheets="@../../../styles/menuStyles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projectem12.ControladorLlistarReserves">
+   <children>
+      <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="475.0" rotate="180.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </ButtonBar>
+      <ButtonBar layoutX="805.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="475.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+         <buttons>
+            <Label fx:id="nomUsuariLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="241.0" text="nomUsuari" />
+            <Label text="Benvingut usuari: " />
+         </buttons>
+      </ButtonBar>
+      <ButtonBar layoutX="475.0" prefHeight="40.0" prefWidth="330.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </ButtonBar>
+      <Label alignment="CENTER" layoutX="552.0" layoutY="56.0" prefHeight="27.0" prefWidth="177.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" text="Reserves">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Label>
+      <TableView fx:id="reservesTaula" layoutX="140.0" layoutY="400.0" onMouseClicked="#seleccionaReserva" prefHeight="250.0" prefWidth="1000.0">
+        <columns>
+          <TableColumn fx:id="idColumna" prefWidth="100.0" text="Id Reserva" />
+          <TableColumn fx:id="entradaColumna" prefWidth="165.0" text="Data Entrada" />
+            <TableColumn fx:id="sortidaColumna" prefWidth="176.0" text="Data Sortida" />
+            <TableColumn fx:id="clientColumna" prefWidth="194.0" text="DNI Client" />
+            <TableColumn fx:id="recepcionistaColumna" prefWidth="164.0" text="Encarregat" />
+            <TableColumn fx:id="habitacioColumna" prefWidth="123.0" text="Habitacio" />
+            <TableColumn fx:id="pagamentColumna" prefWidth="77.0" text="Pagament" />
+        </columns>
+      </TableView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="400.0" onMousePressed="#marcaPagat" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../media/tickButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="475.0" onMousePressed="#marcaPendent" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../media/negateButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Pane layoutX="140.0" layoutY="83.0" prefHeight="300.0" prefWidth="450.0" styleClass="paneForm">
+         <children>
+            <Label layoutX="60.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Id Reserva" />
+            <TextField fx:id="id" disable="true" editable="false" layoutX="200.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label layoutX="60.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Data Entrada" />
+            <Label layoutX="60.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Data Sortida" />
+            <Label layoutX="60.0" layoutY="140.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="DNI Client" />
+            <TextField fx:id="entrada" disable="true" editable="false" layoutX="200.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="sortida" disable="true" editable="false" layoutX="200.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="dni" disable="true" editable="false" layoutX="200.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label layoutX="60.0" layoutY="220.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Habitacio" />
+            <TextField fx:id="habitacio" disable="true" editable="false" layoutX="200.0" layoutY="220.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label layoutX="60.0" layoutY="260.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Pagament" />
+            <TextField fx:id="pagament" disable="true" editable="false" layoutX="200.0" layoutY="260.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label layoutX="60.0" layoutY="180.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Encarregat" />
+            <TextField fx:id="recepcionista" disable="true" editable="false" layoutX="200.0" layoutY="180.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+         </children>
+      </Pane>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1175.0" layoutY="550.0" onMousePressed="#imprimirReserva" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../media/print.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Label fx:id="estatOrdre" alignment="CENTER" layoutX="344.0" layoutY="663.0" prefHeight="30.0" prefWidth="593.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" />
+      <Pane layoutX="690.0" layoutY="83.0" prefHeight="250.0" prefWidth="450.0" styleClass="paneForm">
+         <children>
+            <TextArea fx:id="observacions" disable="true" editable="false" layoutX="25.0" layoutY="36.0" prefHeight="200.0" prefWidth="400.0" />
+            <Label layoutX="165.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Observacions" />
+         </children>
+      </Pane>
+      <Pane layoutX="793.0" layoutY="344.0" prefHeight="50.0" prefWidth="347.0" styleClass="paneForm">
+         <children>
+            <TextField fx:id="buscarReserva" layoutX="36.0" layoutY="10.0" prefHeight="30.0" prefWidth="300.0" promptText="Buscar Reserva " styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="10.0" onMousePressed="#buscarExtreureClient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../media/search.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

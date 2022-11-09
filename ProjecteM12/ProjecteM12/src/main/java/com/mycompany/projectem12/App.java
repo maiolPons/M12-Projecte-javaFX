@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 
 /**
  * JavaFX App
@@ -28,10 +29,16 @@ public class App extends Application {
     
 
     @Override
-    public void start(Stage stageLogin) throws IOException {
-        scene = new Scene(loadFXML("Login"));
-        stageLogin.setScene(scene);
-        stageLogin.show();
+    public void start(Stage stageLogin) {
+        try {
+            scene = new Scene(loadFXML("Login"));
+            stageLogin.getIcons().add(new Image("file:src/main/resources/media/icon.png"));
+            stageLogin.setTitle("Login");
+            stageLogin.setScene(scene);
+            stageLogin.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     
     static void setRoot(String fxml) throws IOException {

@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -48,6 +49,7 @@ public class ControladorLogin {
         this.contrasenyaLogin = contrasenyaLogin;
     }
     
+    
     @FXML
     private void login(ActionEvent event) throws UnsupportedEncodingException, IOException{
         usuari.login(getUsuariLogin().getText(), getContrasenyaLogin().getText());
@@ -62,17 +64,23 @@ public class ControladorLogin {
             ControladorMenuAdmin cma = new ControladorMenuAdmin();
             cma.obrirMenuAdmin(menu);
         }else{
-            errorLogin.setText("Error amb la identificacio!");
+            getErrorLogin().setText("Error amb la identificacio!");
         }
         
     }
     @FXML
-    private void obrirRegistrar(ActionEvent event) throws IOException {
+    private void obrirRegistrar(ActionEvent event) {
+        try {
             ((Node)event.getSource()).getScene().getWindow().hide();
             Parent root = FXMLLoader.load(App.class.getResource("registrarUsuari" + ".fxml"));
             Stage stage = new Stage();
+            stage.getIcons().add(new Image("file:src/main/resources/media/icon.png"));
+            stage.setTitle("Registrar");
             Scene scene =new Scene(root);
             stage.setScene(scene);
             stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

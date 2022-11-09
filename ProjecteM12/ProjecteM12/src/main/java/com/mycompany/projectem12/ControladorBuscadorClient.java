@@ -10,7 +10,6 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -160,11 +159,7 @@ public class ControladorBuscadorClient extends ControladorFinestraReserves imple
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         iniciarCeles();
-        try {
-            extreureClient();
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorFinestrahabitacions.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        extreureClient();
     }
     //inicia les celes de la taula
     private void iniciarCeles(){
@@ -179,30 +174,38 @@ public class ControladorBuscadorClient extends ControladorFinestraReserves imple
         getOcupacioColumna().setCellValueFactory(new PropertyValueFactory<Clients, String>("estatCivil"));
     }
     //crear llista de clients
-    public void extreureClient() throws SQLException{
-        ObservableList<Clients> clientList = FXCollections.observableArrayList();
-        Statement stmt = connection.getStmt();
-        ResultSet rs = null;
-        rs = stmt.executeQuery("SELECT * FROM `client`");
-        while(rs.next()){
-            clientList.add(new Clients(rs.getString("dni"),rs.getString("nomClient"),rs.getString("dataNaixament"),rs.getString("sexe"),rs.getString("nacionalitat"),rs.getString("telefon"),rs.getString("email"),rs.getString("ocupacio"),rs.getString("estatCivil")));
+    public void extreureClient() {
+        try {
+            ObservableList<Clients> clientList = FXCollections.observableArrayList();
+            Statement stmt = connection.getStmt();
+            ResultSet rs = null;
+            rs = stmt.executeQuery("SELECT * FROM `client`");
+            while(rs.next()){
+                clientList.add(new Clients(rs.getString("dni"),rs.getString("nomClient"),rs.getString("dataNaixament"),rs.getString("sexe"),rs.getString("nacionalitat"),rs.getString("telefon"),rs.getString("email"),rs.getString("ocupacio"),rs.getString("estatCivil")));
+            }
+            getClientsTaula().setItems(clientList);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-        getClientsTaula().setItems(clientList);
     }
     @FXML
     //Buscar llista de clients
-    public void buscarExtreureClient() throws SQLException{
-        String query="%"+getBuscarClientData().getText()+"%";
-        ObservableList<Clients> clientList = FXCollections.observableArrayList();
-        Statement stmt = connection.getStmt();
-        ResultSet rs = null;
-        rs = stmt.executeQuery("SELECT * FROM `client` WHERE `dni` LIKE '"+query+"' OR `nomClient` LIKE '"+query+"' OR `dataNaixament` LIKE '"+query+"' OR `sexe` LIKE '"+query+"' OR `nacionalitat` LIKE '"+query+"' OR `telefon` LIKE '"+query+"' OR `email` LIKE '"+query+"' OR `ocupacio` LIKE '"+query+"' OR `estatCivil` LIKE '"+query+"'");
-        System.out.println("SELECT * FROM `client` WHERE `dni` LIKE '"+query+"'");
-        while(rs.next()){
-            clientList.add(new Clients(rs.getString("dni"),rs.getString("nomClient"),rs.getString("dataNaixament"),rs.getString("sexe"),rs.getString("nacionalitat"),rs.getString("telefon"),rs.getString("email"),rs.getString("ocupacio"),rs.getString("estatCivil")));
+    public void buscarExtreureClient(){
+        try {
+            String query="%"+getBuscarClientData().getText()+"%";
+            ObservableList<Clients> clientList = FXCollections.observableArrayList();
+            Statement stmt = connection.getStmt();
+            ResultSet rs = null;
+            rs = stmt.executeQuery("SELECT * FROM `client` WHERE (`dni` LIKE '"+query+"' OR `nomClient` LIKE '"+query+"' OR `dataNaixament` LIKE '"+query+"' OR `sexe` LIKE '"+query+"' OR `nacionalitat` LIKE '"+query+"' OR `telefon` LIKE '"+query+"' OR `email` LIKE '"+query+"' OR `ocupacio` LIKE '"+query+"' OR `estatCivil` LIKE '"+query+"')");
+            System.out.println("SELECT * FROM `client` WHERE `dni` LIKE '"+query+"'");
+            while(rs.next()){
+                clientList.add(new Clients(rs.getString("dni"),rs.getString("nomClient"),rs.getString("dataNaixament"),rs.getString("sexe"),rs.getString("nacionalitat"),rs.getString("telefon"),rs.getString("email"),rs.getString("ocupacio"),rs.getString("estatCivil")));
+            }
+            getClientsTaula().setItems(clientList);
+            getClientsTaula().refresh();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-        getClientsTaula().setItems(clientList);
-        getClientsTaula().refresh();
     }
     @FXML
     public void selecionaClient(MouseEvent event){

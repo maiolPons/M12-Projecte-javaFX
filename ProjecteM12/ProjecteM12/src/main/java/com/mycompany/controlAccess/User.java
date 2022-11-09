@@ -207,16 +207,16 @@ public class User {
                 rs = stmt.executeQuery("SELECT * FROM `empleats` WHERE `dni`='"+getDni()+"' or `nomUsuari`='"+getNomUsuari()+"' or `email`='"+getEmail()+"'");
                 funciona="Usuari ja existeix!";
             } catch (SQLException ex) {
-                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
                 funciona="Usuari ja existeix!";
             }
             try {
                 if(rs.next() == false){
                     funciona="S";
-                    stmt.executeUpdate("INSERT INTO `empleats` (`dni`,`nom`,`cognoms`,`nomUsuari`,`contrasenya`,`nacionalitat`,`telefon`,`email`,`admin`,`validat`) VALUES ('"+getDni()+"','"+getNom()+"','"+getCognom()+"','"+getNomUsuari()+"','"+encriptarMD5(getContrasenya())+"','"+getNacionalitat()+"','"+getTelefon()+"','"+getEmail()+"',NULL,'no')");
+                    stmt.executeUpdate("INSERT INTO `empleats` (`dni`,`nom`,`cognoms`,`nomUsuari`,`contrasenya`,`nacionalitat`,`telefon`,`email`,`admin`,`validat`,`eliminat`) VALUES ('"+getDni()+"','"+getNom()+"','"+getCognom()+"','"+getNomUsuari()+"','"+encriptarMD5(getContrasenya())+"','"+getNacionalitat()+"','"+getTelefon()+"','"+getEmail()+"',NULL,'no',0)");
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
                 funciona="Usuari ja existeix!";
             }
         }

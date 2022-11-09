@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -39,6 +40,7 @@ public class ControladorMenuGlobal {
         Parent root = FXMLLoader.load(App.class.getResource("Login" + ".fxml"));
         Stage stage = new Stage();
         Scene scene =new Scene(root);
+        stage.getIcons().add(new Image("file:src/main/resources/media/icon.png"));
         stage.setScene(scene);
         stage.show();
     }

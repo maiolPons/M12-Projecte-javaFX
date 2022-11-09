@@ -6,11 +6,11 @@ package com.mycompany.projectem12;
 
 import com.mycompany.controlAccess.Clients;
 import com.mycompany.controlAccess.Habitacions;
-import com.mycompany.controlAccess.Recepcionistes;
 import com.mycompany.controlAccess.Reserva;
 import static com.mycompany.projectem12.App.connection;
 import static com.mycompany.projectem12.App.usuari;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,11 +18,14 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
@@ -31,6 +34,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -39,9 +43,10 @@ import javafx.util.Callback;
  *
  * @author Maiol
  */
-public class ControladorFinestraReserves {
+public class ControladorFinestraReserves implements Initializable {
+    @FXML private Label nomUsuariLabel;
     //objecte reserva
-    private Reserva reserva = new Reserva();
+    private static Reserva reserva = new Reserva();
     //Stages finestres buscadors
     private Stage stageBuscadorClient;
     private Stage stageBuscadorHabitacio;
@@ -337,12 +342,19 @@ public class ControladorFinestraReserves {
         this.stageConfirmacio = stageConfirmacio;
     }
 
+    public Label getNomUsuariLabel() {
+        return nomUsuariLabel;
+    }
+
+    public void setNomUsuariLabel(Label nomUsuariLabel) {
+        this.nomUsuariLabel = nomUsuariLabel;
+    }
+
     
     
-    //funcions de inici
-    @FXML
-    protected void initialize(){
-        
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        getNomUsuariLabel().setText(usuari.getNom());
     }
     //Obrir buscador clients
     @FXML
@@ -352,6 +364,8 @@ public class ControladorFinestraReserves {
             setStageBuscadorClient(new Stage());
             Scene scene3 =new Scene(root);
             getStageBuscadorClient().setScene(scene3);
+            getStageBuscadorClient().setTitle("Clients");
+            getStageBuscadorClient().getIcons().add(new Image("file:src/main/resources/media/icon.png"));
             getStageBuscadorClient().show();
             } 
         else if(getStageBuscadorClient().isShowing()){
@@ -368,6 +382,8 @@ public class ControladorFinestraReserves {
             setStageBuscadorHabitacio(new Stage());
             Scene scene3 =new Scene(root);
             getStageBuscadorHabitacio().setScene(scene3);
+            getStageBuscadorHabitacio().setTitle("Habitacions");
+            getStageBuscadorHabitacio().getIcons().add(new Image("file:src/main/resources/media/icon.png"));
             getStageBuscadorHabitacio().show();
             } 
         else if(getStageBuscadorHabitacio().isShowing()){
@@ -383,7 +399,7 @@ public class ControladorFinestraReserves {
         if(getBuscarClient().getText() != null || !getBuscarClient().getText().trim().isEmpty()){
             Statement stmt = connection.getStmt();
             ResultSet rs = null;
-            rs = stmt.executeQuery("SELECT * FROM `client` WHERE `dni`='"+getBuscarClient().getText()+"'");
+            rs = stmt.executeQuery("SELECT * FROM `client` WHERE `dni`='"+getBuscarClient().getText()+"'  AND `eliminatClient`=0");
             if(!rs.next()){
                 getClientLabelError().setText("Client no existeix");
             }else{
@@ -452,7 +468,7 @@ public class ControladorFinestraReserves {
     }
     //posa tots el valors per defecte
     @FXML
-    private void reiniciarValors(){
+    public void reiniciarValors(){
         //reserva
         getReserva().setClient(null);
         getReserva().setHabitacio(null);
@@ -544,23 +560,57 @@ public class ControladorFinestraReserves {
             Logger.getLogger(ControladorBuscadorHabitacio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    //fa les comprovacions de que les dades de la reserva siguin correctes
     @FXML
-    private void comprovarFormulariReserva(ActionEvent event) throws IOException{
+    private void comprovarFormulariReserva(MouseEvent event){
         if(getReserva().getClient()!=null){
             if(getReserva().getHabitacio()!=null){
                 if(getEntradaReserva().getValue()!=null && getSortidaReserva().getValue()!=null){
-                    if(getEntradaReserva().getValue().isBefore(getSortidaReserva().getValue())){
-                        getReservaLabelError().setText("");
-                        getReserva().setDiaEntrada(getEntradaReserva().getValue().toString());
-                        getReserva().setDiaSortida(getSortidaReserva().getValue().toString());
-                        getReserva().setRecepcionista(usuari);
-                        if(getPagamentRealitzat().isSelected()){
-                            getReserva().setTipusPagament("Pagament pendent");
+                    if(getEntradaReserva().getValue().isBefore(getSortidaReserva().getValue()) || getEntradaReserva().getValue().equals(getSortidaReserva().getValue())){
+                        boolean flag = false;
+                        Statement stmt = connection.getStmt();
+                        ResultSet rs = null;
+                        try {
+                            rs = stmt.executeQuery("SELECT * FROM `reserva` WHERE `fknumHabitacio`='"+getReserva().getHabitacio().getNumHabitacio()+"'");
+                            //comprova si no i a cap data reservada entre mitg de la reserva
+                            while(rs.next()){
+                                LocalDate date1 = LocalDate.parse(rs.getString("dataEntrada"));
+                                
+                                if(date1.isAfter(getEntradaReserva().getValue()) && date1.isBefore(getSortidaReserva().getValue())){
+                                    System.out.println("yes");
+                                    flag=true;
+                                }
+                            }
+                        } catch (SQLException ex) {
+                            System.out.println("Error: "+ex.getMessage());
                         }
-                        else{
-                            getReserva().setTipusPagament("Pagament realitzat");
+                        if(flag==false){
+                            getReservaLabelError().setText("");
+                            getReserva().setDiaEntrada(getEntradaReserva().getValue().toString());
+                            getReserva().setDiaSortida(getSortidaReserva().getValue().toString());
+                            getReserva().setRecepcionista(usuari);
+                            if(getPagamentRealitzat().isSelected()){
+                                getReserva().setTipusPagament("Pagament pendent");
+                            }
+                            else{
+                                getReserva().setTipusPagament("Pagament realitzat");
+                            }
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("FinestraConfirmarReserva" + ".fxml"));
+                            Parent root;
+                            try {
+                                root = loader.load();
+                                ControladorConfirmacioReserva controladorConfirmar = loader.getController();
+                                controladorConfirmar.getDniClient().setText(controladorConfirmar.getReserva().getClient().getDni());
+                                Stage stage=new Stage();
+                                Scene scene3 =new Scene(root);
+                                stage.setScene(scene3);
+                                stage.show();
+                            } catch (IOException ex) {
+                                System.out.println(ex.getMessage());
+                            }
+                        }else{
+                            getReservaLabelError().setText("Dates no valides!");
                         }
-                        obrirConfirmacioReserva();
                     }
                     else{
                         getReservaLabelError().setText("Dates no valides!");
@@ -578,19 +628,8 @@ public class ControladorFinestraReserves {
             getReservaLabelError().setText("Client no seleccionat!");
         }
     }
-    private void obrirConfirmacioReserva() throws IOException{
-        if(getStageConfirmacio()== null){
-            Parent root = FXMLLoader.load(App.class.getResource("FinestraConfirmarReserva" + ".fxml"));
-            setStageConfirmacio(new Stage());
-            Scene scene2 =new Scene(root);
-            getStageConfirmacio().setScene(scene2);
-            getStageConfirmacio().show();
-            } 
-        else if(getStageConfirmacio().isShowing()){
-            getStageConfirmacio().toFront();
-        }
-        else {
-            getStageBuscadorClient().show();
-        }
+    @FXML
+    private void tancarReserves(MouseEvent event){
+        ((Node)event.getSource()).getScene().getWindow().hide();
     }
 }

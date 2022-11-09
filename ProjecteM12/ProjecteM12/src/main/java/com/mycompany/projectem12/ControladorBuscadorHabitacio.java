@@ -15,8 +15,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +25,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -62,6 +61,9 @@ public class ControladorBuscadorHabitacio implements Initializable {
     @FXML private ComboBox tipus;
     @FXML private CheckBox vistaMar;
     @FXML private CheckBox cuina;
+    @FXML private DatePicker dataSortida;
+    @FXML private DatePicker dataEntrada;
+    @FXML private Label errorBuscar;
     //seleccionat
     @FXML private TextField habitacioSeleccionat;
     
@@ -218,20 +220,42 @@ public class ControladorBuscadorHabitacio implements Initializable {
     public void setCuina(CheckBox cuina) {
         this.cuina = cuina;
     }
+
+    public DatePicker getDataSortida() {
+        return dataSortida;
+    }
+
+    public void setDataSortida(DatePicker dataSortida) {
+        this.dataSortida = dataSortida;
+    }
+
+    public DatePicker getDataEntrada() {
+        return dataEntrada;
+    }
+
+    public void setDataEntrada(DatePicker dataEntrada) {
+        this.dataEntrada = dataEntrada;
+    }
+
+    public Label getErrorBuscar() {
+        return errorBuscar;
+    }
+
+    public void setErrorBuscar(Label errorBuscar) {
+        this.errorBuscar = errorBuscar;
+    }
+    
+    
     
     //metode
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         iniciarCeles();
-        try {
-            extreureHabitacions();
-            initiateComboBox();
-            getTipus().getSelectionModel().selectFirst();
-            getLlitsDobles().getSelectionModel().selectFirst();
-            getLlitsIndividuals().getSelectionModel().selectFirst();
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorFinestrahabitacions.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        extreureHabitacions();
+        initiateComboBox();
+        getTipus().getSelectionModel().selectFirst();
+        getLlitsDobles().getSelectionModel().selectFirst();
+        getLlitsIndividuals().getSelectionModel().selectFirst();
     }
     //iniciar combobox
     private void initiateComboBox(){
@@ -262,24 +286,28 @@ public class ControladorBuscadorHabitacio implements Initializable {
         getVistaColumna().setCellValueFactory(new PropertyValueFactory<Habitacions, String>("vistaMarVisualitzar"));
     }
     //crear llista de recepcionistes
-    public void extreureHabitacions() throws SQLException{
-        ObservableList<Habitacions> habitacionsList = FXCollections.observableArrayList();
-        Statement stmt = connection.getStmt();
-        ResultSet rs = null;
-        rs = stmt.executeQuery("SELECT * FROM `habitacio` WHERE `estat`=1");
-        while(rs.next()){
-            boolean estat=false;
-            if(rs.getString("estat").equals("1")){estat=true; }
-            
-            boolean cuina=false;
-            if(rs.getString("cuina").equals("1")){cuina=true; }
-            boolean vistaMar=false;
-            if(rs.getString("vistaMar").equals("1")){vistaMar=true; }
-
-            habitacionsList.add(new Habitacions(rs.getString("numHabitacio"),rs.getString("planta"),Double.parseDouble(rs.getString("preu")),rs.getString("tipus"),estat,Integer.parseInt(rs.getString("numeroLlitsDobles")),Integer.parseInt(rs.getString("numeroLlitsNormals")),cuina,vistaMar));
-            
+    public void extreureHabitacions(){
+        try {
+            ObservableList<Habitacions> habitacionsList = FXCollections.observableArrayList();
+            Statement stmt = connection.getStmt();
+            ResultSet rs = null;
+            rs = stmt.executeQuery("SELECT * FROM `habitacio` WHERE `estat`=1");
+            while(rs.next()){
+                boolean estat=false;
+                if(rs.getString("estat").equals("1")){estat=true; }
+                
+                boolean cuina=false;
+                if(rs.getString("cuina").equals("1")){cuina=true; }
+                boolean vistaMar=false;
+                if(rs.getString("vistaMar").equals("1")){vistaMar=true; }
+                
+                habitacionsList.add(new Habitacions(rs.getString("numHabitacio"),rs.getString("planta"),Double.parseDouble(rs.getString("preu")),rs.getString("tipus"),estat,Integer.parseInt(rs.getString("numeroLlitsDobles")),Integer.parseInt(rs.getString("numeroLlitsNormals")),cuina,vistaMar));
+                
+            }
+            getHabitacionsTaula().setItems(habitacionsList);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-        getHabitacionsTaula().setItems(habitacionsList);
     }
     //marca i desevilita les dates que ja estan reservades
     private void dateHighLight(){
@@ -315,7 +343,7 @@ public class ControladorBuscadorHabitacio implements Initializable {
                 }
             });
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorBuscadorHabitacio.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }
     //selecciona i mostra la informacio necesaria la Habitacio
@@ -332,58 +360,90 @@ public class ControladorBuscadorHabitacio implements Initializable {
     }
     @FXML
     //Buscar llista de clients
-    public void buscarExtreureHabitacio() throws SQLException{
-        String query="%"+getBuscarHabitacioData().getText()+"%";
-        ObservableList<Habitacions> habitacioList = FXCollections.observableArrayList();
-        Statement stmt = connection.getStmt();
-        ResultSet rs = null;
-        String vistaC="0";
-        if(getVistaMar().isSelected()){vistaC="1";}
-        String cuinaC="0";
-        if(getCuina().isSelected()){cuinaC="1";}
-        String tipus=getTipus().getValue().toString();
-        if(getTipus().getValue()=="Tots"){
-            tipus="%";
-        }
+    public void buscarExtreureHabitacio(){
+        try {
+            String query="%"+getBuscarHabitacioData().getText()+"%";
+            ObservableList<Habitacions> habitacioList = FXCollections.observableArrayList();
+            Statement stmt = connection.getStmt();
+            ResultSet rs = null;
+            String vistaC="0";
+            if(getVistaMar().isSelected()){vistaC="1";}
+            String cuinaC="0";
+            if(getCuina().isSelected()){cuinaC="1";}
+            String tipus=getTipus().getValue().toString();
+            if(getTipus().getValue()=="Tots"){
+                tipus="%";
+            }
+            boolean flag = true;
 
-        //"SELECT * FROM `habitacio` WHERE (`numHabitacio` LIKE '"+query+"' OR `planta` LIKE '"+query+"' OR `preu` LIKE '"+query+"') AND `estat` = 1"
-        rs = stmt.executeQuery("SELECT * FROM `habitacio` WHERE (`numHabitacio` LIKE '"+query+"' OR `planta` LIKE '"+query+"' OR `preu` LIKE '"+query+"') AND (`vistaMar` = '"+vistaC+"' AND `cuina` = '"+cuinaC+"' AND `numeroLlitsDobles` >='"+getLlitsDobles().getValue()+"' AND `numeroLlitsNormals` >='"+getLlitsIndividuals().getValue()+"' AND `tipus` >='"+tipus+"') AND `estat` = 1");
-        System.out.println("SELECT * FROM `habitacio` WHERE (`numHabitacio` LIKE '"+query+"' OR `planta` LIKE '"+query+"' OR `preu` LIKE '"+query+"') AND (`vistaMar` = '"+vistaC+"' AND `cuina` = '"+cuinaC+"' AND `numeroLlitsDobles` >='"+getLlitsDobles().getValue()+"' AND `numeroLlitsNormals` >='"+getLlitsIndividuals().getValue()+"' AND `tipus` >='"+tipus+"') AND `estat` = 1");
-        while(rs.next()){
-            boolean estat=false;
-            if(rs.getString("estat").equals("1")){estat=true; }
+            if(getDataEntrada().getValue()!=null && getDataSortida().getValue()!=null){
+                LocalDate today = LocalDate.now();
+                if(getDataEntrada().getValue().compareTo(today) > 0){
+                    if(getDataEntrada().getValue().isBefore(getDataSortida().getValue()) || getDataEntrada().getValue().equals(getDataSortida().getValue())){
+                        rs = stmt.executeQuery("SELECT * FROM `habitacio` WHERE numHabitacio NOT IN (SELECT numHabitacio FROM `habitacio` INNER JOIN `reserva` ON numHabitacio = fknumHabitacio WHERE '"+getDataEntrada().getValue()+"' BETWEEN dataEntrada AND dataSortida OR '"+getDataSortida().getValue()+"' BETWEEN dataEntrada AND dataSortida OR dataEntrada BETWEEN '"+getDataEntrada().getValue()+"' AND '"+getDataSortida().getValue()+"' OR dataSortida BETWEEN '"+getDataEntrada().getValue()+"' AND '"+getDataSortida().getValue()+"') AND (`numHabitacio` LIKE '"+query+"' OR `planta` LIKE '"+query+"' OR `preu` LIKE '"+query+"') AND (`vistaMar` = '"+vistaC+"' AND `cuina` = '"+cuinaC+"' AND `numeroLlitsDobles` >='"+getLlitsDobles().getValue()+"' AND `numeroLlitsNormals` >='"+getLlitsIndividuals().getValue()+"' AND `tipus` >='"+tipus+"') AND estat = 1");
+                    }
+                    else{
+                        flag = false;
+                    }
+                }
+                else{
+                    flag = false;
+                }
+            }
+            else{
+                rs = stmt.executeQuery("SELECT * FROM `habitacio` WHERE (`numHabitacio` LIKE '"+query+"' OR `planta` LIKE '"+query+"' OR `preu` LIKE '"+query+"') AND (`vistaMar` = '"+vistaC+"' AND `cuina` = '"+cuinaC+"' AND `numeroLlitsDobles` >='"+getLlitsDobles().getValue()+"' AND `numeroLlitsNormals` >='"+getLlitsIndividuals().getValue()+"' AND `tipus` >='"+tipus+"') AND `estat` = 1");  
+            }
+            if(flag){
+                while(rs.next()){
+                boolean estat=false;
+                if(rs.getString("estat").equals("1")){estat=true; }
+                
+                boolean cuina=false;
+                if(rs.getString("cuina").equals("1")){cuina=true; }
+                
+                boolean vistaMar=false;
+                if(rs.getString("vistaMar").equals("1")){vistaMar=true; }
+                
+                habitacioList.add(new Habitacions(rs.getString("numHabitacio"),rs.getString("planta"),Double.parseDouble(rs.getString("preu")),rs.getString("tipus"),estat,Integer.parseInt(rs.getString("numeroLlitsDobles")),Integer.parseInt(rs.getString("numeroLlitsNormals")),cuina,vistaMar));
+            }
+            getHabitacionsTaula().setItems(habitacioList);
+            getHabitacionsTaula().refresh();
+            getErrorBuscar().setText("");
+            }else{
+                getErrorBuscar().setText("Error amb els parametres de busqueda!");
+            }
             
-            boolean cuina=false;
-            if(rs.getString("cuina").equals("1")){cuina=true; }
-            
-            boolean vistaMar=false;
-            if(rs.getString("vistaMar").equals("1")){vistaMar=true; }
-            
-            habitacioList.add(new Habitacions(rs.getString("numHabitacio"),rs.getString("planta"),Double.parseDouble(rs.getString("preu")),rs.getString("tipus"),estat,Integer.parseInt(rs.getString("numeroLlitsDobles")),Integer.parseInt(rs.getString("numeroLlitsNormals")),cuina,vistaMar));
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-        getHabitacionsTaula().setItems(habitacioList);
-        getHabitacionsTaula().refresh();
     }
     @FXML
-    private void mostrarTot() throws SQLException{
-        ObservableList<Habitacions> habitacioList = FXCollections.observableArrayList();
-        Statement stmt = connection.getStmt();
-        ResultSet rs = null;
-        rs = stmt.executeQuery("SELECT * FROM `habitacio` WHERE `estat`=1");
-        while(rs.next()){
-            boolean estat=false;
-            if(rs.getString("estat").equals("1")){estat=true; }
-            
-            boolean cuina=false;
-            if(rs.getString("cuina").equals("1")){cuina=true; }
-            
-            boolean vistaMar=false;
-            if(rs.getString("vistaMar").equals("1")){vistaMar=true; }
-            
-            habitacioList.add(new Habitacions(rs.getString("numHabitacio"),rs.getString("planta"),Double.parseDouble(rs.getString("preu")),rs.getString("tipus"),estat,Integer.parseInt(rs.getString("numeroLlitsDobles")),Integer.parseInt(rs.getString("numeroLlitsNormals")),cuina,vistaMar));
+    private void mostrarTot(){
+        try {
+            ObservableList<Habitacions> habitacioList = FXCollections.observableArrayList();
+            Statement stmt = connection.getStmt();
+            ResultSet rs = null;
+            rs = stmt.executeQuery("SELECT * FROM `habitacio` WHERE `estat`=1");
+            while(rs.next()){
+                boolean estat=false;
+                if(rs.getString("estat").equals("1")){estat=true; }
+                
+                boolean cuina=false;
+                if(rs.getString("cuina").equals("1")){cuina=true; }
+                
+                boolean vistaMar=false;
+                if(rs.getString("vistaMar").equals("1")){vistaMar=true; }
+                
+                habitacioList.add(new Habitacions(rs.getString("numHabitacio"),rs.getString("planta"),Double.parseDouble(rs.getString("preu")),rs.getString("tipus"),estat,Integer.parseInt(rs.getString("numeroLlitsDobles")),Integer.parseInt(rs.getString("numeroLlitsNormals")),cuina,vistaMar));
+            }
+            getHabitacionsTaula().setItems(habitacioList);
+            getHabitacionsTaula().refresh();
+            getErrorBuscar().setText("");
+            getDataEntrada().setValue(null);
+            getDataSortida().setValue(null);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-        getHabitacionsTaula().setItems(habitacioList);
-        getHabitacionsTaula().refresh();
     }
     //confirmar client
     @FXML
