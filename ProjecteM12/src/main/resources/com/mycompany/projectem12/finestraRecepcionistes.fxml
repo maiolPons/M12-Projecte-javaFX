@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backgroundmenu" stylesheets="@../../../styles/menuStyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projectem12.ControladorFinestrarecepcionistes">
+   <children>
+      <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="475.0" rotate="180.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </ButtonBar>
+      <ButtonBar layoutX="805.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="475.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+         <buttons>
+            <Label fx:id="nomUsuariLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="241.0" text="nomUsuari" />
+            <Label text="Benvingut usuari: " />
+         </buttons>
+      </ButtonBar>
+      <ButtonBar layoutX="475.0" prefHeight="40.0" prefWidth="330.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </ButtonBar>
+      <Label alignment="CENTER" layoutX="552.0" layoutY="56.0" prefHeight="27.0" prefWidth="177.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" text="Recepcionistes">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Label>
+      <TableView fx:id="RecepcionistesTaula" layoutX="140.0" layoutY="400.0" onMouseClicked="#seleccionaRecepcionista" prefHeight="250.0" prefWidth="1000.0">
+        <columns>
+          <TableColumn fx:id="dniColumna" prefWidth="100.0" text="DNI" />
+          <TableColumn fx:id="nomColumna" prefWidth="100.0" text="Nom" />
+            <TableColumn fx:id="cognomsColumna" prefWidth="175.0" text="Cognoms" />
+            <TableColumn fx:id="usuariColumna" prefWidth="100.0" text="Nom d'usuari" />
+            <TableColumn fx:id="nacionalitatColumna" prefWidth="100.0" text="Nacionalitat" />
+            <TableColumn fx:id="emailColumna" prefWidth="200.0" text="E-mail" />
+            <TableColumn fx:id="telefonColumna" prefWidth="150.0" text="Telefon" />
+            <TableColumn fx:id="validacioColumna" prefWidth="75.0" text="Validacio" />
+        </columns>
+      </TableView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1176.0" layoutY="463.0" onMousePressed="#validarRecep" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../media/tickButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1176.0" layoutY="538.0" onMousePressed="#declinarRecep" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../media/negateButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Pane layoutX="240.0" layoutY="130.0" prefHeight="200.0" prefWidth="800.0" styleClass="paneForm">
+         <children>
+            <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="DNI:" />
+            <TextField fx:id="dnirep" editable="false" layoutX="140.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label layoutX="20.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Nom:" />
+            <Label layoutX="20.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Cognoms:" />
+            <Label layoutX="20.0" layoutY="140.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Nom d'usuari:" />
+            <TextField fx:id="nomrep" editable="false" layoutX="140.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="cognomrep" editable="false" layoutX="140.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="usuarirep" editable="false" layoutX="140.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label layoutX="460.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Nacionalitat:" />
+            <TextField fx:id="nacionalitatrep" editable="false" layoutX="580.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label layoutX="460.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="E-mail:" />
+            <TextField fx:id="emailrep" editable="false" layoutX="580.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label layoutX="460.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Telefon:" />
+            <TextField fx:id="telefonrep" editable="false" layoutX="580.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label layoutX="460.0" layoutY="140.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Validacio:" />
+            <TextField fx:id="validaciorep" editable="false" layoutX="580.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+         </children>
+      </Pane>
+      <Label fx:id="estatOrdre" alignment="CENTER" layoutX="344.0" layoutY="100.0" prefHeight="30.0" prefWidth="593.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" />
+      <RadioButton fx:id="validatsRadio" layoutX="1034.0" layoutY="360.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="106.0" text="Validats">
+         <toggleGroup>
+            <ToggleGroup fx:id="seleccionaRadio" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="noValidatsRadio" layoutX="922.0" layoutY="360.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="106.0" text="No validats" toggleGroup="$seleccionaRadio" />
+      <TextField fx:id="buscarRecepcionista" layoutX="550.0" layoutY="360.0" prefHeight="30.0" prefWidth="300.0" promptText="Buscar recepcionista" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="520.0" layoutY="360.0" onMousePressed="#buscarRecepcionistes" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../media/search.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <RadioButton fx:id="totsRadio" layoutX="859.0" layoutY="360.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="56.0" selected="true" text="Tots" toggleGroup="$seleccionaRadio" />
+   </children>
+</AnchorPane>

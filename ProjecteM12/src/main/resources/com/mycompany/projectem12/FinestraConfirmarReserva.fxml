@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="500.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projectem12.ControladorConfirmacioReserva">
+    <stylesheets>
+        <URL value="@/styles/menuStyles.css" />
+    </stylesheets>
+   <children>
+      <Pane prefHeight="600.0" prefWidth="500.0" styleClass="backgroundmenu" stylesheets="@../../../styles/menuStyles.css">
+         <children>
+            <Label alignment="CENTER" layoutX="110.0" layoutY="40.0" prefHeight="27.0" prefWidth="280.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" text="Confirmacio de la Reserva">
+               <font>
+                  <Font name="Georgia" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="15.0" layoutY="535.0" onMousePressed="#tancarConfirmacio" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../media/backButton.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="50.0" layoutY="80.0" prefHeight="450.0" prefWidth="400.0" styleClass="paneForm">
+               <children>
+                  <TextField fx:id="dniClient" disable="true" editable="false" layoutX="71.0" layoutY="58.0" prefHeight="20.0" prefWidth="130.0" styleClass="inputForm">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor></TextField>
+                  <Label alignment="CENTER" layoutX="20.0" layoutY="15.0" prefHeight="27.0" prefWidth="82.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" text="Client:">
+                     <font>
+                        <Font name="Georgia" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="20.0" layoutY="60.0" text="DNI:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="nomClient" disable="true" editable="false" layoutX="256.0" layoutY="58.0" prefHeight="20.0" prefWidth="130.0" styleClass="inputForm">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor></TextField>
+                  <Label layoutX="205.0" layoutY="60.0" text="Nom:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="20.0" layoutY="105.0" prefHeight="27.0" prefWidth="114.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" text="Habitacio:">
+                     <font>
+                        <Font name="Georgia" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="numHabitacio" disable="true" editable="false" layoutX="69.0" layoutY="148.0" prefHeight="20.0" prefWidth="130.0" styleClass="inputForm">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor></TextField>
+                  <Label layoutX="20.0" layoutY="150.0" text="Num:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="plantaHabitacio" disable="true" editable="false" layoutX="256.0" layoutY="148.0" prefHeight="20.0" prefWidth="130.0" styleClass="inputForm">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor></TextField>
+                  <Label layoutX="205.0" layoutY="150.0" text="Pis:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="20.0" layoutY="200.0" prefHeight="27.0" prefWidth="58.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" text="Dies:">
+                     <font>
+                        <Font name="Georgia" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="diaEntrada" disable="true" editable="false" layoutX="99.0" layoutY="243.0" prefHeight="20.0" prefWidth="100.0" styleClass="inputForm">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor></TextField>
+                  <Label layoutX="20.0" layoutY="245.0" text="Entrada:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="diaSortida" disable="true" editable="false" layoutX="286.0" layoutY="243.0" prefHeight="20.0" prefWidth="100.0" styleClass="inputForm">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor></TextField>
+                  <Label layoutX="205.0" layoutY="245.0" text="Sortida:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="obsText" layoutX="14.0" layoutY="321.0" prefHeight="120.0" prefWidth="200.0" />
+                  <Label layoutX="13.0" layoutY="293.0" text="Observacions:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="preu" disable="true" editable="false" layoutX="286.0" layoutY="321.0" prefHeight="20.0" prefWidth="100.0" styleClass="inputForm">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor></TextField>
+                  <Label layoutX="220.0" layoutY="323.0" text="Preu:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="336.0" layoutY="381.0" onMousePressed="#imprimirReserva" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../media/print.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="231.0" layoutY="381.0" onMousePressed="#crearReserva" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../media/saveButton.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </Pane>
+            <ButtonBar prefHeight="40.0" prefWidth="500.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </ButtonBar>
+            <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="545.0" prefHeight="30.0" prefWidth="350.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

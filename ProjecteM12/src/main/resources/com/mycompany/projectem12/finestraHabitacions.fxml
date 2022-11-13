@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backgroundmenu" stylesheets="@../../../styles/menuStyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projectem12.ControladorFinestrahabitacions">
+   <children>
+      <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="475.0" rotate="180.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </ButtonBar>
+      <ButtonBar layoutX="805.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="475.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+         <buttons>
+            <Label fx:id="nomUsuariLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="241.0" text="nomUsuari" />
+            <Label text="Benvingut usuari: " />
+         </buttons>
+      </ButtonBar>
+      <ButtonBar layoutX="475.0" prefHeight="40.0" prefWidth="330.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </ButtonBar>
+      <Label alignment="CENTER" layoutX="552.0" layoutY="56.0" prefHeight="27.0" prefWidth="177.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" text="Habitacions">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Label>
+      <TableView fx:id="habitacionsTaula" layoutX="140.0" layoutY="400.0" onMouseClicked="#modificarHabitacio" prefHeight="250.0" prefWidth="1000.0">
+        <columns>
+          <TableColumn fx:id="numeroColumna" prefWidth="59.0" text="Numero" />
+          <TableColumn fx:id="plantaColumna" prefWidth="68.0" text="Planta" />
+            <TableColumn fx:id="preuColumna" prefWidth="101.0" text="Preu" />
+            <TableColumn fx:id="tipusColumna" prefWidth="207.0" text="tipus" />
+            <TableColumn fx:id="llistaDoblesColumna" prefWidth="140.0" text="Llits dobles" />
+            <TableColumn fx:id="llitsNormalsColumna" prefWidth="136.0" text="Llits normals" />
+            <TableColumn fx:id="cuinaColumna" prefWidth="82.0" text="cuina" />
+            <TableColumn fx:id="vistaColumna" prefWidth="93.0" text="vista al mar" />
+            <TableColumn fx:id="estatColumna" prefWidth="113.0" text="Estat" />
+        </columns>
+      </TableView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1173.0" layoutY="450.0" onMousePressed="#crearHabitacio" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../media/newButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1172.0" layoutY="550.0" onMousePressed="#executarOrdre" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../media/saveButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Pane layoutX="241.0" layoutY="119.0" prefHeight="200.0" prefWidth="800.0" styleClass="paneForm">
+         <children>
+            <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Numero:" />
+            <TextField fx:id="numHabitaciohab" layoutX="140.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label layoutX="20.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Planta:" />
+            <Label layoutX="20.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Preu:" />
+            <Label layoutX="20.0" layoutY="140.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Tipus:" />
+            <TextField fx:id="plantahab" layoutX="140.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="preuhab" layoutX="140.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label layoutX="460.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Llit dobles:" />
+            <Label layoutX="460.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Llit normals:" />
+            <Label layoutX="460.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Cuina:" />
+            <Label layoutX="642.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Vista al mar:" />
+            <ComboBox fx:id="tipushab" layoutX="140.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" />
+            <CheckBox fx:id="cuinahab" layoutX="580.0" layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="18.0" />
+            <CheckBox fx:id="vistaMarhab" layoutX="762.0" layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="18.0" />
+            <Label layoutX="460.0" layoutY="140.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Estat:" />
+            <CheckBox fx:id="estathab" layoutX="580.0" layoutY="140.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="18.0" />
+            <ComboBox fx:id="numeroLlitsDobleshab" layoutX="580.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" />
+            <ComboBox fx:id="numeroLlitsNormalshab" layoutX="580.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" />
+         </children>
+      </Pane>
+      <Label fx:id="estatManipulacio" alignment="CENTER" layoutX="484.0" layoutY="92.0" prefHeight="27.0" prefWidth="315.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="estatOrdre" alignment="CENTER" layoutX="238.0" layoutY="345.0" prefHeight="30.0" prefWidth="457.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
+         <font>
+            <Font name="Georgia" size="12.0" />
+         </font>
+      </Label>
+      <Pane layoutX="696.0" layoutY="335.0" prefHeight="50.0" prefWidth="347.0" styleClass="paneForm">
+         <children>
+            <TextField fx:id="buscarHabitacioData" layoutX="36.0" layoutY="10.0" prefHeight="30.0" prefWidth="300.0" promptText="Buscar Habitacio" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="10.0" onMousePressed="#buscarExtreureHabitacions" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../media/search.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
