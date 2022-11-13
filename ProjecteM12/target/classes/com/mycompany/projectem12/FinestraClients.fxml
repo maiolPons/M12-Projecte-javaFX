@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backgroundmenu" stylesheets="@../../../styles/menuStyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projectem12.ControladorFinestraClients">
+   <children>
+      <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="475.0" rotate="180.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </ButtonBar>
+      <ButtonBar layoutX="805.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="475.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+         <buttons>
+            <Label fx:id="nomUsuariLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="241.0" text="nomUsuari" />
+            <Label text="Benvingut usuari: " />
+         </buttons>
+      </ButtonBar>
+      <ButtonBar layoutX="475.0" prefHeight="40.0" prefWidth="330.0" styleClass="barraMenu" stylesheets="@../../../styles/menuStyles.css">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </ButtonBar>
+      <Label alignment="CENTER" layoutX="552.0" layoutY="56.0" prefHeight="27.0" prefWidth="177.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css" text="Clients">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Label>
+      <TableView fx:id="ClientsTaula" layoutX="140.0" layoutY="400.0" onMouseClicked="#modificarClient" prefHeight="250.0" prefWidth="1000.0">
+        <columns>
+          <TableColumn fx:id="dniColumna" prefWidth="136.0" text="DNI" />
+          <TableColumn fx:id="nomColumna" prefWidth="122.0" text="Nom" />
+            <TableColumn fx:id="naixamentColumna" prefWidth="110.0" text="Naixament" />
+            <TableColumn fx:id="sexeColumna" prefWidth="67.0" text="Sexe" />
+            <TableColumn fx:id="nacionalitatColumna" prefWidth="140.0" text="Nacionalitat" />
+            <TableColumn fx:id="telefonColumna" prefWidth="109.0" text="Telefon" />
+            <TableColumn fx:id="emailColumna" prefWidth="109.0" text="Email" />
+            <TableColumn fx:id="estatCivilColumna" prefWidth="93.0" text="Estat civil" />
+            <TableColumn fx:id="ocupacioColumna" prefWidth="113.0" text="Ocupacio" />
+        </columns>
+      </TableView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1174.0" layoutY="456.0" onMousePressed="#crearClient" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../media/newButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1174.0" layoutY="541.0" onMousePressed="#executarOrdre" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../media/saveButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Pane layoutX="240.0" layoutY="118.0" prefHeight="233.0" prefWidth="800.0" styleClass="paneForm">
+         <children>
+            <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="DNI:" />
+            <TextField fx:id="dniClient" layoutX="140.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label layoutX="20.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Nom:" />
+            <Label layoutX="20.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Naixament:" />
+            <Label layoutX="20.0" layoutY="140.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Sexe:" />
+            <TextField fx:id="nomClient" layoutX="140.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <Label layoutX="20.0" layoutY="180.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Nacionalitat:" />
+            <Label layoutX="460.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Telefon:" />
+            <Label layoutX="460.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Email:" />
+            <Label layoutX="460.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Estat civil:" />
+            <DatePicker fx:id="naixamentClient" layoutX="140.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" />
+            <ComboBox fx:id="sexeClient" layoutX="140.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" />
+            <Label layoutX="460.0" layoutY="140.0" prefHeight="30.0" prefWidth="120.0" styleClass="labelInput" stylesheets="@../../../styles/menuStyles.css" text="Ocupacio:" />
+            <TextField fx:id="nacionalitatClient" layoutX="140.0" layoutY="180.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="telefonClient" layoutX="580.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <TextField fx:id="emailClient" layoutX="580.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <ComboBox fx:id="estatCivilClient" layoutX="580.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" />
+            <TextField fx:id="ocupacioClient" layoutX="580.0" layoutY="140.0" prefHeight="30.0" prefWidth="200.0" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+         </children>
+      </Pane>
+      <Label fx:id="estatManipulacio" alignment="CENTER" layoutX="483.0" layoutY="91.0" prefHeight="27.0" prefWidth="315.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="estatOrdre" alignment="CENTER" layoutX="242.0" layoutY="345.0" prefHeight="30.0" prefWidth="454.0" styleClass="titolFinestra" stylesheets="@../../../styles/menuStyles.css">
+         <font>
+            <Font name="Georgia" size="12.0" />
+         </font>
+      </Label>
+      <Pane layoutX="693.0" layoutY="350.0" prefHeight="50.0" prefWidth="347.0" styleClass="paneForm">
+         <children>
+            <TextField fx:id="buscarClientData" layoutX="36.0" layoutY="10.0" prefHeight="30.0" prefWidth="300.0" promptText="Buscar Client" styleClass="inputForm" stylesheets="@../../../styles/menuStyles.css" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="10.0" onMousePressed="#buscarExtreureClient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../media/search.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
